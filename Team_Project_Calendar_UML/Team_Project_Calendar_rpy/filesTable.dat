@@ -1,0 +1,11 @@
+I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
+
+- filesTable = { IRPYRawContainer 
+	- size = 4;
+	- value = "Projects.rpl" ""
+	"Team_Project_Calendar.rpy" ""
+	"Team_Project_Calendar_rpy\\Default.sbs" "Default"
+	"Team_Project_Calendar_rpy\\DefaultComponent.cmp" "DefaultComponent"
+	
+}
+
