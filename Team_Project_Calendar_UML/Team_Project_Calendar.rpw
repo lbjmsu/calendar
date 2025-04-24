@@ -30,7 +30,7 @@ I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
 				- _id = GUID 3e0e416b-cfbd-45bc-b9d4-976338e2816b;
 			}
 			- _UpLeft = 0 0 ;
-			- _DownRight = 1375 697 ;
+			- _DownRight = 1544 783 ;
 			- _instanceName = "";
 			- m_nDiagramIndex = 0;
 		}
@@ -57,8 +57,8 @@ I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
 				- _name = "Use Case Diagram";
 				- _id = GUID a88a39b7-e9f2-433c-9fb4-b48ad12daac2;
 			}
-			- _UpLeft = 0 110 ;
-			- _DownRight = 1010 612 ;
+			- _UpLeft = 0 58 ;
+			- _DownRight = 1187 648 ;
 			- _instanceName = "";
 			- m_nDiagramIndex = 1;
 		}
