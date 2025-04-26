@@ -4,13 +4,209 @@ I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
 		- size = 0;
 	}
 	- myViewsWithID = { IRPYRawContainer 
-		- size = 2;
+		- size = 9;
 		- value = 
 		{ CGEMdiDiagramParams 
 			- _placement = { CCommon_WINDOWPLACEMENT 
 				- m_nLength = 44;
-				- m_nFlags = 2;
-				- m_showCmd = 3;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -4;
+				- m_ptMaxPositionY = -27;
+				- m_nLeft = 78;
+				- m_nTop = 78;
+				- m_nRight = 1266;
+				- m_nBottom = 557;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IMSC";
+				- _filename = "";
+				- _subsystem = "";
+				- _class = "";
+				- _name = "Add Event";
+				- _id = GUID e99e3747-4c0e-4d92-9abb-ee7a3597b814;
+			}
+			- _UpLeft = 0 0 ;
+			- _DownRight = 1159 407 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 6;
+		}
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -4;
+				- m_ptMaxPositionY = -27;
+				- m_nLeft = 104;
+				- m_nTop = 104;
+				- m_nRight = 1292;
+				- m_nBottom = 583;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IActivityDiagram";
+				- _filename = "Default.sbs";
+				- _subsystem = "Default";
+				- _class = "Add Event";
+				- _name = "ActivityDiagram";
+				- _id = GUID 8ab8734d-3bac-4f97-a734-91e8a0e84160;
+			}
+			- _UpLeft = 0 741 ;
+			- _DownRight = 1159 1148 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 5;
+		}
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -4;
+				- m_ptMaxPositionY = -27;
+				- m_nLeft = 130;
+				- m_nTop = 130;
+				- m_nRight = 1318;
+				- m_nBottom = 609;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IStateChartDiagram";
+				- _filename = "Default.sbs";
+				- _subsystem = "Default";
+				- _class = "Add Event";
+				- _name = "StatechartDiagram";
+				- _id = GUID 1512f827-6f66-49f9-9298-b6367994c8f2;
+			}
+			- _UpLeft = 0 0 ;
+			- _DownRight = 1159 427 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 4;
+		}
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -4;
+				- m_ptMaxPositionY = -27;
+				- m_nLeft = 208;
+				- m_nTop = 208;
+				- m_nRight = 1396;
+				- m_nBottom = 687;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IActivityDiagram";
+				- _filename = "Default.sbs";
+				- _subsystem = "Default";
+				- _class = "Coordinate Meeting";
+				- _name = "ActivityDiagram";
+				- _id = GUID a74df528-399e-4f6c-8504-245ba5324026;
+			}
+			- _UpLeft = 0 317 ;
+			- _DownRight = 1159 724 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 1;
+		}
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -4;
+				- m_ptMaxPositionY = -27;
+				- m_nLeft = 260;
+				- m_nTop = 260;
+				- m_nRight = 1370;
+				- m_nBottom = 832;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IStateChartDiagram";
+				- _filename = "Default.sbs";
+				- _subsystem = "Default";
+				- _class = "Coordinate Meeting";
+				- _name = "StatechartDiagram";
+				- _id = GUID 8c2e6037-371a-4df4-bfeb-d9e71107e147;
+			}
+			- _UpLeft = 0 100 ;
+			- _DownRight = 1081 620 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 0;
+		}
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -4;
+				- m_ptMaxPositionY = -27;
+				- m_nLeft = 182;
+				- m_nTop = 182;
+				- m_nRight = 1370;
+				- m_nBottom = 661;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IMSC";
+				- _filename = "";
+				- _subsystem = "";
+				- _class = "";
+				- _name = "Delete Group Event";
+				- _id = GUID b9d3a814-2c29-453c-a86a-a31555854728;
+			}
+			- _UpLeft = 0 0 ;
+			- _DownRight = 1159 407 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 2;
+		}
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -4;
+				- m_ptMaxPositionY = -27;
+				- m_nLeft = 156;
+				- m_nTop = 156;
+				- m_nRight = 1344;
+				- m_nBottom = 635;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IMSC";
+				- _filename = "";
+				- _subsystem = "";
+				- _class = "";
+				- _name = "Delete Personal Event";
+				- _id = GUID 316f0acd-81c0-4e2b-b061-7528efee3ae1;
+			}
+			- _UpLeft = 0 0 ;
+			- _DownRight = 1159 407 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 3;
+		}
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
 				- m_ptMinPositionX = -1;
 				- m_ptMinPositionY = -1;
 				- m_ptMaxPositionX = -4;
@@ -30,15 +226,15 @@ I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
 				- _id = GUID 3e0e416b-cfbd-45bc-b9d4-976338e2816b;
 			}
 			- _UpLeft = 0 0 ;
-			- _DownRight = 1544 783 ;
+			- _DownRight = 1386 688 ;
 			- _instanceName = "";
-			- m_nDiagramIndex = 0;
+			- m_nDiagramIndex = 7;
 		}
 		{ CGEMdiDiagramParams 
 			- _placement = { CCommon_WINDOWPLACEMENT 
 				- m_nLength = 44;
-				- m_nFlags = 0;
-				- m_showCmd = 1;
+				- m_nFlags = 2;
+				- m_showCmd = 3;
 				- m_ptMinPositionX = -1;
 				- m_ptMinPositionY = -1;
 				- m_ptMaxPositionX = -4;
@@ -58,9 +254,9 @@ I-Logix-RPY-Archive version 8.5.2 Modeler * 1159120
 				- _id = GUID a88a39b7-e9f2-433c-9fb4-b48ad12daac2;
 			}
 			- _UpLeft = 0 58 ;
-			- _DownRight = 1187 648 ;
+			- _DownRight = 1510 977 ;
 			- _instanceName = "";
-			- m_nDiagramIndex = 1;
+			- m_nDiagramIndex = 8;
 		}
 	}
 	- _fullName = "C:\\Users\\farti\\Desktop\\CSC 834\\Team Project\\calendar\\Team_Project_Calendar_UML\\Team_Project_Calendar";
