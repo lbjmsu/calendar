@@ -1,0 +1,10 @@
+C:\Users\jakka\OneDrive\Documents\Software engineering\SE_Calendar\SE_Calendar\bin\Debug\SE_Calendar.exe.config
+C:\Users\jakka\OneDrive\Documents\Software engineering\SE_Calendar\SE_Calendar\bin\Debug\SE_Calendar.exe
+C:\Users\jakka\OneDrive\Documents\Software engineering\SE_Calendar\SE_Calendar\bin\Debug\SE_Calendar.pdb
+C:\Users\jakka\OneDrive\Documents\Software engineering\SE_Calendar\SE_Calendar\obj\Debug\SE_Calendar.csproj.AssemblyReference.cache
+C:\Users\jakka\OneDrive\Documents\Software engineering\SE_Calendar\SE_Calendar\obj\Debug\SE_Calendar.Form1.resources
+C:\Users\jakka\OneDrive\Documents\Software engineering\SE_Calendar\SE_Calendar\obj\Debug\SE_Calendar.Properties.Resources.resources
+C:\Users\jakka\OneDrive\Documents\Software engineering\SE_Calendar\SE_Calendar\obj\Debug\SE_Calendar.csproj.GenerateResource.cache
+C:\Users\jakka\OneDrive\Documents\Software engineering\SE_Calendar\SE_Calendar\obj\Debug\SE_Calendar.csproj.CoreCompileInputs.cache
+C:\Users\jakka\OneDrive\Documents\Software engineering\SE_Calendar\SE_Calendar\obj\Debug\SE_Calendar.exe
+C:\Users\jakka\OneDrive\Documents\Software engineering\SE_Calendar\SE_Calendar\obj\Debug\SE_Calendar.pdb
