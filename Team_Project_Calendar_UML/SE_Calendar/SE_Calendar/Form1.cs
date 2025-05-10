@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace SE_Calendar
 {
@@ -36,7 +37,7 @@ namespace SE_Calendar
 
         private void splitContainer2_Panel1_Paint(object sender, PaintEventArgs e)
         {
-
+           retrieveListOfEvents();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -209,6 +210,60 @@ namespace SE_Calendar
         {
             splitContainer12.Visible = false;
             splitContainer13 .Visible=true ;
+        }
+
+        private void checkedListBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
+        {
+
+        }
+
+        private void retrieveListOfEvents()
+        {
+            try
+            {
+                listBox1.Items.Clear(); // Clear existing items
+
+                string connStr = "server=csitmariadb.eku.edu;user=student;database=csc340_db;port=3306;password=Maroon@21?;";
+                using (MySqlConnection conn = new MySqlConnection(connStr))
+                {
+                    conn.Open();
+
+                    string sql = "SELECT eventName, eventDate, eventTime FROM 834_group5_event ORDER BY eventDate ASC;";
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string name = reader["eventName"].ToString();
+                            string rawDate = reader["eventDate"].ToString();
+                            string time = reader["eventTime"].ToString();
+
+                            string formattedDate;
+
+                            if (DateTime.TryParse(rawDate, out DateTime parsedDate))
+                            {
+                                formattedDate = parsedDate.ToString("MM/dd/yyyy");
+                            }
+                            else
+                            {
+                                formattedDate = "Invalid Date";
+                            }
+
+                            string display = $"{formattedDate} {time} - {name}";
+                            listBox1.Items.Add(display);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading events: " + ex.Message);
+            }
         }
     }
 }
