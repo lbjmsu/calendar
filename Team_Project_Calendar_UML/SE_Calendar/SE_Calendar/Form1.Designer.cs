@@ -303,7 +303,6 @@
             this.splitContainer2.Panel1.Controls.Add(this.button3);
             this.splitContainer2.Panel1.Controls.Add(this.monthCalendar1);
             this.splitContainer2.Panel1.Controls.Add(this.label4);
-            this.splitContainer2.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer2_Panel1_Paint);
             this.splitContainer2.Size = new System.Drawing.Size(542, 385);
             this.splitContainer2.SplitterDistance = 356;
             this.splitContainer2.SplitterWidth = 3;
@@ -335,7 +334,6 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(233, 186);
             this.listBox1.TabIndex = 8;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -1401,12 +1399,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(817, 480);
+            this.Controls.Add(this.splitContainer10);
             this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.splitContainer12);
             this.Controls.Add(this.splitContainer13);
             this.Controls.Add(this.splitContainer11);
-            this.Controls.Add(this.splitContainer10);
             this.Controls.Add(this.splitContainer8);
             this.Controls.Add(this.splitContainer7);
             this.Controls.Add(this.splitContainer6);
