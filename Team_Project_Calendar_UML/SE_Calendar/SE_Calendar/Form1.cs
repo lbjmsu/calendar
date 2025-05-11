@@ -18,6 +18,8 @@ namespace SE_Calendar
     {
         List<Event> events = new List<Event>();
         private EventItem selectedEvent;
+        private int uID;
+        private string accountType;
 
         public Form1()
         {
@@ -31,10 +33,51 @@ namespace SE_Calendar
 
         }
 
+        //  Login Button Click
         private void button1_Click(object sender, EventArgs e)
         {
-            splitContainer1.Visible = false;
-            splitContainer2.Visible = true;
+            //  Check if contents of textbox1 (username) and textbox2 (password) exist in the database
+            string username = textBox1.Text;
+            string password = textBox2.Text;
+
+            string connStr = "server=csitmariadb.eku.edu;user=student;database=csc340_db;port=3306;password=Maroon@21?;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+
+            string commandStrUsernameSelect = "SELECT * FROM 834_group5_user WHERE username = @user";
+            MySqlCommand command = new MySqlCommand(commandStrUsernameSelect, conn);
+            command.Parameters.AddWithValue("@user", username);
+
+            conn.Open();
+            MySqlDataReader reader = command.ExecuteReader();
+
+            if(reader.Read())
+            {
+                //  Successful login
+                if (reader.GetString(3) == password)
+                {
+                    //  Store current user information
+                    uID = reader.GetInt32(0);
+                    accountType = reader.GetString(1);
+
+                    //  GOTO login screen
+                    panelLogin.Visible = false;
+                    splitContainer2.Visible = true;
+                }
+                //  Incorrect password
+                else
+                {
+                    //  GOTO password error screen
+                    panelLogin.Visible = false;
+                    panelInvalidPassword.Visible = true;
+                }
+            }
+            //  Incorrect username
+            else
+            {
+                //  GOTO username error screen
+                panelLogin.Visible = false;
+                panelInvalidUsername.Visible = true;
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -330,6 +373,22 @@ namespace SE_Calendar
                 return null;
             }
             return found;
+        }
+
+        //  Click the "return to login screen" button on a login error screen.
+        private void ReturnToLoginEvent(object sender, EventArgs e)
+        {
+            //  Get parent panel for the calling button
+            Control s = sender as Control;
+            Control panel = s.Parent.Parent;
+
+            //  Reset login textboxes
+            textBox1.Text = string.Empty;
+            textBox2.Text = string.Empty;
+
+            //  Return to Login Screen
+            panel.Visible = false;
+            panelLogin.Visible = true;
         }
     }
 }
