@@ -57,7 +57,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.panelCreateAccountSuccess = new System.Windows.Forms.SplitContainer();
             this.button9 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
@@ -153,9 +153,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelCreateAccount)).BeginInit();
             this.panelCreateAccount.Panel1.SuspendLayout();
             this.panelCreateAccount.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
-            this.splitContainer4.Panel1.SuspendLayout();
-            this.splitContainer4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelCreateAccountSuccess)).BeginInit();
+            this.panelCreateAccountSuccess.Panel1.SuspendLayout();
+            this.panelCreateAccountSuccess.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
             this.splitContainer5.Panel1.SuspendLayout();
             this.splitContainer5.SuspendLayout();
@@ -565,23 +565,23 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Create New Account";
             // 
-            // splitContainer4
+            // panelCreateAccountSuccess
             // 
-            this.splitContainer4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.splitContainer4.Location = new System.Drawing.Point(139, 66);
-            this.splitContainer4.Margin = new System.Windows.Forms.Padding(2);
-            this.splitContainer4.Name = "splitContainer4";
-            this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.panelCreateAccountSuccess.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.panelCreateAccountSuccess.Location = new System.Drawing.Point(139, 66);
+            this.panelCreateAccountSuccess.Margin = new System.Windows.Forms.Padding(2);
+            this.panelCreateAccountSuccess.Name = "panelCreateAccountSuccess";
+            this.panelCreateAccountSuccess.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitContainer4.Panel1
+            // panelCreateAccountSuccess.Panel1
             // 
-            this.splitContainer4.Panel1.Controls.Add(this.button9);
-            this.splitContainer4.Panel1.Controls.Add(this.label9);
-            this.splitContainer4.Size = new System.Drawing.Size(523, 309);
-            this.splitContainer4.SplitterDistance = 196;
-            this.splitContainer4.SplitterWidth = 3;
-            this.splitContainer4.TabIndex = 8;
-            this.splitContainer4.Visible = false;
+            this.panelCreateAccountSuccess.Panel1.Controls.Add(this.button9);
+            this.panelCreateAccountSuccess.Panel1.Controls.Add(this.label9);
+            this.panelCreateAccountSuccess.Size = new System.Drawing.Size(523, 309);
+            this.panelCreateAccountSuccess.SplitterDistance = 196;
+            this.panelCreateAccountSuccess.SplitterWidth = 3;
+            this.panelCreateAccountSuccess.TabIndex = 8;
+            this.panelCreateAccountSuccess.Visible = false;
             // 
             // button9
             // 
@@ -594,6 +594,7 @@
             this.button9.TabIndex = 1;
             this.button9.Text = "Return Login";
             this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.ReturnToLoginEvent);
             // 
             // label9
             // 
@@ -1713,6 +1714,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(817, 480);
+            this.Controls.Add(this.panelCreateAccountSuccess);
             this.Controls.Add(this.panelLogin);
             this.Controls.Add(this.panelCreateErrorEmptyUsername);
             this.Controls.Add(this.panelCreateErrorUsernameExists);
@@ -1724,7 +1726,6 @@
             this.Controls.Add(this.splitContainer8);
             this.Controls.Add(this.splitContainer7);
             this.Controls.Add(this.splitContainer6);
-            this.Controls.Add(this.splitContainer4);
             this.Controls.Add(this.splitContainer13);
             this.Controls.Add(this.splitContainer12);
             this.Controls.Add(this.splitContainer11);
@@ -1749,10 +1750,10 @@
             this.panelCreateAccount.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelCreateAccount)).EndInit();
             this.panelCreateAccount.ResumeLayout(false);
-            this.splitContainer4.Panel1.ResumeLayout(false);
-            this.splitContainer4.Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
-            this.splitContainer4.ResumeLayout(false);
+            this.panelCreateAccountSuccess.Panel1.ResumeLayout(false);
+            this.panelCreateAccountSuccess.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelCreateAccountSuccess)).EndInit();
+            this.panelCreateAccountSuccess.ResumeLayout(false);
             this.splitContainer5.Panel1.ResumeLayout(false);
             this.splitContainer5.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
@@ -1843,7 +1844,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.SplitContainer splitContainer4;
+        private System.Windows.Forms.SplitContainer panelCreateAccountSuccess;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.SplitContainer splitContainer5;

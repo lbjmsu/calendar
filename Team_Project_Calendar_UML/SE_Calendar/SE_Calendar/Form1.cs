@@ -171,8 +171,9 @@ namespace SE_Calendar
                 textBox4.Text = string.Empty;
                 textBox5.Text = string.Empty;
 
-                //  GOTO: login screen
-                ReturnToLoginEvent(sender, e);
+                //  GOTO: create account success screen
+                panelCreateAccount.Visible = false;
+                panelCreateAccountSuccess.Visible = true;
             }
 
             conn.Close();
