@@ -40,16 +40,20 @@ namespace SE_Calendar
             string username = textBox1.Text;
             string password = textBox2.Text;
 
+            //  Create connection to database
             string connStr = "server=csitmariadb.eku.edu;user=student;database=csc340_db;port=3306;password=Maroon@21?;";
             MySqlConnection conn = new MySqlConnection(connStr);
 
+            //  Create query to return any record with the provided username
             string commandStrUsernameSelect = "SELECT * FROM 834_group5_user WHERE username = @user";
             MySqlCommand command = new MySqlCommand(commandStrUsernameSelect, conn);
             command.Parameters.AddWithValue("@user", username);
 
+            //  Open connection and attempt to read requested record
             conn.Open();
             MySqlDataReader reader = command.ExecuteReader();
 
+            //  Correct Username
             if(reader.Read())
             {
                 //  Successful login
@@ -59,14 +63,24 @@ namespace SE_Calendar
                     uID = reader.GetInt32(0);
                     accountType = reader.GetString(1);
 
-                    //  GOTO login screen
+                    //  If account is a manager, show the "Schedule events" button.
+                    if(accountType == "manager")
+                    {
+                        button17.Visible = true;
+                    }
+
+                    //  Clear "Login" textboxes
+                    textBox1.Text = string.Empty;
+                    textBox2.Text = string.Empty;
+
+                    //  GOTO: login screen
                     panelLogin.Visible = false;
                     splitContainer2.Visible = true;
                 }
                 //  Incorrect password
                 else
                 {
-                    //  GOTO password error screen
+                    //  GOTO: password error screen
                     panelLogin.Visible = false;
                     panelInvalidPassword.Visible = true;
                 }
@@ -74,10 +88,94 @@ namespace SE_Calendar
             //  Incorrect username
             else
             {
-                //  GOTO username error screen
+                //  GOTO: username error screen
                 panelLogin.Visible = false;
                 panelInvalidUsername.Visible = true;
             }
+
+            conn.Close();
+        }
+
+        //  Create Account Button Click
+        private void button8_Click(object sender, EventArgs e)
+        {
+            string username = textBox3.Text;
+            string password = textBox4.Text;
+            string passwordConfirmation = textBox5.Text;
+
+
+            //  Create connection to database
+            string connStr = "server=csitmariadb.eku.edu;user=student;database=csc340_db;port=3306;password=Maroon@21?;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+
+            //  Create command to check if user-supplied username exists in database already
+            string commandStrCheckExistsUsername = "SELECT username FROM 834_group5_user WHERE username = @user";
+            MySqlCommand commandCheckExistsUsername = new MySqlCommand(commandStrCheckExistsUsername, conn);
+            commandCheckExistsUsername.Parameters.AddWithValue("@user", username);
+
+            conn.Open();
+            MySqlDataReader reader = commandCheckExistsUsername.ExecuteReader();
+
+            //  ERROR: Username is empty
+            if(username == string.Empty)
+            {
+                //  GOTO: create account error screen
+                panelCreateAccount.Visible = false;
+                panelCreateErrorEmptyUsername.Visible = true;
+            }
+
+            //  ERROR: Username is in database already
+            else if (reader.Read())
+            {
+                //  GOTO: create account error screen
+                panelCreateAccount.Visible = false;
+                panelCreateErrorUsernameExists.Visible = true;
+            }
+
+            //  ERROR: Password and password confirmation do not match
+            else if (password != passwordConfirmation)
+            {
+                //  GOTO: create account error screen
+                panelCreateAccount.Visible = false;
+                panelCreateErrorPasswords.Visible = true;
+            }
+
+            //  Password and Password Confirmation match
+            else
+            {
+                reader.Close();
+
+                //  Create query to return most recent uID
+                string commandStrMostRecentUID = "SELECT uid FROM 834_group5_user ORDER BY uid DESC";
+                MySqlCommand cmdMostRecentUID = new MySqlCommand(commandStrMostRecentUID, conn);
+
+                //  Read and store the most recent uID
+                reader = cmdMostRecentUID.ExecuteReader();
+                reader.Read();
+                int mostRecentUID = reader.GetInt32(0);
+
+                reader.Close();
+
+                //  Create query to create a user account with the supplied credentials
+                string commandStrCreateAccount = "INSERT INTO 834_group5_user VALUES (@uid, \'user\', @username, @password)";
+                MySqlCommand commandCreateAccount = new MySqlCommand(commandStrCreateAccount, conn);
+                commandCreateAccount.Parameters.AddWithValue("@uid", mostRecentUID+1);
+                commandCreateAccount.Parameters.AddWithValue("@username", username);
+                commandCreateAccount.Parameters.AddWithValue("@password", password);
+
+                //  Insert account into database
+                commandCreateAccount.ExecuteNonQuery();
+
+                //  Clear "Create account" textboxes
+                textBox3.Text = string.Empty;
+                textBox4.Text = string.Empty;
+                textBox5.Text = string.Empty;
+
+                //  GOTO: login screen
+                ReturnToLoginEvent(sender, e);
+            }
+
+            conn.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -110,15 +208,11 @@ namespace SE_Calendar
 
         private void button2_Click(object sender, EventArgs e)
         {
-            splitContainer1.Visible=false;
-            splitContainer3.Visible=true;
+            panelLogin.Visible=false;
+            panelCreateAccount.Visible=true;
         }
 
-        private void button8_Click(object sender, EventArgs e)
-        {
-            splitContainer3.Visible = false;
-            splitContainer4.Visible=true;
-        }
+        
 
         private void button11_Click(object sender, EventArgs e)
         {
@@ -389,6 +483,22 @@ namespace SE_Calendar
             //  Return to Login Screen
             panel.Visible = false;
             panelLogin.Visible = true;
+        }
+
+        //  Click the "back" button on the create account error screen
+        private void ReturnToCreateAccountEvent(object sender, EventArgs e)
+        {
+            //  Get parent panel for the calling button
+            Control s = sender as Control;
+            Control panel = s.Parent.Parent;
+
+            //  Reset password textboxes
+            textBox4.Text = string.Empty;
+            textBox5.Text = string.Empty;
+
+            //  Return to Login Screen
+            panel.Visible = false;
+            panelCreateAccount.Visible = true;
         }
     }
 }
