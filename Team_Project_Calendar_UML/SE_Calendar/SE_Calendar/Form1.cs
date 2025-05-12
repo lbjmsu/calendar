@@ -18,6 +18,8 @@ namespace SE_Calendar
     {
         List<Event> events = new List<Event>();
         private EventItem selectedEvent;
+        private int uID;
+        private string accountType;
 
         public Form1()
         {
@@ -31,10 +33,157 @@ namespace SE_Calendar
 
         }
 
+        //  "Log In"
         private void button1_Click(object sender, EventArgs e)
         {
-            splitContainer1.Visible = false;
-            splitContainer2.Visible = true;
+            //  Check if contents of textbox1 (username) and textbox2 (password) exist in the database
+            string username = textBox1.Text;
+            string password = textBox2.Text;
+
+            //  Create connection to database
+            string connStr = "server=csitmariadb.eku.edu;user=student;database=csc340_db;port=3306;password=Maroon@21?;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+
+            //  Create query to return any record with the provided username
+            string commandStrUsernameSelect = "SELECT * FROM 834_group5_user WHERE username = @user";
+            MySqlCommand command = new MySqlCommand(commandStrUsernameSelect, conn);
+            command.Parameters.AddWithValue("@user", username);
+
+            //  Open connection and attempt to read requested record
+            conn.Open();
+            MySqlDataReader reader = command.ExecuteReader();
+
+            //  Correct Username
+            if(reader.Read())
+            {
+                //  Successful login
+                if (reader.GetString(3) == password)
+                {
+                    //  Store current user information
+                    uID = reader.GetInt32(0);
+                    accountType = reader.GetString(1);
+
+                    //  If account is a manager, show the "Schedule events" button.
+                    if(accountType == "manager")
+                    {
+                        button17.Visible = true;
+                    }
+
+                    //  Clear "Login" textboxes
+                    textBox1.Text = string.Empty;
+                    textBox2.Text = string.Empty;
+
+                    //  GOTO: login screen
+                    panelLogin.Visible = false;
+                    splitContainer2.Visible = true;
+                }
+                //  Incorrect password
+                else
+                {
+                    //  GOTO: password error screen
+                    panelLogin.Visible = false;
+                    panelInvalidPassword.Visible = true;
+                }
+            }
+            //  Incorrect username
+            else
+            {
+                //  GOTO: username error screen
+                panelLogin.Visible = false;
+                panelInvalidUsername.Visible = true;
+            }
+
+            conn.Close();
+        }
+
+        //  "Create Account"
+        private void button8_Click(object sender, EventArgs e)
+        {
+            string username = textBox3.Text;
+            string password = textBox4.Text;
+            string passwordConfirmation = textBox5.Text;
+
+
+            //  Create connection to database
+            string connStr = "server=csitmariadb.eku.edu;user=student;database=csc340_db;port=3306;password=Maroon@21?;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+
+            //  Create command to check if user-supplied username exists in database already
+            string commandStrCheckExistsUsername = "SELECT username FROM 834_group5_user WHERE username = @user";
+            MySqlCommand commandCheckExistsUsername = new MySqlCommand(commandStrCheckExistsUsername, conn);
+            commandCheckExistsUsername.Parameters.AddWithValue("@user", username);
+
+            conn.Open();
+            MySqlDataReader reader = commandCheckExistsUsername.ExecuteReader();
+
+            //  ERROR: Username is empty
+            if(username == string.Empty)
+            {
+                //  GOTO: create account error screen
+                panelCreateAccount.Visible = false;
+                panelCreateErrorEmptyUsername.Visible = true;
+            }
+
+            //  ERROR: Username is in database already
+            else if (reader.Read())
+            {
+                //  GOTO: create account error screen
+                panelCreateAccount.Visible = false;
+                panelCreateErrorUsernameExists.Visible = true;
+            }
+
+            //  ERROR: Password and password confirmation do not match
+            else if (password != passwordConfirmation)
+            {
+                //  GOTO: create account error screen
+                panelCreateAccount.Visible = false;
+                panelCreateErrorPasswords.Visible = true;
+            }
+
+            //  Password and Password Confirmation match
+            else
+            {
+                reader.Close();
+
+                //  Create query to return most recent uID
+                string commandStrMostRecentUID = "SELECT uid FROM 834_group5_user ORDER BY uid DESC";
+                MySqlCommand cmdMostRecentUID = new MySqlCommand(commandStrMostRecentUID, conn);
+
+                //  Read and store the most recent uID
+                reader = cmdMostRecentUID.ExecuteReader();
+                int mostRecentUID;
+                if (!reader.Read())
+                {
+                    mostRecentUID = 0;
+                }
+                else
+                {
+                    mostRecentUID = reader.GetInt32(0);
+                }
+
+                reader.Close();
+
+                //  Create query to create a user account with the supplied credentials
+                string commandStrCreateAccount = "INSERT INTO 834_group5_user VALUES (@uid, \'user\', @username, @password)";
+                MySqlCommand commandCreateAccount = new MySqlCommand(commandStrCreateAccount, conn);
+                commandCreateAccount.Parameters.AddWithValue("@uid", mostRecentUID+1);
+                commandCreateAccount.Parameters.AddWithValue("@username", username);
+                commandCreateAccount.Parameters.AddWithValue("@password", password);
+
+                //  Insert account into database
+                commandCreateAccount.ExecuteNonQuery();
+
+                //  Clear "Create account" textboxes
+                textBox3.Text = string.Empty;
+                textBox4.Text = string.Empty;
+                textBox5.Text = string.Empty;
+
+                //  GOTO: create account success screen
+                panelCreateAccount.Visible = false;
+                panelCreateAccountSuccess.Visible = true;
+            }
+
+            conn.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -67,43 +216,242 @@ namespace SE_Calendar
 
         private void button2_Click(object sender, EventArgs e)
         {
-            splitContainer1.Visible=false;
-            splitContainer3.Visible=true;
+            panelLogin.Visible=false;
+            panelCreateAccount.Visible=true;
         }
 
-        private void button8_Click(object sender, EventArgs e)
-        {
-            splitContainer3.Visible = false;
-            splitContainer4.Visible=true;
-        }
+        
 
         private void button11_Click(object sender, EventArgs e)
         {
-            splitContainer6.Visible=false;
-            splitContainer5.Visible=true;
+            panelAddEventSuccess.Visible=false;
+            panelAddEvent.Visible=true;
         }
 
+        //  "Add Event"
         private void button10_Click(object sender, EventArgs e)
         {
-            splitContainer5.Visible = false;
-            splitContainer6.Visible=true;
+
+            //  Validate event time input
+            bool invalidHour = !Int32.TryParse(textBox9.Text, out int hour) || hour < 1 || hour > 12;
+            bool invalidMinute = !Int32.TryParse(textBox20.Text, out int minute) || minute < 0 || minute > 59;
+            bool invalidAMPM = comboBox3.Text != "AM" && comboBox3.Text != "PM";
+
+            //  Invalid Date Entered
+            if (invalidHour || invalidMinute || invalidAMPM)
+            {
+                //  GOTO: invalid date screen
+                panelAddEvent.Visible = false;
+                panelAddEventErrorInvalidTime.Visible = true;
+                return;
+            }
+
+            //  Validate event length input
+            if (!float.TryParse(textBox10.Text, out _))
+            {
+                //  GOTO: invalid time screen
+                panelAddEvent.Visible = false;
+                panelAddEventErrorInvalidLength.Visible = true;
+                return;
+            }
+
+            //  Parse table values from panel textboxes
+            string eventName = textBox6.Text;
+            string eventDescription = textBox7.Text;
+            DateTime eventDate = DateTime.Parse(textBox8.Text + " 12:00:00");
+            float eventLength = float.Parse(textBox10.Text);
+
+            string eventHourStr = textBox9.Text.Length == 1 ? "0" + textBox9.Text : textBox9.Text;
+            string eventMinuteStr = textBox20.Text.Length == 1 ? "0" + textBox20.Text : textBox20.Text;
+            string eventTime = eventHourStr + ":" + eventMinuteStr + " " + comboBox3.Text;
+
+            //  INTRODUCING: SIMPLIFIED EVENT TIME -- Turns an hour, minute, and am/pm value into a single float in a [0,24) range.
+            //      USE: Convert event time to a float value for easy comparison of overlaps
+            //
+            //  SIMPLIFIED EVENT TIME =
+            //      if hour != 12:  HOUR + MINUTE + AM/PM
+            //      if hour == 12: (HOUR + MINUTE + AM/PM + 12) % 24
+            //
+            //  EVENTS using SIMPLIFIED EVENT TIME are stored as: (EVENT TIME, EVENT LENGTH), where EVENT LENGTH is a positive non-zero float.
+            //
+            //  An OVERLAP occurs between two events using SIMPLIFIED EVENT TIME occurs when:
+            //      A.TIME < B.TIME   &&  A.TIME + A.LENGTH > B.TIME    OR
+            //      B.TIME < A.TIME   &&  B.TIME + B.LENGTH > A.TIME
+            //
+            //
+            //  EXAMPLE: Do Event A (12:30 PM, 1.5h) and Event B (1:45 PM, 2h) conflict?
+            //
+            //  SIMPLIFIED A: (12.5, 1.5)
+            //   -> 12:30 = (12 + 0.5  + 12 + 12) % 24  = 12.5
+            //
+            //  SIMPLIFIED B: (13.75, 2)
+            //   -> 1:45  =  1  + 0.75 + 12             = 13.75
+            //
+            //      Does Event B start during Event A?
+            //      A.TIME < B.TIME && A.TIME + A.LENGTH > B.TIME   
+            //      12.5   < 13.75                                  TRUE
+            //                         12.5  +  1.5      > 13.75    TRUE
+            //      --> YES, Event B starts during Event A.
+            //
+            //      Does Event A start during Event B?
+            //      B.TIME < A.TIME && B.TIME + B.LENGTH > A.TIME       
+            //      13.75  < 12.5                                   FALSE
+            //                         13.75  + 2        > 12.5     TRUE
+            //      --> NO,  Event A does not start during Event B.
+            //
+            //      Since Event B starts during Event A, there is a conflict.
+
+            double eventHour = double.Parse(eventHourStr);
+            double eventMinute = double.Parse(eventMinuteStr);
+            string eventAMPM = eventTime.Substring(6, 2);
+
+            double eventTimeSimplifiedHour = eventHour;
+            double eventTimeSimplifiedMinute = eventMinute / 60;
+            double eventTimeSimplifiedAMPM = eventAMPM == "AM" ? 0 : 12;
+            if (eventHour == 12)
+            {
+                eventTimeSimplifiedAMPM += 12;
+                eventTimeSimplifiedAMPM %= 24;
+            }
+
+            double eventTimeSimplified = eventTimeSimplifiedHour + eventTimeSimplifiedMinute + eventTimeSimplifiedAMPM;
+            //
+
+
+            //  Create connection to database
+            string connStr = "server=csitmariadb.eku.edu;user=student;database=csc340_db;port=3306;password=Maroon@21?;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+
+            //  Create command to retrieve all events on the same day as the user event
+            string commandStrGetEventsByDay = "SELECT * FROM 834_group5_event WHERE eventDate = @date";
+            MySqlCommand commandGetEventsByDay = new MySqlCommand(commandStrGetEventsByDay, conn);
+            commandGetEventsByDay.Parameters.AddWithValue("@date", eventDate.ToString("yyyy-MM-dd"));
+
+            //  Read events that occur on the same day as the new event
+            conn.Open();
+            MySqlDataReader reader = commandGetEventsByDay.ExecuteReader();
+
+            while (reader.Read())
+            {
+                //  Get Event time and length from record
+                string dbEventTime = reader.GetString(3);
+                float dbEventLength = reader.GetFloat(4);
+
+                //  Convert database event time to a float value for easy comparison
+                double dbEventHour = double.Parse(dbEventTime.Substring(0, 2));
+                double dbEventMinute = double.Parse(dbEventTime.Substring(3, 2));
+                string dbEventAMPM = dbEventTime.Substring(6, 2);
+
+                double dbEventTimeSimplifiedHour = dbEventHour;
+                double dbEventTimeSimplifiedMinute = dbEventMinute / 60;
+                double dbEventTimeSimplifiedAMPM = dbEventAMPM == "AM" ? 0 : 12;
+                if (dbEventHour == 12)
+                {
+                    dbEventTimeSimplifiedAMPM += 12;
+                    dbEventTimeSimplifiedAMPM %= 24;
+                }
+
+                double dbEventTimeSimplified = dbEventTimeSimplifiedHour + dbEventTimeSimplifiedMinute + dbEventTimeSimplifiedAMPM;
+                //
+
+
+                //  Check if the events conflict
+                //  The new event starts during the old event:
+                bool newStartsDuringOld = eventTimeSimplified > dbEventTimeSimplified && eventTimeSimplified < dbEventTimeSimplified + dbEventLength;
+
+                //  The old event starts during the new event:
+                bool oldStartsDuringNew = dbEventTimeSimplified > eventTimeSimplified && dbEventTimeSimplified < eventTimeSimplified + eventLength;
+
+                //  There are conflicts
+                if (newStartsDuringOld || oldStartsDuringNew)
+                {
+                    reader.Close();
+
+                    //  GOTO: conflicts error screen
+                    panelAddEvent.Visible = false;
+                    panelAddEventErrorConflicts.Visible = true;
+                    return;
+                }
+            }
+            //  There are no conflicts
+            reader.Close();
+
+            //  Get eventID
+            int mostRecentEventID;
+            string commandStrGetMostRecentEventID = "SELECT eventID FROM 834_group5_event ORDER BY eventID DESC";
+            MySqlCommand commandGetMostRecentEventID = new MySqlCommand(commandStrGetMostRecentEventID, conn);
+
+            reader = commandGetMostRecentEventID.ExecuteReader();
+            if(!reader.Read())
+            {
+                mostRecentEventID = 100;
+            }
+            else
+            {
+                mostRecentEventID = reader.GetInt32(0);
+            }
+            reader.Close();
+
+            string commandStrAddEventToDB = "INSERT INTO 834_group5_event VALUES (@eID, @eCreatorID, \'personal\', @eTime, @eLength, @eName, @eDesc, @eDate)";
+            MySqlCommand commandAddEventToDB = new MySqlCommand(commandStrAddEventToDB, conn);
+            commandAddEventToDB.Parameters.AddWithValue("@eID", mostRecentEventID + 1);
+            commandAddEventToDB.Parameters.AddWithValue("@eCreatorID", uID);
+            commandAddEventToDB.Parameters.AddWithValue("@eTime", eventTime);
+            commandAddEventToDB.Parameters.AddWithValue("@eLength", eventLength);
+            commandAddEventToDB.Parameters.AddWithValue("@eName", eventName);
+            commandAddEventToDB.Parameters.AddWithValue("@eDesc", eventDescription);
+            commandAddEventToDB.Parameters.AddWithValue("@eDate", eventDate);
+
+            commandAddEventToDB.ExecuteNonQuery();
+
+            conn.Close();
+
+            //  Reset "Add Event" Panel
+            textBox6.Text = string.Empty;
+            textBox7.Text = string.Empty;
+            textBox8.Text = string.Empty;
+            textBox10.Text = string.Empty;
+            comboBox3.Text = string.Empty;
+
+            textBox9.ForeColor = Color.Gray;
+            textBox9.Text = "1-12...";
+            textBox20.ForeColor = Color.Gray;
+            textBox20.Text = "0-59...";
+
+            //  GOTO: Add Event Success Panel
+            panelAddEvent.Visible = false;
+            panelAddEventSuccess.Visible = true;
         }
 
         private void button3_Click_1(object sender, EventArgs e)
         {
             splitContainer2.Visible=false ;
-            splitContainer5.Visible=true ;
+            panelAddEvent.Visible=true ;
         }
 
+        //  Add Another Event Button Click
         private void button11_Click_1(object sender, EventArgs e)
         {
-            splitContainer6.Visible = false ;
-            splitContainer5.Visible=true ;
+            //  Reset "Add Event" Panel
+            textBox6.Text = string.Empty;
+            textBox7.Text = string.Empty;
+            textBox8.Text = string.Empty;
+            textBox10.Text = string.Empty;
+            comboBox3.Text = string.Empty;
+
+            textBox9.ForeColor = Color.Gray;
+            textBox9.Text = "1-12...";
+            textBox20.ForeColor = Color.Gray;
+            textBox20.Text = "0-59...";
+
+            //  GOTO: Add event panel
+            panelAddEventSuccess.Visible = false;
+            panelAddEvent.Visible = true;
         }
 
         private void button12_Click(object sender, EventArgs e)
         {
-            splitContainer6.Visible=false ;
+            panelAddEventSuccess.Visible=false ;
             splitContainer2.Visible=true ;
         }
 
@@ -330,6 +678,102 @@ namespace SE_Calendar
                 return null;
             }
             return found;
+        }
+
+        //  Click the "return to login screen" button on a login error screen.
+        private void ReturnToLoginEvent(object sender, EventArgs e)
+        {
+            //  Get parent panel for the calling button
+            Control s = sender as Control;
+            Control panel = s.Parent.Parent;
+
+            //  Reset login textboxes
+            textBox1.Text = string.Empty;
+            textBox2.Text = string.Empty;
+
+            //  Return to Login Screen
+            panel.Visible = false;
+            panelLogin.Visible = true;
+        }
+
+        //  Click the "back" button on the create account error screen
+        private void ReturnToCreateAccountEvent(object sender, EventArgs e)
+        {
+            //  Get parent panel for the calling button
+            Control s = sender as Control;
+            Control panel = s.Parent.Parent;
+
+            //  Reset password textboxes
+            textBox4.Text = string.Empty;
+            textBox5.Text = string.Empty;
+
+            //  Return to Create Account Screen
+            panel.Visible = false;
+            panelCreateAccount.Visible = true;
+        }
+
+        //  Click the "back" button on the create account error screen
+        private void ReturnToAddEventEvent(object sender, EventArgs e)
+        {
+            //  Get parent panel for the calling button
+            Control s = sender as Control;
+            Control panel = s.Parent.Parent;
+
+            //  Return to Add Event Screen
+            panel.Visible = false;
+            panelAddEvent.Visible = true;
+        }
+
+        private void monthCalendar2_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            textBox8.Text = monthCalendar2.SelectionStart.ToShortDateString();
+            monthCalendar2.Visible = false;
+        }
+
+        private void textBox8_Click(object sender, EventArgs e)
+        {
+            monthCalendar2.Visible = true;
+            textBox8.Text = "Select Date from Calendar...";
+        }
+
+        private void textBox9_Leave(object sender, EventArgs e)
+        {
+            bool invalidHour = !Int32.TryParse(textBox9.Text, out int hour) || hour < 1 || hour > 12;
+            
+            //  If a valid input is detected, don't reset textbox
+            if (!invalidHour)
+            {
+                return;
+            }
+
+            textBox9.ForeColor = Color.Gray;
+            textBox9.Text = "1-12...";
+        }
+
+        private void textBox20_Leave(object sender, EventArgs e)
+        {
+            bool invalidMinute = !Int32.TryParse(textBox20.Text, out int minute) || minute < 0 || minute > 59;
+
+            //  If a valid input is detected, don't reset textbox
+            if (!invalidMinute)
+            {
+                return;
+            }
+
+            textBox20.ForeColor = Color.Gray;
+            textBox20.Text = "0-59...";
+        }
+
+        private void textBox9_Click(object sender, EventArgs e)
+        {
+            textBox9.ForeColor = Color.Black;
+            textBox9.Text = string.Empty;
+        }
+
+        private void textBox20_Click(object sender, EventArgs e)
+        {
+            textBox20.ForeColor = Color.Black;
+            textBox20.Text = string.Empty;
         }
     }
 }
