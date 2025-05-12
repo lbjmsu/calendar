@@ -60,10 +60,13 @@
             this.panelCreateAccountSuccess = new System.Windows.Forms.SplitContainer();
             this.button9 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.splitContainer5 = new System.Windows.Forms.SplitContainer();
+            this.panelAddEvent = new System.Windows.Forms.SplitContainer();
+            this.textBox20 = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
             this.button10 = new System.Windows.Forms.Button();
             this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
@@ -73,7 +76,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.splitContainer6 = new System.Windows.Forms.SplitContainer();
+            this.panelAddEventSuccess = new System.Windows.Forms.SplitContainer();
             this.button12 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
@@ -143,6 +146,18 @@
             this.label44 = new System.Windows.Forms.Label();
             this.button25 = new System.Windows.Forms.Button();
             this.label45 = new System.Windows.Forms.Label();
+            this.panelAddEventErrorInvalidTime = new System.Windows.Forms.SplitContainer();
+            this.label46 = new System.Windows.Forms.Label();
+            this.button26 = new System.Windows.Forms.Button();
+            this.label47 = new System.Windows.Forms.Label();
+            this.panelAddEventErrorInvalidLength = new System.Windows.Forms.SplitContainer();
+            this.label48 = new System.Windows.Forms.Label();
+            this.button27 = new System.Windows.Forms.Button();
+            this.label49 = new System.Windows.Forms.Label();
+            this.panelAddEventErrorConflicts = new System.Windows.Forms.SplitContainer();
+            this.label50 = new System.Windows.Forms.Label();
+            this.button28 = new System.Windows.Forms.Button();
+            this.label51 = new System.Windows.Forms.Label();
             this.panelLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -156,12 +171,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelCreateAccountSuccess)).BeginInit();
             this.panelCreateAccountSuccess.Panel1.SuspendLayout();
             this.panelCreateAccountSuccess.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
-            this.splitContainer5.Panel1.SuspendLayout();
-            this.splitContainer5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).BeginInit();
-            this.splitContainer6.Panel1.SuspendLayout();
-            this.splitContainer6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelAddEvent)).BeginInit();
+            this.panelAddEvent.Panel1.SuspendLayout();
+            this.panelAddEvent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelAddEventSuccess)).BeginInit();
+            this.panelAddEventSuccess.Panel1.SuspendLayout();
+            this.panelAddEventSuccess.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).BeginInit();
             this.splitContainer7.Panel1.SuspendLayout();
             this.splitContainer7.SuspendLayout();
@@ -199,6 +214,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelCreateErrorUsernameExists)).BeginInit();
             this.panelCreateErrorUsernameExists.Panel1.SuspendLayout();
             this.panelCreateErrorUsernameExists.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelAddEventErrorInvalidTime)).BeginInit();
+            this.panelAddEventErrorInvalidTime.Panel1.SuspendLayout();
+            this.panelAddEventErrorInvalidTime.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelAddEventErrorInvalidLength)).BeginInit();
+            this.panelAddEventErrorInvalidLength.Panel1.SuspendLayout();
+            this.panelAddEventErrorInvalidLength.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelAddEventErrorConflicts)).BeginInit();
+            this.panelAddEventErrorConflicts.Panel1.SuspendLayout();
+            this.panelAddEventErrorConflicts.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelLogin
@@ -607,33 +631,79 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "New Account Created Successfully";
             // 
-            // splitContainer5
+            // panelAddEvent
             // 
-            this.splitContainer5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.splitContainer5.Location = new System.Drawing.Point(103, 62);
-            this.splitContainer5.Margin = new System.Windows.Forms.Padding(2);
-            this.splitContainer5.Name = "splitContainer5";
-            this.splitContainer5.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.panelAddEvent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.panelAddEvent.Location = new System.Drawing.Point(103, 62);
+            this.panelAddEvent.Margin = new System.Windows.Forms.Padding(2);
+            this.panelAddEvent.Name = "panelAddEvent";
+            this.panelAddEvent.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitContainer5.Panel1
+            // panelAddEvent.Panel1
             // 
-            this.splitContainer5.Panel1.Controls.Add(this.button10);
-            this.splitContainer5.Panel1.Controls.Add(this.textBox10);
-            this.splitContainer5.Panel1.Controls.Add(this.textBox9);
-            this.splitContainer5.Panel1.Controls.Add(this.textBox8);
-            this.splitContainer5.Panel1.Controls.Add(this.textBox7);
-            this.splitContainer5.Panel1.Controls.Add(this.textBox6);
-            this.splitContainer5.Panel1.Controls.Add(this.label16);
-            this.splitContainer5.Panel1.Controls.Add(this.label15);
-            this.splitContainer5.Panel1.Controls.Add(this.label14);
-            this.splitContainer5.Panel1.Controls.Add(this.label13);
-            this.splitContainer5.Panel1.Controls.Add(this.label12);
-            this.splitContainer5.Panel1.Controls.Add(this.label11);
-            this.splitContainer5.Size = new System.Drawing.Size(607, 354);
-            this.splitContainer5.SplitterDistance = 284;
-            this.splitContainer5.SplitterWidth = 3;
-            this.splitContainer5.TabIndex = 9;
-            this.splitContainer5.Visible = false;
+            this.panelAddEvent.Panel1.Controls.Add(this.textBox20);
+            this.panelAddEvent.Panel1.Controls.Add(this.textBox9);
+            this.panelAddEvent.Panel1.Controls.Add(this.comboBox3);
+            this.panelAddEvent.Panel1.Controls.Add(this.monthCalendar2);
+            this.panelAddEvent.Panel1.Controls.Add(this.button10);
+            this.panelAddEvent.Panel1.Controls.Add(this.textBox10);
+            this.panelAddEvent.Panel1.Controls.Add(this.textBox8);
+            this.panelAddEvent.Panel1.Controls.Add(this.textBox7);
+            this.panelAddEvent.Panel1.Controls.Add(this.textBox6);
+            this.panelAddEvent.Panel1.Controls.Add(this.label16);
+            this.panelAddEvent.Panel1.Controls.Add(this.label15);
+            this.panelAddEvent.Panel1.Controls.Add(this.label14);
+            this.panelAddEvent.Panel1.Controls.Add(this.label13);
+            this.panelAddEvent.Panel1.Controls.Add(this.label12);
+            this.panelAddEvent.Panel1.Controls.Add(this.label11);
+            this.panelAddEvent.Size = new System.Drawing.Size(607, 354);
+            this.panelAddEvent.SplitterDistance = 284;
+            this.panelAddEvent.SplitterWidth = 3;
+            this.panelAddEvent.TabIndex = 9;
+            this.panelAddEvent.Visible = false;
+            // 
+            // textBox20
+            // 
+            this.textBox20.ForeColor = System.Drawing.Color.Gray;
+            this.textBox20.Location = new System.Drawing.Point(237, 159);
+            this.textBox20.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox20.Name = "textBox20";
+            this.textBox20.Size = new System.Drawing.Size(48, 20);
+            this.textBox20.TabIndex = 17;
+            this.textBox20.Text = "0-59...";
+            this.textBox20.Click += new System.EventHandler(this.textBox20_Click);
+            this.textBox20.Leave += new System.EventHandler(this.textBox20_Leave);
+            // 
+            // textBox9
+            // 
+            this.textBox9.ForeColor = System.Drawing.Color.Gray;
+            this.textBox9.Location = new System.Drawing.Point(179, 159);
+            this.textBox9.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(48, 20);
+            this.textBox9.TabIndex = 16;
+            this.textBox9.Text = "1-12...";
+            this.textBox9.Click += new System.EventHandler(this.textBox9_Click);
+            this.textBox9.Leave += new System.EventHandler(this.textBox9_Leave);
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "AM",
+            "PM"});
+            this.comboBox3.Location = new System.Drawing.Point(294, 159);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(43, 21);
+            this.comboBox3.TabIndex = 15;
+            // 
+            // monthCalendar2
+            // 
+            this.monthCalendar2.Location = new System.Drawing.Point(352, 66);
+            this.monthCalendar2.Name = "monthCalendar2";
+            this.monthCalendar2.TabIndex = 12;
+            this.monthCalendar2.Visible = false;
+            this.monthCalendar2.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar2_DateSelected);
             // 
             // button10
             // 
@@ -650,60 +720,54 @@
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(291, 198);
+            this.textBox10.Location = new System.Drawing.Point(179, 186);
             this.textBox10.Margin = new System.Windows.Forms.Padding(2);
             this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(103, 20);
+            this.textBox10.Size = new System.Drawing.Size(158, 20);
             this.textBox10.TabIndex = 10;
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(291, 168);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(103, 20);
-            this.textBox9.TabIndex = 9;
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(291, 140);
+            this.textBox8.Location = new System.Drawing.Point(179, 131);
             this.textBox8.Margin = new System.Windows.Forms.Padding(2);
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(103, 20);
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(158, 20);
             this.textBox8.TabIndex = 8;
+            this.textBox8.Click += new System.EventHandler(this.textBox8_Click);
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(291, 110);
+            this.textBox7.Location = new System.Drawing.Point(179, 104);
             this.textBox7.Margin = new System.Windows.Forms.Padding(2);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(103, 20);
+            this.textBox7.Size = new System.Drawing.Size(158, 20);
             this.textBox7.TabIndex = 7;
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(291, 83);
+            this.textBox6.Location = new System.Drawing.Point(179, 78);
             this.textBox6.Margin = new System.Windows.Forms.Padding(2);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(103, 20);
+            this.textBox6.Size = new System.Drawing.Size(158, 20);
             this.textBox6.TabIndex = 6;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(114, 198);
+            this.label16.Location = new System.Drawing.Point(25, 189);
             this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(104, 17);
+            this.label16.Size = new System.Drawing.Size(144, 17);
             this.label16.TabIndex = 5;
-            this.label16.Text = "Event Length";
+            this.label16.Text = "Event Length (hrs)";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(119, 168);
+            this.label15.Location = new System.Drawing.Point(25, 161);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(89, 17);
@@ -714,7 +778,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(118, 141);
+            this.label14.Location = new System.Drawing.Point(25, 133);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(88, 17);
@@ -725,23 +789,23 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(118, 110);
+            this.label13.Location = new System.Drawing.Point(25, 105);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(134, 17);
+            this.label13.Size = new System.Drawing.Size(136, 17);
             this.label13.TabIndex = 2;
-            this.label13.Text = "Event description";
+            this.label13.Text = "Event Description";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(123, 83);
+            this.label12.Location = new System.Drawing.Point(25, 77);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(93, 17);
+            this.label12.Size = new System.Drawing.Size(95, 17);
             this.label12.TabIndex = 1;
-            this.label12.Text = "Event name";
+            this.label12.Text = "Event Name";
             // 
             // label11
             // 
@@ -754,24 +818,24 @@
             this.label11.TabIndex = 0;
             this.label11.Text = "Add Event";
             // 
-            // splitContainer6
+            // panelAddEventSuccess
             // 
-            this.splitContainer6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.splitContainer6.Location = new System.Drawing.Point(105, 46);
-            this.splitContainer6.Margin = new System.Windows.Forms.Padding(2);
-            this.splitContainer6.Name = "splitContainer6";
-            this.splitContainer6.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.panelAddEventSuccess.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.panelAddEventSuccess.Location = new System.Drawing.Point(105, 46);
+            this.panelAddEventSuccess.Margin = new System.Windows.Forms.Padding(2);
+            this.panelAddEventSuccess.Name = "panelAddEventSuccess";
+            this.panelAddEventSuccess.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitContainer6.Panel1
+            // panelAddEventSuccess.Panel1
             // 
-            this.splitContainer6.Panel1.Controls.Add(this.button12);
-            this.splitContainer6.Panel1.Controls.Add(this.button11);
-            this.splitContainer6.Panel1.Controls.Add(this.label17);
-            this.splitContainer6.Size = new System.Drawing.Size(613, 302);
-            this.splitContainer6.SplitterDistance = 273;
-            this.splitContainer6.SplitterWidth = 3;
-            this.splitContainer6.TabIndex = 10;
-            this.splitContainer6.Visible = false;
+            this.panelAddEventSuccess.Panel1.Controls.Add(this.button12);
+            this.panelAddEventSuccess.Panel1.Controls.Add(this.button11);
+            this.panelAddEventSuccess.Panel1.Controls.Add(this.label17);
+            this.panelAddEventSuccess.Size = new System.Drawing.Size(613, 302);
+            this.panelAddEventSuccess.SplitterDistance = 273;
+            this.panelAddEventSuccess.SplitterWidth = 3;
+            this.panelAddEventSuccess.TabIndex = 10;
+            this.panelAddEventSuccess.Visible = false;
             // 
             // button12
             // 
@@ -1709,29 +1773,198 @@
             this.label45.TabIndex = 0;
             this.label45.Text = "Error Message:";
             // 
+            // panelAddEventErrorInvalidTime
+            // 
+            this.panelAddEventErrorInvalidTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.panelAddEventErrorInvalidTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelAddEventErrorInvalidTime.Location = new System.Drawing.Point(130, 105);
+            this.panelAddEventErrorInvalidTime.Margin = new System.Windows.Forms.Padding(2);
+            this.panelAddEventErrorInvalidTime.Name = "panelAddEventErrorInvalidTime";
+            this.panelAddEventErrorInvalidTime.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // panelAddEventErrorInvalidTime.Panel1
+            // 
+            this.panelAddEventErrorInvalidTime.Panel1.Controls.Add(this.label46);
+            this.panelAddEventErrorInvalidTime.Panel1.Controls.Add(this.button26);
+            this.panelAddEventErrorInvalidTime.Panel1.Controls.Add(this.label47);
+            this.panelAddEventErrorInvalidTime.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer8_Panel1_Paint);
+            this.panelAddEventErrorInvalidTime.Size = new System.Drawing.Size(621, 334);
+            this.panelAddEventErrorInvalidTime.SplitterDistance = 249;
+            this.panelAddEventErrorInvalidTime.SplitterWidth = 3;
+            this.panelAddEventErrorInvalidTime.TabIndex = 22;
+            this.panelAddEventErrorInvalidTime.Visible = false;
+            this.panelAddEventErrorInvalidTime.Click += new System.EventHandler(this.ReturnToAddEventEvent);
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(287, 57);
+            this.label46.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(190, 25);
+            this.label46.TabIndex = 2;
+            this.label46.Text = "Invalid Event Time";
+            // 
+            // button26
+            // 
+            this.button26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.button26.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button26.Location = new System.Drawing.Point(257, 133);
+            this.button26.Margin = new System.Windows.Forms.Padding(2);
+            this.button26.Name = "button26";
+            this.button26.Size = new System.Drawing.Size(86, 31);
+            this.button26.TabIndex = 1;
+            this.button26.Text = "Back";
+            this.button26.UseVisualStyleBackColor = false;
+            this.button26.Click += new System.EventHandler(this.ReturnToAddEventEvent);
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.ForeColor = System.Drawing.Color.Red;
+            this.label47.Location = new System.Drawing.Point(108, 57);
+            this.label47.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(160, 25);
+            this.label47.TabIndex = 0;
+            this.label47.Text = "Error Message:";
+            // 
+            // panelAddEventErrorInvalidLength
+            // 
+            this.panelAddEventErrorInvalidLength.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.panelAddEventErrorInvalidLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelAddEventErrorInvalidLength.Location = new System.Drawing.Point(138, 113);
+            this.panelAddEventErrorInvalidLength.Margin = new System.Windows.Forms.Padding(2);
+            this.panelAddEventErrorInvalidLength.Name = "panelAddEventErrorInvalidLength";
+            this.panelAddEventErrorInvalidLength.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // panelAddEventErrorInvalidLength.Panel1
+            // 
+            this.panelAddEventErrorInvalidLength.Panel1.Controls.Add(this.label48);
+            this.panelAddEventErrorInvalidLength.Panel1.Controls.Add(this.button27);
+            this.panelAddEventErrorInvalidLength.Panel1.Controls.Add(this.label49);
+            this.panelAddEventErrorInvalidLength.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer8_Panel1_Paint);
+            this.panelAddEventErrorInvalidLength.Size = new System.Drawing.Size(621, 334);
+            this.panelAddEventErrorInvalidLength.SplitterDistance = 249;
+            this.panelAddEventErrorInvalidLength.SplitterWidth = 3;
+            this.panelAddEventErrorInvalidLength.TabIndex = 23;
+            this.panelAddEventErrorInvalidLength.Visible = false;
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(287, 57);
+            this.label48.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(208, 25);
+            this.label48.TabIndex = 2;
+            this.label48.Text = "Invalid Event Length";
+            // 
+            // button27
+            // 
+            this.button27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.button27.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button27.Location = new System.Drawing.Point(257, 133);
+            this.button27.Margin = new System.Windows.Forms.Padding(2);
+            this.button27.Name = "button27";
+            this.button27.Size = new System.Drawing.Size(86, 31);
+            this.button27.TabIndex = 1;
+            this.button27.Text = "Back";
+            this.button27.UseVisualStyleBackColor = false;
+            this.button27.Click += new System.EventHandler(this.ReturnToAddEventEvent);
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.ForeColor = System.Drawing.Color.Red;
+            this.label49.Location = new System.Drawing.Point(108, 57);
+            this.label49.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(160, 25);
+            this.label49.TabIndex = 0;
+            this.label49.Text = "Error Message:";
+            // 
+            // panelAddEventErrorConflicts
+            // 
+            this.panelAddEventErrorConflicts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.panelAddEventErrorConflicts.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelAddEventErrorConflicts.Location = new System.Drawing.Point(127, 106);
+            this.panelAddEventErrorConflicts.Margin = new System.Windows.Forms.Padding(2);
+            this.panelAddEventErrorConflicts.Name = "panelAddEventErrorConflicts";
+            this.panelAddEventErrorConflicts.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // panelAddEventErrorConflicts.Panel1
+            // 
+            this.panelAddEventErrorConflicts.Panel1.Controls.Add(this.label50);
+            this.panelAddEventErrorConflicts.Panel1.Controls.Add(this.button28);
+            this.panelAddEventErrorConflicts.Panel1.Controls.Add(this.label51);
+            this.panelAddEventErrorConflicts.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer8_Panel1_Paint);
+            this.panelAddEventErrorConflicts.Size = new System.Drawing.Size(621, 334);
+            this.panelAddEventErrorConflicts.SplitterDistance = 249;
+            this.panelAddEventErrorConflicts.SplitterWidth = 3;
+            this.panelAddEventErrorConflicts.TabIndex = 24;
+            this.panelAddEventErrorConflicts.Visible = false;
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Location = new System.Drawing.Point(268, 42);
+            this.label50.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(298, 25);
+            this.label50.TabIndex = 2;
+            this.label50.Text = "Conflicts occur with this event";
+            // 
+            // button28
+            // 
+            this.button28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.button28.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button28.Location = new System.Drawing.Point(271, 120);
+            this.button28.Margin = new System.Windows.Forms.Padding(2);
+            this.button28.Name = "button28";
+            this.button28.Size = new System.Drawing.Size(86, 31);
+            this.button28.TabIndex = 1;
+            this.button28.Text = "Back";
+            this.button28.UseVisualStyleBackColor = false;
+            this.button28.Click += new System.EventHandler(this.ReturnToAddEventEvent);
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.ForeColor = System.Drawing.Color.Red;
+            this.label51.Location = new System.Drawing.Point(89, 42);
+            this.label51.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(160, 25);
+            this.label51.TabIndex = 0;
+            this.label51.Text = "Error Message:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(817, 480);
+            this.Controls.Add(this.panelAddEvent);
+            this.Controls.Add(this.panelAddEventSuccess);
+            this.Controls.Add(this.panelAddEventErrorConflicts);
+            this.Controls.Add(this.panelAddEventErrorInvalidLength);
+            this.Controls.Add(this.splitContainer13);
+            this.Controls.Add(this.splitContainer8);
+            this.Controls.Add(this.splitContainer7);
+            this.Controls.Add(this.panelAddEventErrorInvalidTime);
             this.Controls.Add(this.panelCreateAccountSuccess);
             this.Controls.Add(this.panelLogin);
-            this.Controls.Add(this.panelCreateErrorEmptyUsername);
             this.Controls.Add(this.panelCreateErrorUsernameExists);
             this.Controls.Add(this.panelCreateErrorPasswords);
             this.Controls.Add(this.panelCreateAccount);
             this.Controls.Add(this.panelInvalidPassword);
             this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.panelInvalidUsername);
-            this.Controls.Add(this.splitContainer8);
-            this.Controls.Add(this.splitContainer7);
-            this.Controls.Add(this.splitContainer6);
-            this.Controls.Add(this.splitContainer13);
             this.Controls.Add(this.splitContainer12);
             this.Controls.Add(this.splitContainer11);
             this.Controls.Add(this.splitContainer10);
             this.Controls.Add(this.splitContainer9);
-            this.Controls.Add(this.splitContainer5);
+            this.Controls.Add(this.panelCreateErrorEmptyUsername);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Calendar";
@@ -1754,14 +1987,14 @@
             this.panelCreateAccountSuccess.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelCreateAccountSuccess)).EndInit();
             this.panelCreateAccountSuccess.ResumeLayout(false);
-            this.splitContainer5.Panel1.ResumeLayout(false);
-            this.splitContainer5.Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
-            this.splitContainer5.ResumeLayout(false);
-            this.splitContainer6.Panel1.ResumeLayout(false);
-            this.splitContainer6.Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).EndInit();
-            this.splitContainer6.ResumeLayout(false);
+            this.panelAddEvent.Panel1.ResumeLayout(false);
+            this.panelAddEvent.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelAddEvent)).EndInit();
+            this.panelAddEvent.ResumeLayout(false);
+            this.panelAddEventSuccess.Panel1.ResumeLayout(false);
+            this.panelAddEventSuccess.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelAddEventSuccess)).EndInit();
+            this.panelAddEventSuccess.ResumeLayout(false);
             this.splitContainer7.Panel1.ResumeLayout(false);
             this.splitContainer7.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).EndInit();
@@ -1812,6 +2045,18 @@
             this.panelCreateErrorUsernameExists.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelCreateErrorUsernameExists)).EndInit();
             this.panelCreateErrorUsernameExists.ResumeLayout(false);
+            this.panelAddEventErrorInvalidTime.Panel1.ResumeLayout(false);
+            this.panelAddEventErrorInvalidTime.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelAddEventErrorInvalidTime)).EndInit();
+            this.panelAddEventErrorInvalidTime.ResumeLayout(false);
+            this.panelAddEventErrorInvalidLength.Panel1.ResumeLayout(false);
+            this.panelAddEventErrorInvalidLength.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelAddEventErrorInvalidLength)).EndInit();
+            this.panelAddEventErrorInvalidLength.ResumeLayout(false);
+            this.panelAddEventErrorConflicts.Panel1.ResumeLayout(false);
+            this.panelAddEventErrorConflicts.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelAddEventErrorConflicts)).EndInit();
+            this.panelAddEventErrorConflicts.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1847,20 +2092,19 @@
         private System.Windows.Forms.SplitContainer panelCreateAccountSuccess;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.SplitContainer splitContainer5;
+        private System.Windows.Forms.SplitContainer panelAddEvent;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.SplitContainer splitContainer6;
+        private System.Windows.Forms.SplitContainer panelAddEventSuccess;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button11;
@@ -1933,6 +2177,22 @@
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Button button25;
         private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.MonthCalendar monthCalendar2;
+        private System.Windows.Forms.TextBox textBox20;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.SplitContainer panelAddEventErrorInvalidTime;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Button button26;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.SplitContainer panelAddEventErrorInvalidLength;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Button button27;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.SplitContainer panelAddEventErrorConflicts;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.Button button28;
+        private System.Windows.Forms.Label label51;
     }
 }
 
