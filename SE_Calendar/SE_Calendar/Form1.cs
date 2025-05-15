@@ -26,6 +26,7 @@ namespace SE_Calendar
             InitializeComponent();
             RetrieveListOfEvents();
             LoadEventList();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -189,7 +190,7 @@ namespace SE_Calendar
         private void button3_Click(object sender, EventArgs e)
         {
             splitContainer2.Visible=false;
-            splitContainer1.Visible=true;
+            panelLogin.Visible=true;
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -357,10 +358,10 @@ namespace SE_Calendar
 
                 //  Check if the events conflict
                 //  The new event starts during the old event:
-                bool newStartsDuringOld = eventTimeSimplified > dbEventTimeSimplified && eventTimeSimplified < dbEventTimeSimplified + dbEventLength;
+                bool newStartsDuringOld = eventTimeSimplified >= dbEventTimeSimplified && eventTimeSimplified < dbEventTimeSimplified + dbEventLength;
 
                 //  The old event starts during the new event:
-                bool oldStartsDuringNew = dbEventTimeSimplified > eventTimeSimplified && dbEventTimeSimplified < eventTimeSimplified + eventLength;
+                bool oldStartsDuringNew = dbEventTimeSimplified >= eventTimeSimplified && dbEventTimeSimplified < eventTimeSimplified + eventLength;
 
                 //  There are conflicts
                 if (newStartsDuringOld || oldStartsDuringNew)
@@ -451,14 +452,46 @@ namespace SE_Calendar
 
         private void button12_Click(object sender, EventArgs e)
         {
+            this.events = new List<Event>();
+            RetrieveListOfEvents();
+            LoadEventList();
+
             panelAddEventSuccess.Visible=false ;
             splitContainer2.Visible=true ;
         }
 
         private void button13_Click(object sender, EventArgs e)
         {
-            splitContainer7.Visible=false ;
-            splitContainer9.Visible=true ;
+            if (checkedListBox1.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("Please select an event to delete.");
+                return;
+            }
+            EventItem selected = checkedListBox1.CheckedItems[0] as EventItem;
+            Event ev = getEventById(selected.EventID);
+                eventToDelete = ev;
+
+                // Step 4: Check group permissions
+                if (eventToDelete.eventType == "group")
+                {
+                    if (accountType == "manager")
+                    {
+                        splitContainer7.Visible = false;
+                        splitContainer3.Visible = true;
+                    }
+                    else
+                    {
+                        splitContainer7.Visible = false;
+                        splitContainer8.Visible = true; // unauthorized error panel
+                    }
+                }
+                else
+                {
+                    // Personal event, proceed
+                    splitContainer7.Visible = false;
+                    splitContainer3.Visible = true;
+                }   
+
         }
 
         private void button15_Click(object sender, EventArgs e)
@@ -467,9 +500,69 @@ namespace SE_Calendar
             splitContainer7.Visible=true ;
         }
 
+
+        //displaying events on selected date
+
+        private DateTime? selectedEventDate = null;
+        private void ShowEventsForSelectedDate(DateTime selectedDate)
+        {
+            selectedEventDate = selectedDate;
+            checkedListBox1.Items.Clear();
+
+            var matchedEvents = events
+                .Where(e => DateTime.TryParse(e.eventDate, out DateTime edate) && edate.Date == selectedDate.Date)
+                .ToList();
+
+            if (matchedEvents.Count == 0)
+            {
+                selectedEventDate = null;  //No matching events = null
+                return;
+            }
+
+            selectedEventDate = selectedDate; //Store selected date
+
+            foreach (var ev in matchedEvents)
+            {
+                string display = $"{ev.eventTime} - {ev.eventName}";
+                 checkedListBox1.Items.Add(new EventItem { EventID = ev.eventID, Display = display });
+
+            }
+        }
+
+        // Delete Event
+        private Event eventToDelete;
         private void button4_Click(object sender, EventArgs e)
         {
-            splitContainer2.Visible = false ;
+            //STEP 1: Check if a date was selected
+            if (selectedEventDate == null)
+            {
+                MessageBox.Show("⚠️ Please select a date from the calendar.");
+                return;
+            }
+
+            //STEP 2: Filter events for selected date
+            DateTime date = selectedEventDate.Value;
+            var matchedEvents = events
+                .Where(ev => DateTime.TryParse(ev.eventDate, out DateTime edate) && edate.Date == date.Date)
+                .ToList();
+
+            //STEP 3: No events found
+            if (matchedEvents.Count == 0)
+            {
+                MessageBox.Show("❌ No events found for the selected date.");
+                return;
+            }
+
+            //STEP 4: Show events in checkbox list
+            checkedListBox1.Items.Clear();
+            foreach (var ev in matchedEvents)
+            {
+                string display = $"{ev.eventTime} - {ev.eventName} ({ev.eventType})";
+                checkedListBox1.Items.Add(new EventItem { EventID = ev.eventID, Display = display });
+            }
+
+            // Moves from main menu to Events Associated screen
+            splitContainer2.Visible = false;
             splitContainer7.Visible = true;
         }
 
@@ -506,8 +599,70 @@ namespace SE_Calendar
 
         private void button15_Click_1(object sender, EventArgs e)
         {
-            splitContainer9.Visible = false;
-            splitContainer8 .Visible=true ;
+            if (eventToEdit == null)
+            {
+                MessageBox.Show("No event selected to update.");
+                return;
+            }
+
+            try
+            {
+                // Get updated values from the Edit Form fields
+                string updatedName = textBox11.Text.Trim();
+                string updatedDate = textBox12.Text.Trim();  // Make sure format is yyyy-MM-dd
+                string updatedTime = textBox13.Text.Trim();
+                string updatedLengthStr = textBox14.Text.Trim();
+
+                if (string.IsNullOrEmpty(updatedName) || string.IsNullOrEmpty(updatedDate) ||
+                    string.IsNullOrEmpty(updatedTime) || string.IsNullOrEmpty(updatedLengthStr))
+                {
+                    MessageBox.Show("⚠️ Please fill in all fields before saving.");
+                    return;
+                }
+
+                // Parse event length 
+                double updatedLength = double.Parse(new string(updatedLengthStr.Where(char.IsDigit).ToArray()));
+
+                // Update in database
+                string connStr = "server=csitmariadb.eku.edu;user=student;database=csc340_db;port=3306;password=Maroon@21?;";
+                using (MySqlConnection conn = new MySqlConnection(connStr))
+                {
+                    conn.Open();
+                    string updateQuery = @"UPDATE 834_group5_event 
+                                   SET eventName = @name, eventDate = @date, 
+                                       eventTime = @time, eventLength = @length 
+                                   WHERE eventID = @id";
+                    MySqlCommand cmd = new MySqlCommand(updateQuery, conn);
+                    cmd.Parameters.AddWithValue("@name", updatedName);
+                    cmd.Parameters.AddWithValue("@date", updatedDate);
+                    cmd.Parameters.AddWithValue("@time", updatedTime);
+                    cmd.Parameters.AddWithValue("@length", updatedLength);
+                    cmd.Parameters.AddWithValue("@id", eventToEdit.eventID);
+                    cmd.ExecuteNonQuery();
+                }
+
+                // Update local list
+                eventToEdit.eventName = updatedName;
+                eventToEdit.eventDate = updatedDate;
+                eventToEdit.eventTime = updatedTime;
+                eventToEdit.eventLength = updatedLength;
+
+                // Refresh event list
+                LoadEventList();
+
+                MessageBox.Show("Event updated successfully.");
+
+                // Return to main menu
+                splitContainer9.Visible = false;
+                splitContainer2.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while saving: " + ex.Message);
+            }
+
+            //splitContainer9.Visible = false;
+            //splitContainer5 .Visible=true ;
         }
 
         private void splitContainer10_Panel1_Paint(object sender, PaintEventArgs e)
@@ -576,7 +731,10 @@ namespace SE_Calendar
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
+            DateTime selectedDate = e.Start;
 
+            // ✅ This calls your logic
+            ShowEventsForSelectedDate(selectedDate);
         }
 
         //private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -774,6 +932,189 @@ namespace SE_Calendar
         {
             textBox20.ForeColor = Color.Black;
             textBox20.Text = string.Empty;
+        }
+
+
+        //Confirming delete option
+        private void button29_Click(object sender, EventArgs e)
+        {
+            if (eventToDelete == null)
+            {
+                MessageBox.Show("No event selected to delete. Please go back and select an event.");
+                splitContainer3.Visible = false;
+                splitContainer2.Visible = true;
+                return;
+            }
+
+            try
+            {
+                string connStr = "server=csitmariadb.eku.edu;user=student;database=csc340_db;port=3306;password=Maroon@21?;";
+                using (MySqlConnection conn = new MySqlConnection(connStr))
+                {
+                    conn.Open();
+                    string deleteQuery = "DELETE FROM 834_group5_event WHERE eventID = @eID";
+                    MySqlCommand cmd = new MySqlCommand(deleteQuery, conn);
+                    cmd.Parameters.AddWithValue("@eID", eventToDelete.eventID);
+                    int affected = cmd.ExecuteNonQuery();
+
+                    if (affected > 0)
+                    {
+                        events.RemoveAll(x => x.eventID == eventToDelete.eventID);
+                        LoadEventList(); // refresh list
+                    }
+                }
+
+                eventToDelete = null;
+                splitContainer3.Visible = false;
+                splitContainer4.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void button30_Click(object sender, EventArgs e)
+        {
+            splitContainer3.Visible=false;
+            splitContainer7.Visible=true;
+        }
+
+        private void button32_Click(object sender, EventArgs e)
+        {
+            splitContainer7.Visible = false;
+            splitContainer2.Visible = true;
+        }
+
+        private void button31_Click(object sender, EventArgs e)
+        {
+            splitContainer4.Visible=false;
+            splitContainer2.Visible=true;
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, ItemCheckEventArgs e)
+        {
+            this.BeginInvoke(new Action(() =>
+            {
+                for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                {
+                    if (i != e.Index)
+                    {
+                        checkedListBox1.SetItemChecked(i, false);
+                    }
+                }
+            }));
+        }
+
+        private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
+
+        }
+
+        private Event eventToEdit;
+
+        private void button33_Click(object sender, EventArgs e)
+        {
+            if (checkedListBox6.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("⚠️ Please select an event to edit.");
+                return;
+            }
+
+            EventItem selected = checkedListBox6.CheckedItems[0] as EventItem;
+            Event ev = getEventById(selected.EventID);
+            eventToEdit = ev;
+
+            //Populate Edit Form fields
+            textBox11.Text = eventToEdit.eventName;
+            textBox12.Text = DateTime.Parse(eventToEdit.eventDate).ToString("yyyy-MM-dd");
+            textBox13.Text = eventToEdit.eventTime;
+            textBox14.Text = eventToEdit.eventLength.ToString() + " hours";
+
+            // Permission check
+            if (eventToEdit.eventType == "group")
+            {
+                if (accountType == "manager")
+                {
+                   
+                    //Navigate to edit form 
+                    splitContainer1.Visible = false;
+                    splitContainer9.Visible = true;
+                }
+                else
+                {
+                    
+                    splitContainer1.Visible = false;
+                    splitContainer8.Visible = true; // Unauthorized error
+                }
+            }
+            else
+            {
+                //Personal event: go to edit screen
+                splitContainer1.Visible = false;
+                splitContainer9.Visible = true;
+            }
+        }
+
+        //Edit Event
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (selectedEventDate == null)
+            {
+                MessageBox.Show("Please select a date first.");
+                return;
+            }
+
+            DateTime date = selectedEventDate.Value;
+            var matchedEvents = events
+                .Where(ev => DateTime.TryParse(ev.eventDate, out DateTime edate) && edate.Date == date.Date)
+                .ToList();
+
+            if (matchedEvents.Count == 0)
+            {
+                MessageBox.Show(" No events found for the selected date.");
+                return;
+            }
+
+            checkedListBox6.Items.Clear();
+            foreach (var ev in matchedEvents)
+            {
+                string display = $"{ev.eventTime} - {ev.eventName} ({ev.eventType})";
+                checkedListBox6.Items.Add(new EventItem { EventID = ev.eventID, Display = display });
+            }
+
+            splitContainer2.Visible = false;
+            splitContainer1.Visible = true; // go to Events Associated for Edit       
+
+        }
+
+        private void button34_Click(object sender, EventArgs e)
+        {
+            splitContainer5.Visible=false;
+            splitContainer2.Visible = true;
+        }
+
+        private void checkedListBox6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button35_Click(object sender, EventArgs e)
+        {
+            splitContainer9.Visible=false;
+            splitContainer1.Visible=true;
+        }
+
+        private void button36_Click(object sender, EventArgs e)
+        {
+            splitContainer1.Visible=false;
+            splitContainer2.Visible=true;
         }
     }
 }
