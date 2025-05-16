@@ -37,7 +37,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.mainMenu = new System.Windows.Forms.SplitContainer();
             this.button17 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -80,11 +80,11 @@
             this.button12 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
-            this.splitContainer7 = new System.Windows.Forms.SplitContainer();
+            this.eventsAssociated = new System.Windows.Forms.SplitContainer();
             this.button13 = new System.Windows.Forms.Button();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.splitContainer9 = new System.Windows.Forms.SplitContainer();
+            this.eventEditForm = new System.Windows.Forms.SplitContainer();
             this.button15 = new System.Windows.Forms.Button();
             this.textBox14 = new System.Windows.Forms.TextBox();
             this.textBox13 = new System.Windows.Forms.TextBox();
@@ -95,11 +95,11 @@
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.splitContainer8 = new System.Windows.Forms.SplitContainer();
+            this.errorUnauthorizedAccess = new System.Windows.Forms.SplitContainer();
             this.label31 = new System.Windows.Forms.Label();
             this.button14 = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
-            this.splitContainer10 = new System.Windows.Forms.SplitContainer();
+            this.eventDetailsPanel = new System.Windows.Forms.SplitContainer();
             this.button16 = new System.Windows.Forms.Button();
             this.textBox19 = new System.Windows.Forms.TextBox();
             this.textBox18 = new System.Windows.Forms.TextBox();
@@ -112,15 +112,15 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.splitContainer11 = new System.Windows.Forms.SplitContainer();
+            this.selectAttendants = new System.Windows.Forms.SplitContainer();
             this.button18 = new System.Windows.Forms.Button();
             this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
             this.label32 = new System.Windows.Forms.Label();
-            this.splitContainer12 = new System.Windows.Forms.SplitContainer();
+            this.availableSlots = new System.Windows.Forms.SplitContainer();
             this.button19 = new System.Windows.Forms.Button();
             this.checkedListBox3 = new System.Windows.Forms.CheckedListBox();
             this.label33 = new System.Windows.Forms.Label();
-            this.splitContainer13 = new System.Windows.Forms.SplitContainer();
+            this.selectAttendeesForm = new System.Windows.Forms.SplitContainer();
             this.button20 = new System.Windows.Forms.Button();
             this.checkedListBox4 = new System.Windows.Forms.CheckedListBox();
             this.label34 = new System.Windows.Forms.Label();
@@ -162,9 +162,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainMenu)).BeginInit();
+            this.mainMenu.Panel1.SuspendLayout();
+            this.mainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelCreateAccount)).BeginInit();
             this.panelCreateAccount.Panel1.SuspendLayout();
             this.panelCreateAccount.SuspendLayout();
@@ -177,28 +177,28 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelAddEventSuccess)).BeginInit();
             this.panelAddEventSuccess.Panel1.SuspendLayout();
             this.panelAddEventSuccess.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).BeginInit();
-            this.splitContainer7.Panel1.SuspendLayout();
-            this.splitContainer7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer9)).BeginInit();
-            this.splitContainer9.Panel1.SuspendLayout();
-            this.splitContainer9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer8)).BeginInit();
-            this.splitContainer8.Panel1.SuspendLayout();
-            this.splitContainer8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer10)).BeginInit();
-            this.splitContainer10.Panel1.SuspendLayout();
-            this.splitContainer10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer11)).BeginInit();
-            this.splitContainer11.Panel1.SuspendLayout();
-            this.splitContainer11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer12)).BeginInit();
-            this.splitContainer12.Panel1.SuspendLayout();
-            this.splitContainer12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer13)).BeginInit();
-            this.splitContainer13.Panel1.SuspendLayout();
-            this.splitContainer13.Panel2.SuspendLayout();
-            this.splitContainer13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eventsAssociated)).BeginInit();
+            this.eventsAssociated.Panel1.SuspendLayout();
+            this.eventsAssociated.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eventEditForm)).BeginInit();
+            this.eventEditForm.Panel1.SuspendLayout();
+            this.eventEditForm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorUnauthorizedAccess)).BeginInit();
+            this.errorUnauthorizedAccess.Panel1.SuspendLayout();
+            this.errorUnauthorizedAccess.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eventDetailsPanel)).BeginInit();
+            this.eventDetailsPanel.Panel1.SuspendLayout();
+            this.eventDetailsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.selectAttendants)).BeginInit();
+            this.selectAttendants.Panel1.SuspendLayout();
+            this.selectAttendants.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.availableSlots)).BeginInit();
+            this.availableSlots.Panel1.SuspendLayout();
+            this.availableSlots.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.selectAttendeesForm)).BeginInit();
+            this.selectAttendeesForm.Panel1.SuspendLayout();
+            this.selectAttendeesForm.Panel2.SuspendLayout();
+            this.selectAttendeesForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelInvalidUsername)).BeginInit();
             this.panelInvalidUsername.Panel1.SuspendLayout();
             this.panelInvalidUsername.SuspendLayout();
@@ -343,31 +343,31 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Login ";
             // 
-            // splitContainer2
+            // mainMenu
             // 
-            this.splitContainer2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.splitContainer2.Location = new System.Drawing.Point(121, 66);
-            this.splitContainer2.Margin = new System.Windows.Forms.Padding(2);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.mainMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.mainMenu.Location = new System.Drawing.Point(0, 0);
+            this.mainMenu.Margin = new System.Windows.Forms.Padding(2);
+            this.mainMenu.Name = "mainMenu";
+            this.mainMenu.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitContainer2.Panel1
+            // mainMenu.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.button17);
-            this.splitContainer2.Panel1.Controls.Add(this.listBox1);
-            this.splitContainer2.Panel1.Controls.Add(this.label10);
-            this.splitContainer2.Panel1.Controls.Add(this.button7);
-            this.splitContainer2.Panel1.Controls.Add(this.button6);
-            this.splitContainer2.Panel1.Controls.Add(this.button5);
-            this.splitContainer2.Panel1.Controls.Add(this.button4);
-            this.splitContainer2.Panel1.Controls.Add(this.button3);
-            this.splitContainer2.Panel1.Controls.Add(this.monthCalendar1);
-            this.splitContainer2.Panel1.Controls.Add(this.label4);
-            this.splitContainer2.Size = new System.Drawing.Size(542, 385);
-            this.splitContainer2.SplitterDistance = 356;
-            this.splitContainer2.SplitterWidth = 3;
-            this.splitContainer2.TabIndex = 1;
-            this.splitContainer2.Visible = false;
+            this.mainMenu.Panel1.Controls.Add(this.button17);
+            this.mainMenu.Panel1.Controls.Add(this.listBox1);
+            this.mainMenu.Panel1.Controls.Add(this.label10);
+            this.mainMenu.Panel1.Controls.Add(this.button7);
+            this.mainMenu.Panel1.Controls.Add(this.button6);
+            this.mainMenu.Panel1.Controls.Add(this.button5);
+            this.mainMenu.Panel1.Controls.Add(this.button4);
+            this.mainMenu.Panel1.Controls.Add(this.button3);
+            this.mainMenu.Panel1.Controls.Add(this.monthCalendar1);
+            this.mainMenu.Panel1.Controls.Add(this.label4);
+            this.mainMenu.Size = new System.Drawing.Size(535, 405);
+            this.mainMenu.SplitterDistance = 371;
+            this.mainMenu.SplitterWidth = 3;
+            this.mainMenu.TabIndex = 1;
+            this.mainMenu.Visible = false;
             // 
             // button17
             // 
@@ -874,24 +874,24 @@
             this.label17.TabIndex = 0;
             this.label17.Text = "Successfully added the event ";
             // 
-            // splitContainer7
+            // eventsAssociated
             // 
-            this.splitContainer7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.splitContainer7.Location = new System.Drawing.Point(83, 54);
-            this.splitContainer7.Margin = new System.Windows.Forms.Padding(2);
-            this.splitContainer7.Name = "splitContainer7";
-            this.splitContainer7.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.eventsAssociated.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.eventsAssociated.Location = new System.Drawing.Point(83, 54);
+            this.eventsAssociated.Margin = new System.Windows.Forms.Padding(2);
+            this.eventsAssociated.Name = "eventsAssociated";
+            this.eventsAssociated.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitContainer7.Panel1
+            // eventsAssociated.Panel1
             // 
-            this.splitContainer7.Panel1.Controls.Add(this.button13);
-            this.splitContainer7.Panel1.Controls.Add(this.checkedListBox1);
-            this.splitContainer7.Panel1.Controls.Add(this.label18);
-            this.splitContainer7.Size = new System.Drawing.Size(643, 375);
-            this.splitContainer7.SplitterDistance = 329;
-            this.splitContainer7.SplitterWidth = 3;
-            this.splitContainer7.TabIndex = 11;
-            this.splitContainer7.Visible = false;
+            this.eventsAssociated.Panel1.Controls.Add(this.button13);
+            this.eventsAssociated.Panel1.Controls.Add(this.checkedListBox1);
+            this.eventsAssociated.Panel1.Controls.Add(this.label18);
+            this.eventsAssociated.Size = new System.Drawing.Size(643, 375);
+            this.eventsAssociated.SplitterDistance = 329;
+            this.eventsAssociated.SplitterWidth = 3;
+            this.eventsAssociated.TabIndex = 11;
+            this.eventsAssociated.Visible = false;
             // 
             // button13
             // 
@@ -929,31 +929,31 @@
             this.label18.TabIndex = 0;
             this.label18.Text = "Events Associated";
             // 
-            // splitContainer9
+            // eventEditForm
             // 
-            this.splitContainer9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.splitContainer9.Location = new System.Drawing.Point(103, 54);
-            this.splitContainer9.Margin = new System.Windows.Forms.Padding(2);
-            this.splitContainer9.Name = "splitContainer9";
-            this.splitContainer9.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.eventEditForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.eventEditForm.Location = new System.Drawing.Point(103, 54);
+            this.eventEditForm.Margin = new System.Windows.Forms.Padding(2);
+            this.eventEditForm.Name = "eventEditForm";
+            this.eventEditForm.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitContainer9.Panel1
+            // eventEditForm.Panel1
             // 
-            this.splitContainer9.Panel1.Controls.Add(this.button15);
-            this.splitContainer9.Panel1.Controls.Add(this.textBox14);
-            this.splitContainer9.Panel1.Controls.Add(this.textBox13);
-            this.splitContainer9.Panel1.Controls.Add(this.textBox12);
-            this.splitContainer9.Panel1.Controls.Add(this.textBox11);
-            this.splitContainer9.Panel1.Controls.Add(this.label24);
-            this.splitContainer9.Panel1.Controls.Add(this.label23);
-            this.splitContainer9.Panel1.Controls.Add(this.label22);
-            this.splitContainer9.Panel1.Controls.Add(this.label21);
-            this.splitContainer9.Panel1.Controls.Add(this.label20);
-            this.splitContainer9.Size = new System.Drawing.Size(625, 354);
-            this.splitContainer9.SplitterDistance = 244;
-            this.splitContainer9.SplitterWidth = 3;
-            this.splitContainer9.TabIndex = 13;
-            this.splitContainer9.Visible = false;
+            this.eventEditForm.Panel1.Controls.Add(this.button15);
+            this.eventEditForm.Panel1.Controls.Add(this.textBox14);
+            this.eventEditForm.Panel1.Controls.Add(this.textBox13);
+            this.eventEditForm.Panel1.Controls.Add(this.textBox12);
+            this.eventEditForm.Panel1.Controls.Add(this.textBox11);
+            this.eventEditForm.Panel1.Controls.Add(this.label24);
+            this.eventEditForm.Panel1.Controls.Add(this.label23);
+            this.eventEditForm.Panel1.Controls.Add(this.label22);
+            this.eventEditForm.Panel1.Controls.Add(this.label21);
+            this.eventEditForm.Panel1.Controls.Add(this.label20);
+            this.eventEditForm.Size = new System.Drawing.Size(625, 354);
+            this.eventEditForm.SplitterDistance = 244;
+            this.eventEditForm.SplitterWidth = 3;
+            this.eventEditForm.TabIndex = 13;
+            this.eventEditForm.Visible = false;
             // 
             // button15
             // 
@@ -1063,26 +1063,26 @@
             this.label20.TabIndex = 0;
             this.label20.Text = "Edit Form";
             // 
-            // splitContainer8
+            // errorUnauthorizedAccess
             // 
-            this.splitContainer8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.splitContainer8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splitContainer8.Location = new System.Drawing.Point(103, 18);
-            this.splitContainer8.Margin = new System.Windows.Forms.Padding(2);
-            this.splitContainer8.Name = "splitContainer8";
-            this.splitContainer8.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.errorUnauthorizedAccess.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.errorUnauthorizedAccess.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorUnauthorizedAccess.Location = new System.Drawing.Point(103, 18);
+            this.errorUnauthorizedAccess.Margin = new System.Windows.Forms.Padding(2);
+            this.errorUnauthorizedAccess.Name = "errorUnauthorizedAccess";
+            this.errorUnauthorizedAccess.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitContainer8.Panel1
+            // errorUnauthorizedAccess.Panel1
             // 
-            this.splitContainer8.Panel1.Controls.Add(this.label31);
-            this.splitContainer8.Panel1.Controls.Add(this.button14);
-            this.splitContainer8.Panel1.Controls.Add(this.label19);
-            this.splitContainer8.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer8_Panel1_Paint);
-            this.splitContainer8.Size = new System.Drawing.Size(621, 334);
-            this.splitContainer8.SplitterDistance = 249;
-            this.splitContainer8.SplitterWidth = 3;
-            this.splitContainer8.TabIndex = 12;
-            this.splitContainer8.Visible = false;
+            this.errorUnauthorizedAccess.Panel1.Controls.Add(this.label31);
+            this.errorUnauthorizedAccess.Panel1.Controls.Add(this.button14);
+            this.errorUnauthorizedAccess.Panel1.Controls.Add(this.label19);
+            this.errorUnauthorizedAccess.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer8_Panel1_Paint);
+            this.errorUnauthorizedAccess.Size = new System.Drawing.Size(621, 334);
+            this.errorUnauthorizedAccess.SplitterDistance = 249;
+            this.errorUnauthorizedAccess.SplitterWidth = 3;
+            this.errorUnauthorizedAccess.TabIndex = 12;
+            this.errorUnauthorizedAccess.Visible = false;
             // 
             // label31
             // 
@@ -1119,35 +1119,35 @@
             this.label19.Text = "Error Message:";
             this.label19.Click += new System.EventHandler(this.label19_Click);
             // 
-            // splitContainer10
+            // eventDetailsPanel
             // 
-            this.splitContainer10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.splitContainer10.Location = new System.Drawing.Point(74, 96);
-            this.splitContainer10.Margin = new System.Windows.Forms.Padding(2);
-            this.splitContainer10.Name = "splitContainer10";
-            this.splitContainer10.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.eventDetailsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.eventDetailsPanel.Location = new System.Drawing.Point(74, 96);
+            this.eventDetailsPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.eventDetailsPanel.Name = "eventDetailsPanel";
+            this.eventDetailsPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitContainer10.Panel1
+            // eventDetailsPanel.Panel1
             // 
-            this.splitContainer10.Panel1.Controls.Add(this.button16);
-            this.splitContainer10.Panel1.Controls.Add(this.textBox19);
-            this.splitContainer10.Panel1.Controls.Add(this.textBox18);
-            this.splitContainer10.Panel1.Controls.Add(this.textBox17);
-            this.splitContainer10.Panel1.Controls.Add(this.textBox16);
-            this.splitContainer10.Panel1.Controls.Add(this.textBox15);
-            this.splitContainer10.Panel1.Controls.Add(this.label30);
-            this.splitContainer10.Panel1.Controls.Add(this.label29);
-            this.splitContainer10.Panel1.Controls.Add(this.label28);
-            this.splitContainer10.Panel1.Controls.Add(this.label27);
-            this.splitContainer10.Panel1.Controls.Add(this.label26);
-            this.splitContainer10.Panel1.Controls.Add(this.label25);
-            this.splitContainer10.Panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splitContainer10.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer10_Panel1_Paint);
-            this.splitContainer10.Size = new System.Drawing.Size(554, 319);
-            this.splitContainer10.SplitterDistance = 278;
-            this.splitContainer10.SplitterWidth = 3;
-            this.splitContainer10.TabIndex = 14;
-            this.splitContainer10.Visible = false;
+            this.eventDetailsPanel.Panel1.Controls.Add(this.button16);
+            this.eventDetailsPanel.Panel1.Controls.Add(this.textBox19);
+            this.eventDetailsPanel.Panel1.Controls.Add(this.textBox18);
+            this.eventDetailsPanel.Panel1.Controls.Add(this.textBox17);
+            this.eventDetailsPanel.Panel1.Controls.Add(this.textBox16);
+            this.eventDetailsPanel.Panel1.Controls.Add(this.textBox15);
+            this.eventDetailsPanel.Panel1.Controls.Add(this.label30);
+            this.eventDetailsPanel.Panel1.Controls.Add(this.label29);
+            this.eventDetailsPanel.Panel1.Controls.Add(this.label28);
+            this.eventDetailsPanel.Panel1.Controls.Add(this.label27);
+            this.eventDetailsPanel.Panel1.Controls.Add(this.label26);
+            this.eventDetailsPanel.Panel1.Controls.Add(this.label25);
+            this.eventDetailsPanel.Panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.eventDetailsPanel.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer10_Panel1_Paint);
+            this.eventDetailsPanel.Size = new System.Drawing.Size(554, 319);
+            this.eventDetailsPanel.SplitterDistance = 278;
+            this.eventDetailsPanel.SplitterWidth = 3;
+            this.eventDetailsPanel.TabIndex = 14;
+            this.eventDetailsPanel.Visible = false;
             // 
             // button16
             // 
@@ -1282,24 +1282,24 @@
             this.label25.TabIndex = 0;
             this.label25.Text = "Event Details";
             // 
-            // splitContainer11
+            // selectAttendants
             // 
-            this.splitContainer11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.splitContainer11.Location = new System.Drawing.Point(62, 44);
-            this.splitContainer11.Margin = new System.Windows.Forms.Padding(2);
-            this.splitContainer11.Name = "splitContainer11";
-            this.splitContainer11.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.selectAttendants.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.selectAttendants.Location = new System.Drawing.Point(62, 44);
+            this.selectAttendants.Margin = new System.Windows.Forms.Padding(2);
+            this.selectAttendants.Name = "selectAttendants";
+            this.selectAttendants.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitContainer11.Panel1
+            // selectAttendants.Panel1
             // 
-            this.splitContainer11.Panel1.Controls.Add(this.button18);
-            this.splitContainer11.Panel1.Controls.Add(this.checkedListBox2);
-            this.splitContainer11.Panel1.Controls.Add(this.label32);
-            this.splitContainer11.Size = new System.Drawing.Size(523, 322);
-            this.splitContainer11.SplitterDistance = 293;
-            this.splitContainer11.SplitterWidth = 3;
-            this.splitContainer11.TabIndex = 10;
-            this.splitContainer11.Visible = false;
+            this.selectAttendants.Panel1.Controls.Add(this.button18);
+            this.selectAttendants.Panel1.Controls.Add(this.checkedListBox2);
+            this.selectAttendants.Panel1.Controls.Add(this.label32);
+            this.selectAttendants.Size = new System.Drawing.Size(523, 322);
+            this.selectAttendants.SplitterDistance = 293;
+            this.selectAttendants.SplitterWidth = 3;
+            this.selectAttendants.TabIndex = 10;
+            this.selectAttendants.Visible = false;
             // 
             // button18
             // 
@@ -1349,24 +1349,24 @@
             this.label32.TabIndex = 0;
             this.label32.Text = "Attendees";
             // 
-            // splitContainer12
+            // availableSlots
             // 
-            this.splitContainer12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.splitContainer12.Location = new System.Drawing.Point(34, 62);
-            this.splitContainer12.Margin = new System.Windows.Forms.Padding(2);
-            this.splitContainer12.Name = "splitContainer12";
-            this.splitContainer12.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.availableSlots.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.availableSlots.Location = new System.Drawing.Point(34, 62);
+            this.availableSlots.Margin = new System.Windows.Forms.Padding(2);
+            this.availableSlots.Name = "availableSlots";
+            this.availableSlots.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitContainer12.Panel1
+            // availableSlots.Panel1
             // 
-            this.splitContainer12.Panel1.Controls.Add(this.button19);
-            this.splitContainer12.Panel1.Controls.Add(this.checkedListBox3);
-            this.splitContainer12.Panel1.Controls.Add(this.label33);
-            this.splitContainer12.Size = new System.Drawing.Size(559, 320);
-            this.splitContainer12.SplitterDistance = 263;
-            this.splitContainer12.SplitterWidth = 3;
-            this.splitContainer12.TabIndex = 15;
-            this.splitContainer12.Visible = false;
+            this.availableSlots.Panel1.Controls.Add(this.button19);
+            this.availableSlots.Panel1.Controls.Add(this.checkedListBox3);
+            this.availableSlots.Panel1.Controls.Add(this.label33);
+            this.availableSlots.Size = new System.Drawing.Size(559, 320);
+            this.availableSlots.SplitterDistance = 263;
+            this.availableSlots.SplitterWidth = 3;
+            this.availableSlots.TabIndex = 15;
+            this.availableSlots.Visible = false;
             // 
             // button19
             // 
@@ -1407,28 +1407,28 @@
             this.label33.TabIndex = 0;
             this.label33.Text = "Available slots to schedule a meeting";
             // 
-            // splitContainer13
+            // selectAttendeesForm
             // 
-            this.splitContainer13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.splitContainer13.Location = new System.Drawing.Point(51, 20);
-            this.splitContainer13.Margin = new System.Windows.Forms.Padding(2);
-            this.splitContainer13.Name = "splitContainer13";
+            this.selectAttendeesForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.selectAttendeesForm.Location = new System.Drawing.Point(51, 20);
+            this.selectAttendeesForm.Margin = new System.Windows.Forms.Padding(2);
+            this.selectAttendeesForm.Name = "selectAttendeesForm";
             // 
-            // splitContainer13.Panel1
+            // selectAttendeesForm.Panel1
             // 
-            this.splitContainer13.Panel1.Controls.Add(this.button20);
-            this.splitContainer13.Panel1.Controls.Add(this.checkedListBox4);
-            this.splitContainer13.Panel1.Controls.Add(this.label34);
+            this.selectAttendeesForm.Panel1.Controls.Add(this.button20);
+            this.selectAttendeesForm.Panel1.Controls.Add(this.checkedListBox4);
+            this.selectAttendeesForm.Panel1.Controls.Add(this.label34);
             // 
-            // splitContainer13.Panel2
+            // selectAttendeesForm.Panel2
             // 
-            this.splitContainer13.Panel2.Controls.Add(this.checkedListBox5);
-            this.splitContainer13.Panel2.Controls.Add(this.label35);
-            this.splitContainer13.Size = new System.Drawing.Size(611, 318);
-            this.splitContainer13.SplitterDistance = 308;
-            this.splitContainer13.SplitterWidth = 3;
-            this.splitContainer13.TabIndex = 16;
-            this.splitContainer13.Visible = false;
+            this.selectAttendeesForm.Panel2.Controls.Add(this.checkedListBox5);
+            this.selectAttendeesForm.Panel2.Controls.Add(this.label35);
+            this.selectAttendeesForm.Size = new System.Drawing.Size(611, 318);
+            this.selectAttendeesForm.SplitterDistance = 308;
+            this.selectAttendeesForm.SplitterWidth = 3;
+            this.selectAttendeesForm.TabIndex = 16;
+            this.selectAttendeesForm.Visible = false;
             // 
             // button20
             // 
@@ -1441,6 +1441,7 @@
             this.button20.TabIndex = 2;
             this.button20.Text = "Confirm";
             this.button20.UseVisualStyleBackColor = false;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
             // 
             // checkedListBox4
             // 
@@ -1944,26 +1945,26 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(817, 480);
+            this.Controls.Add(this.selectAttendeesForm);
             this.Controls.Add(this.panelAddEvent);
             this.Controls.Add(this.panelAddEventSuccess);
             this.Controls.Add(this.panelAddEventErrorConflicts);
             this.Controls.Add(this.panelAddEventErrorInvalidLength);
-            this.Controls.Add(this.splitContainer13);
-            this.Controls.Add(this.splitContainer8);
-            this.Controls.Add(this.splitContainer7);
+            this.Controls.Add(this.errorUnauthorizedAccess);
+            this.Controls.Add(this.eventsAssociated);
             this.Controls.Add(this.panelAddEventErrorInvalidTime);
             this.Controls.Add(this.panelCreateAccountSuccess);
             this.Controls.Add(this.panelLogin);
             this.Controls.Add(this.panelCreateErrorUsernameExists);
+            this.Controls.Add(this.availableSlots);
+            this.Controls.Add(this.mainMenu);
             this.Controls.Add(this.panelCreateErrorPasswords);
             this.Controls.Add(this.panelCreateAccount);
             this.Controls.Add(this.panelInvalidPassword);
-            this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.panelInvalidUsername);
-            this.Controls.Add(this.splitContainer12);
-            this.Controls.Add(this.splitContainer11);
-            this.Controls.Add(this.splitContainer10);
-            this.Controls.Add(this.splitContainer9);
+            this.Controls.Add(this.selectAttendants);
+            this.Controls.Add(this.eventDetailsPanel);
+            this.Controls.Add(this.eventEditForm);
             this.Controls.Add(this.panelCreateErrorEmptyUsername);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
@@ -1975,10 +1976,10 @@
             this.splitContainer1.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
+            this.mainMenu.Panel1.ResumeLayout(false);
+            this.mainMenu.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainMenu)).EndInit();
+            this.mainMenu.ResumeLayout(false);
             this.panelCreateAccount.Panel1.ResumeLayout(false);
             this.panelCreateAccount.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelCreateAccount)).EndInit();
@@ -1995,36 +1996,36 @@
             this.panelAddEventSuccess.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelAddEventSuccess)).EndInit();
             this.panelAddEventSuccess.ResumeLayout(false);
-            this.splitContainer7.Panel1.ResumeLayout(false);
-            this.splitContainer7.Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).EndInit();
-            this.splitContainer7.ResumeLayout(false);
-            this.splitContainer9.Panel1.ResumeLayout(false);
-            this.splitContainer9.Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer9)).EndInit();
-            this.splitContainer9.ResumeLayout(false);
-            this.splitContainer8.Panel1.ResumeLayout(false);
-            this.splitContainer8.Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer8)).EndInit();
-            this.splitContainer8.ResumeLayout(false);
-            this.splitContainer10.Panel1.ResumeLayout(false);
-            this.splitContainer10.Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer10)).EndInit();
-            this.splitContainer10.ResumeLayout(false);
-            this.splitContainer11.Panel1.ResumeLayout(false);
-            this.splitContainer11.Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer11)).EndInit();
-            this.splitContainer11.ResumeLayout(false);
-            this.splitContainer12.Panel1.ResumeLayout(false);
-            this.splitContainer12.Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer12)).EndInit();
-            this.splitContainer12.ResumeLayout(false);
-            this.splitContainer13.Panel1.ResumeLayout(false);
-            this.splitContainer13.Panel1.PerformLayout();
-            this.splitContainer13.Panel2.ResumeLayout(false);
-            this.splitContainer13.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer13)).EndInit();
-            this.splitContainer13.ResumeLayout(false);
+            this.eventsAssociated.Panel1.ResumeLayout(false);
+            this.eventsAssociated.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eventsAssociated)).EndInit();
+            this.eventsAssociated.ResumeLayout(false);
+            this.eventEditForm.Panel1.ResumeLayout(false);
+            this.eventEditForm.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eventEditForm)).EndInit();
+            this.eventEditForm.ResumeLayout(false);
+            this.errorUnauthorizedAccess.Panel1.ResumeLayout(false);
+            this.errorUnauthorizedAccess.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorUnauthorizedAccess)).EndInit();
+            this.errorUnauthorizedAccess.ResumeLayout(false);
+            this.eventDetailsPanel.Panel1.ResumeLayout(false);
+            this.eventDetailsPanel.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eventDetailsPanel)).EndInit();
+            this.eventDetailsPanel.ResumeLayout(false);
+            this.selectAttendants.Panel1.ResumeLayout(false);
+            this.selectAttendants.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.selectAttendants)).EndInit();
+            this.selectAttendants.ResumeLayout(false);
+            this.availableSlots.Panel1.ResumeLayout(false);
+            this.availableSlots.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.availableSlots)).EndInit();
+            this.availableSlots.ResumeLayout(false);
+            this.selectAttendeesForm.Panel1.ResumeLayout(false);
+            this.selectAttendeesForm.Panel1.PerformLayout();
+            this.selectAttendeesForm.Panel2.ResumeLayout(false);
+            this.selectAttendeesForm.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.selectAttendeesForm)).EndInit();
+            this.selectAttendeesForm.ResumeLayout(false);
             this.panelInvalidUsername.Panel1.ResumeLayout(false);
             this.panelInvalidUsername.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelInvalidUsername)).EndInit();
@@ -2072,7 +2073,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.SplitContainer mainMenu;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button6;
@@ -2108,14 +2109,14 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.SplitContainer splitContainer7;
+        private System.Windows.Forms.SplitContainer eventsAssociated;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.SplitContainer splitContainer8;
+        private System.Windows.Forms.SplitContainer errorUnauthorizedAccess;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.SplitContainer splitContainer9;
+        private System.Windows.Forms.SplitContainer eventEditForm;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.TextBox textBox13;
@@ -2128,7 +2129,7 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.SplitContainer splitContainer10;
+        private System.Windows.Forms.SplitContainer eventDetailsPanel;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label28;
@@ -2143,15 +2144,15 @@
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.SplitContainer splitContainer11;
+        private System.Windows.Forms.SplitContainer selectAttendants;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.CheckedListBox checkedListBox2;
-        private System.Windows.Forms.SplitContainer splitContainer12;
+        private System.Windows.Forms.SplitContainer availableSlots;
         private System.Windows.Forms.CheckedListBox checkedListBox3;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.SplitContainer splitContainer13;
+        private System.Windows.Forms.SplitContainer selectAttendeesForm;
         private System.Windows.Forms.CheckedListBox checkedListBox4;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.CheckedListBox checkedListBox5;

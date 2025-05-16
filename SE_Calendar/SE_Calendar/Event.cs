@@ -16,6 +16,7 @@ namespace SE_Calendar
         public string eventDescription { get; set; }
         public string eventDate { get; set; }
         public string eventTime { get; set; }
+        public string attendees { get; set; }
         public string Display {  get; set; }
 
         public override string ToString()
