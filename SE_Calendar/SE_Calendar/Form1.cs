@@ -780,7 +780,7 @@ namespace SE_Calendar
                 Event myEvent = new Event();
                 myEvent.eventID = -1;
                 myEvent.eventCreatorID = uID;
-                myEvent.eventType = "Meeting";
+                myEvent.eventType = "Management";
 
                 if (DateTime.TryParseExact(slot.ToString(), "yyyy-MM-dd hh:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedSlot))
                 {
@@ -803,7 +803,7 @@ namespace SE_Calendar
                     Event myEvent = new Event();
                     myEvent.eventID = -1;
                     myEvent.eventCreatorID = attendee.Id;
-                    myEvent.eventType = "Meeting";
+                    myEvent.eventType = "Management";
 
                     if (DateTime.TryParseExact(slot.ToString(), "yyyy-MM-dd hh:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedSlot))
                     {
@@ -847,16 +847,18 @@ namespace SE_Calendar
 
             foreach (var MyEv in MyEvents)
             {
-                string commandStrAddEventToDB = "INSERT INTO 834_group5_event VALUES (@eID, @eCreatorID, \'personal\', @eTime, @eLength, @eName, @eDesc, @eDate, null)";
+                string commandStrAddEventToDB = "INSERT INTO 834_group5_event VALUES (@eID, @eCreatorID, @evType, @eTime, @eLength, @eName, @eDesc, @eDate, @evAttend)";
                 MySqlCommand commandAddEventToDB = new MySqlCommand(commandStrAddEventToDB, conn);
 
                 commandAddEventToDB.Parameters.AddWithValue("@eID", ++mostRecentEventID);
                 commandAddEventToDB.Parameters.AddWithValue("@eCreatorID", MyEv.eventCreatorID);
+                commandAddEventToDB.Parameters.AddWithValue("@evType", MyEv.eventType);
                 commandAddEventToDB.Parameters.AddWithValue("@eTime", MyEv.eventTime);
                 commandAddEventToDB.Parameters.AddWithValue("@eLength", MyEv.eventLength);
                 commandAddEventToDB.Parameters.AddWithValue("@eName", MyEv.eventName);
                 commandAddEventToDB.Parameters.AddWithValue("@eDesc", MyEv.eventDescription);
                 commandAddEventToDB.Parameters.AddWithValue("@eDate", MyEv.eventDate);
+                commandAddEventToDB.Parameters.AddWithValue("@evAttend", MyEv.attendees);
 
                 commandAddEventToDB.ExecuteNonQuery();
             }
@@ -868,6 +870,12 @@ namespace SE_Calendar
 
             splitContainer13.Visible = false;
             splitContainer2.Visible = true;
+
+            checkedListBox1.Items.Clear();
+            this.events.Clear();
+
+            RetrieveListOfEvents();
+            LoadEventList();
         }
     
 
@@ -1060,6 +1068,7 @@ namespace SE_Calendar
                             myEvent.eventName = reader["eventName"].ToString();
                             myEvent.eventDescription = reader["eventDescription"].ToString();
                             myEvent.eventDate = reader["eventDate"].ToString();
+                            myEvent.attendees = reader["attendees"].ToString();
 
                             this.events.Add(myEvent);  
                         }
@@ -1260,14 +1269,44 @@ namespace SE_Calendar
             try
             {
                 string connStr = "server=csitmariadb.eku.edu;user=student;database=csc340_db;port=3306;password=Maroon@21?;";
+                int affected = 0;
+
                 using (MySqlConnection conn = new MySqlConnection(connStr))
                 {
                     conn.Open();
-                    string deleteQuery = "DELETE FROM 834_group5_event WHERE eventID = @eID";
-                    MySqlCommand cmd = new MySqlCommand(deleteQuery, conn);
-                    cmd.Parameters.AddWithValue("@eID", eventToDelete.eventID);
-                    int affected = cmd.ExecuteNonQuery();
+                    string deleteQuery;
 
+                    string rawDate = eventToDelete.eventDate.ToString();
+                    string time = eventToDelete.eventTime.ToString();
+
+                    string formattedDate = "";
+                    if (DateTime.TryParse(rawDate, out DateTime parsedDate))
+                    {
+                        formattedDate = parsedDate.ToString("yyyy-MM-dd");
+                    }
+
+                    if (eventToDelete.attendees != null)
+                    {    
+                        deleteQuery = "DELETE FROM 834_group5_event WHERE eventDate = @date " +
+                               "AND eventTime = @time " +
+                               "AND eventType = 'Management'";
+                           
+                        MySqlCommand cmdAttendees = new MySqlCommand(deleteQuery, conn);
+                        cmdAttendees.Parameters.AddWithValue("@date", formattedDate);
+                        cmdAttendees.Parameters.AddWithValue("@time", eventToDelete.eventTime.ToString());
+                        
+                        affected = cmdAttendees.ExecuteNonQuery();
+                    }
+
+                    else
+                    {
+                        deleteQuery = "DELETE FROM 834_group5_event WHERE eventID = @eID";
+                        MySqlCommand cmd = new MySqlCommand(deleteQuery, conn);
+                        cmd.Parameters.AddWithValue("@eID", eventToDelete.eventID);
+                        affected = cmd.ExecuteNonQuery();
+                    }
+                        
+                    
                     if (affected > 0)
                     {
                         events.RemoveAll(x => x.eventID == eventToDelete.eventID);
