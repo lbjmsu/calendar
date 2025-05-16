@@ -256,7 +256,7 @@
             // 
             this.panelLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.panelLogin.Location = new System.Drawing.Point(141, 16);
-            this.panelLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelLogin.Margin = new System.Windows.Forms.Padding(2);
             this.panelLogin.Name = "panelLogin";
             this.panelLogin.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -283,7 +283,7 @@
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(188, 222);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(139, 29);
             this.button2.TabIndex = 6;
@@ -296,7 +296,7 @@
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(217, 171);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(60, 29);
             this.button1.TabIndex = 5;
@@ -307,7 +307,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(241, 122);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
             this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(109, 20);
@@ -316,7 +316,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(241, 77);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(109, 20);
             this.textBox1.TabIndex = 3;
@@ -358,7 +358,7 @@
             // 
             this.splitContainer2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.splitContainer2.Location = new System.Drawing.Point(116, 11);
-            this.splitContainer2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -375,7 +375,7 @@
             this.splitContainer2.Panel1.Controls.Add(this.monthCalendar1);
             this.splitContainer2.Panel1.Controls.Add(this.label4);
             this.splitContainer2.Size = new System.Drawing.Size(607, 394);
-            this.splitContainer2.SplitterDistance = 363;
+            this.splitContainer2.SplitterDistance = 362;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 1;
             this.splitContainer2.Visible = false;
@@ -384,7 +384,7 @@
             // 
             this.button17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button17.Location = new System.Drawing.Point(149, 326);
-            this.button17.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button17.Margin = new System.Windows.Forms.Padding(2);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(107, 23);
             this.button17.TabIndex = 9;
@@ -402,7 +402,7 @@
             "04/26/2025 : Doctor Appointment",
             "04/26/2025 : Project discussion"});
             this.listBox1.Location = new System.Drawing.Point(291, 88);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(2);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(233, 186);
             this.listBox1.TabIndex = 8;
@@ -421,7 +421,7 @@
             // button7
             // 
             this.button7.Location = new System.Drawing.Point(37, 326);
-            this.button7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button7.Margin = new System.Windows.Forms.Padding(2);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(92, 23);
             this.button7.TabIndex = 6;
@@ -432,7 +432,7 @@
             // button6
             // 
             this.button6.Location = new System.Drawing.Point(149, 289);
-            this.button6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button6.Margin = new System.Windows.Forms.Padding(2);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(107, 22);
             this.button6.TabIndex = 5;
@@ -443,7 +443,7 @@
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(37, 289);
-            this.button5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(79, 22);
             this.button5.TabIndex = 4;
@@ -454,7 +454,7 @@
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(149, 253);
-            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(107, 21);
             this.button4.TabIndex = 3;
@@ -465,7 +465,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(37, 253);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(79, 21);
             this.button3.TabIndex = 2;
@@ -476,7 +476,7 @@
             // monthCalendar1
             // 
             this.monthCalendar1.Location = new System.Drawing.Point(37, 62);
-            this.monthCalendar1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.monthCalendar1.Margin = new System.Windows.Forms.Padding(6);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 1;
             this.monthCalendar1.TodayDate = new System.DateTime(2025, 5, 14, 0, 0, 0, 0);
@@ -497,7 +497,7 @@
             // 
             this.panelCreateAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.panelCreateAccount.Location = new System.Drawing.Point(158, 11);
-            this.panelCreateAccount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelCreateAccount.Margin = new System.Windows.Forms.Padding(2);
             this.panelCreateAccount.Name = "panelCreateAccount";
             this.panelCreateAccount.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -522,7 +522,7 @@
             this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button8.Location = new System.Drawing.Point(182, 187);
-            this.button8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button8.Margin = new System.Windows.Forms.Padding(2);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(130, 29);
             this.button8.TabIndex = 7;
@@ -533,7 +533,7 @@
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(265, 140);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(2);
             this.textBox5.Name = "textBox5";
             this.textBox5.PasswordChar = '*';
             this.textBox5.Size = new System.Drawing.Size(91, 20);
@@ -542,7 +542,7 @@
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(265, 109);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(2);
             this.textBox4.Name = "textBox4";
             this.textBox4.PasswordChar = '*';
             this.textBox4.Size = new System.Drawing.Size(91, 20);
@@ -551,7 +551,7 @@
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(265, 76);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(91, 20);
             this.textBox3.TabIndex = 4;
@@ -604,7 +604,7 @@
             // 
             this.panelCreateAccountSuccess.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.panelCreateAccountSuccess.Location = new System.Drawing.Point(139, 66);
-            this.panelCreateAccountSuccess.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelCreateAccountSuccess.Margin = new System.Windows.Forms.Padding(2);
             this.panelCreateAccountSuccess.Name = "panelCreateAccountSuccess";
             this.panelCreateAccountSuccess.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -623,7 +623,7 @@
             this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button9.Location = new System.Drawing.Point(197, 106);
-            this.button9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button9.Margin = new System.Windows.Forms.Padding(2);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(113, 38);
             this.button9.TabIndex = 1;
@@ -646,7 +646,7 @@
             // 
             this.panelAddEvent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.panelAddEvent.Location = new System.Drawing.Point(103, 62);
-            this.panelAddEvent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelAddEvent.Margin = new System.Windows.Forms.Padding(2);
             this.panelAddEvent.Name = "panelAddEvent";
             this.panelAddEvent.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -677,7 +677,7 @@
             // 
             this.textBox20.ForeColor = System.Drawing.Color.Gray;
             this.textBox20.Location = new System.Drawing.Point(237, 159);
-            this.textBox20.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox20.Margin = new System.Windows.Forms.Padding(2);
             this.textBox20.Name = "textBox20";
             this.textBox20.Size = new System.Drawing.Size(48, 20);
             this.textBox20.TabIndex = 17;
@@ -689,7 +689,7 @@
             // 
             this.textBox9.ForeColor = System.Drawing.Color.Gray;
             this.textBox9.Location = new System.Drawing.Point(179, 159);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox9.Margin = new System.Windows.Forms.Padding(2);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(48, 20);
             this.textBox9.TabIndex = 16;
@@ -721,7 +721,7 @@
             this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button10.Location = new System.Drawing.Point(264, 249);
-            this.button10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button10.Margin = new System.Windows.Forms.Padding(2);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(63, 29);
             this.button10.TabIndex = 11;
@@ -732,7 +732,7 @@
             // textBox10
             // 
             this.textBox10.Location = new System.Drawing.Point(179, 186);
-            this.textBox10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox10.Margin = new System.Windows.Forms.Padding(2);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(158, 20);
             this.textBox10.TabIndex = 10;
@@ -740,7 +740,7 @@
             // textBox8
             // 
             this.textBox8.Location = new System.Drawing.Point(179, 131);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox8.Margin = new System.Windows.Forms.Padding(2);
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(158, 20);
@@ -750,7 +750,7 @@
             // textBox7
             // 
             this.textBox7.Location = new System.Drawing.Point(179, 104);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(2);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(158, 20);
             this.textBox7.TabIndex = 7;
@@ -758,7 +758,7 @@
             // textBox6
             // 
             this.textBox6.Location = new System.Drawing.Point(179, 78);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(2);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(158, 20);
             this.textBox6.TabIndex = 6;
@@ -833,7 +833,7 @@
             // 
             this.panelAddEventSuccess.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.panelAddEventSuccess.Location = new System.Drawing.Point(105, 46);
-            this.panelAddEventSuccess.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelAddEventSuccess.Margin = new System.Windows.Forms.Padding(2);
             this.panelAddEventSuccess.Name = "panelAddEventSuccess";
             this.panelAddEventSuccess.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -853,7 +853,7 @@
             this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button12.Location = new System.Drawing.Point(333, 128);
-            this.button12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button12.Margin = new System.Windows.Forms.Padding(2);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(101, 26);
             this.button12.TabIndex = 2;
@@ -866,7 +866,7 @@
             this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button11.Location = new System.Drawing.Point(175, 130);
-            this.button11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button11.Margin = new System.Windows.Forms.Padding(2);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(109, 27);
             this.button11.TabIndex = 1;
@@ -889,7 +889,7 @@
             // 
             this.splitContainer7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.splitContainer7.Location = new System.Drawing.Point(83, 11);
-            this.splitContainer7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer7.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer7.Name = "splitContainer7";
             this.splitContainer7.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -910,7 +910,7 @@
             this.button32.BackColor = System.Drawing.Color.Red;
             this.button32.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button32.Location = new System.Drawing.Point(335, 227);
-            this.button32.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button32.Margin = new System.Windows.Forms.Padding(2);
             this.button32.Name = "button32";
             this.button32.Size = new System.Drawing.Size(73, 33);
             this.button32.TabIndex = 3;
@@ -923,7 +923,7 @@
             this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button13.Location = new System.Drawing.Point(205, 226);
-            this.button13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button13.Margin = new System.Windows.Forms.Padding(2);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(71, 35);
             this.button13.TabIndex = 2;
@@ -938,7 +938,7 @@
             "04/26/2025: Doctor Appointment",
             "04/26/2025: Project Discussion"});
             this.checkedListBox1.Location = new System.Drawing.Point(183, 75);
-            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(2);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(243, 124);
             this.checkedListBox1.TabIndex = 1;
@@ -960,7 +960,7 @@
             // 
             this.splitContainer9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.splitContainer9.Location = new System.Drawing.Point(66, 6);
-            this.splitContainer9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer9.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer9.Name = "splitContainer9";
             this.splitContainer9.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -988,7 +988,7 @@
             this.button35.BackColor = System.Drawing.Color.Red;
             this.button35.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button35.Location = new System.Drawing.Point(336, 176);
-            this.button35.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button35.Margin = new System.Windows.Forms.Padding(2);
             this.button35.Name = "button35";
             this.button35.Size = new System.Drawing.Size(99, 35);
             this.button35.TabIndex = 10;
@@ -1001,7 +1001,7 @@
             this.button15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button15.Location = new System.Drawing.Point(163, 177);
-            this.button15.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button15.Margin = new System.Windows.Forms.Padding(2);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(104, 38);
             this.button15.TabIndex = 9;
@@ -1012,7 +1012,7 @@
             // textBox14
             // 
             this.textBox14.Location = new System.Drawing.Point(317, 137);
-            this.textBox14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox14.Margin = new System.Windows.Forms.Padding(2);
             this.textBox14.Name = "textBox14";
             this.textBox14.Size = new System.Drawing.Size(119, 20);
             this.textBox14.TabIndex = 8;
@@ -1021,7 +1021,7 @@
             // textBox13
             // 
             this.textBox13.Location = new System.Drawing.Point(317, 112);
-            this.textBox13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox13.Margin = new System.Windows.Forms.Padding(2);
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(119, 20);
             this.textBox13.TabIndex = 7;
@@ -1030,7 +1030,7 @@
             // textBox12
             // 
             this.textBox12.Location = new System.Drawing.Point(317, 86);
-            this.textBox12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox12.Margin = new System.Windows.Forms.Padding(2);
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new System.Drawing.Size(119, 20);
             this.textBox12.TabIndex = 6;
@@ -1039,7 +1039,7 @@
             // textBox11
             // 
             this.textBox11.Location = new System.Drawing.Point(317, 62);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox11.Margin = new System.Windows.Forms.Padding(2);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(119, 20);
             this.textBox11.TabIndex = 5;
@@ -1109,7 +1109,7 @@
             this.splitContainer8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.splitContainer8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splitContainer8.Location = new System.Drawing.Point(103, 18);
-            this.splitContainer8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer8.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer8.Name = "splitContainer8";
             this.splitContainer8.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -1140,7 +1140,7 @@
             this.button14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button14.Location = new System.Drawing.Point(249, 129);
-            this.button14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button14.Margin = new System.Windows.Forms.Padding(2);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(109, 31);
             this.button14.TabIndex = 1;
@@ -1164,7 +1164,7 @@
             // 
             this.splitContainer10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.splitContainer10.Location = new System.Drawing.Point(83, 17);
-            this.splitContainer10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer10.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer10.Name = "splitContainer10";
             this.splitContainer10.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -1194,7 +1194,7 @@
             // 
             this.button16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button16.Location = new System.Drawing.Point(212, 233);
-            this.button16.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button16.Margin = new System.Windows.Forms.Padding(2);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(139, 28);
             this.button16.TabIndex = 11;
@@ -1206,7 +1206,7 @@
             // 
             this.textBox19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox19.Location = new System.Drawing.Point(249, 184);
-            this.textBox19.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox19.Margin = new System.Windows.Forms.Padding(2);
             this.textBox19.Name = "textBox19";
             this.textBox19.Size = new System.Drawing.Size(159, 23);
             this.textBox19.TabIndex = 10;
@@ -1216,7 +1216,7 @@
             // 
             this.textBox18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox18.Location = new System.Drawing.Point(249, 155);
-            this.textBox18.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox18.Margin = new System.Windows.Forms.Padding(2);
             this.textBox18.Name = "textBox18";
             this.textBox18.Size = new System.Drawing.Size(159, 23);
             this.textBox18.TabIndex = 9;
@@ -1226,7 +1226,7 @@
             // 
             this.textBox17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox17.Location = new System.Drawing.Point(249, 127);
-            this.textBox17.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox17.Margin = new System.Windows.Forms.Padding(2);
             this.textBox17.Name = "textBox17";
             this.textBox17.Size = new System.Drawing.Size(159, 23);
             this.textBox17.TabIndex = 8;
@@ -1236,7 +1236,7 @@
             // 
             this.textBox16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox16.Location = new System.Drawing.Point(249, 96);
-            this.textBox16.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox16.Margin = new System.Windows.Forms.Padding(2);
             this.textBox16.Name = "textBox16";
             this.textBox16.Size = new System.Drawing.Size(159, 23);
             this.textBox16.TabIndex = 7;
@@ -1246,7 +1246,7 @@
             // 
             this.textBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox15.Location = new System.Drawing.Point(249, 69);
-            this.textBox15.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox15.Margin = new System.Windows.Forms.Padding(2);
             this.textBox15.Name = "textBox15";
             this.textBox15.Size = new System.Drawing.Size(159, 23);
             this.textBox15.TabIndex = 6;
@@ -1327,7 +1327,7 @@
             // 
             this.splitContainer11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.splitContainer11.Location = new System.Drawing.Point(62, 44);
-            this.splitContainer11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer11.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer11.Name = "splitContainer11";
             this.splitContainer11.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -1347,7 +1347,7 @@
             this.button18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button18.Location = new System.Drawing.Point(225, 256);
-            this.button18.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button18.Margin = new System.Windows.Forms.Padding(2);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(77, 27);
             this.button18.TabIndex = 2;
@@ -1374,7 +1374,7 @@
             "Larry",
             "Brian"});
             this.checkedListBox2.Location = new System.Drawing.Point(139, 67);
-            this.checkedListBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkedListBox2.Margin = new System.Windows.Forms.Padding(2);
             this.checkedListBox2.Name = "checkedListBox2";
             this.checkedListBox2.Size = new System.Drawing.Size(211, 154);
             this.checkedListBox2.TabIndex = 1;
@@ -1394,7 +1394,7 @@
             // 
             this.splitContainer12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.splitContainer12.Location = new System.Drawing.Point(34, 62);
-            this.splitContainer12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer12.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer12.Name = "splitContainer12";
             this.splitContainer12.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -1414,7 +1414,7 @@
             this.button19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button19.Location = new System.Drawing.Point(253, 229);
-            this.button19.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button19.Margin = new System.Windows.Forms.Padding(2);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(72, 24);
             this.button19.TabIndex = 2;
@@ -1431,7 +1431,7 @@
             "05/01/2025 : 1:30 PM - 2:45 PM",
             "05/08/2025 : 10:00 AM - 12:30 PM"});
             this.checkedListBox3.Location = new System.Drawing.Point(173, 78);
-            this.checkedListBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkedListBox3.Margin = new System.Windows.Forms.Padding(2);
             this.checkedListBox3.Name = "checkedListBox3";
             this.checkedListBox3.Size = new System.Drawing.Size(215, 139);
             this.checkedListBox3.TabIndex = 1;
@@ -1452,7 +1452,7 @@
             // 
             this.splitContainer13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.splitContainer13.Location = new System.Drawing.Point(51, 20);
-            this.splitContainer13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer13.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer13.Name = "splitContainer13";
             // 
             // splitContainer13.Panel1
@@ -1476,12 +1476,13 @@
             this.button20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button20.Location = new System.Drawing.Point(150, 278);
-            this.button20.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button20.Margin = new System.Windows.Forms.Padding(2);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(74, 27);
             this.button20.TabIndex = 2;
             this.button20.Text = "Confirm";
             this.button20.UseVisualStyleBackColor = false;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
             // 
             // checkedListBox4
             // 
@@ -1495,7 +1496,7 @@
             "Jessica",
             "Meghana"});
             this.checkedListBox4.Location = new System.Drawing.Point(101, 92);
-            this.checkedListBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkedListBox4.Margin = new System.Windows.Forms.Padding(2);
             this.checkedListBox4.Name = "checkedListBox4";
             this.checkedListBox4.Size = new System.Drawing.Size(149, 154);
             this.checkedListBox4.TabIndex = 1;
@@ -1522,7 +1523,7 @@
             "05/13/2025",
             "05/18/2025"});
             this.checkedListBox5.Location = new System.Drawing.Point(75, 92);
-            this.checkedListBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkedListBox5.Margin = new System.Windows.Forms.Padding(2);
             this.checkedListBox5.Name = "checkedListBox5";
             this.checkedListBox5.Size = new System.Drawing.Size(189, 154);
             this.checkedListBox5.TabIndex = 1;
@@ -1544,7 +1545,7 @@
             this.panelInvalidUsername.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.panelInvalidUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelInvalidUsername.Location = new System.Drawing.Point(98, 73);
-            this.panelInvalidUsername.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelInvalidUsername.Margin = new System.Windows.Forms.Padding(2);
             this.panelInvalidUsername.Name = "panelInvalidUsername";
             this.panelInvalidUsername.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -1575,7 +1576,7 @@
             this.button21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button21.Location = new System.Drawing.Point(246, 130);
-            this.button21.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button21.Margin = new System.Windows.Forms.Padding(2);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(114, 31);
             this.button21.TabIndex = 1;
@@ -1599,7 +1600,7 @@
             this.panelInvalidPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.panelInvalidPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelInvalidPassword.Location = new System.Drawing.Point(94, 81);
-            this.panelInvalidPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelInvalidPassword.Margin = new System.Windows.Forms.Padding(2);
             this.panelInvalidPassword.Name = "panelInvalidPassword";
             this.panelInvalidPassword.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -1630,7 +1631,7 @@
             this.button22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button22.Location = new System.Drawing.Point(242, 129);
-            this.button22.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button22.Margin = new System.Windows.Forms.Padding(2);
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(118, 31);
             this.button22.TabIndex = 1;
@@ -1654,7 +1655,7 @@
             this.panelCreateErrorPasswords.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.panelCreateErrorPasswords.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelCreateErrorPasswords.Location = new System.Drawing.Point(106, 81);
-            this.panelCreateErrorPasswords.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelCreateErrorPasswords.Margin = new System.Windows.Forms.Padding(2);
             this.panelCreateErrorPasswords.Name = "panelCreateErrorPasswords";
             this.panelCreateErrorPasswords.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -1685,7 +1686,7 @@
             this.button23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button23.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button23.Location = new System.Drawing.Point(257, 133);
-            this.button23.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button23.Margin = new System.Windows.Forms.Padding(2);
             this.button23.Name = "button23";
             this.button23.Size = new System.Drawing.Size(86, 31);
             this.button23.TabIndex = 1;
@@ -1709,7 +1710,7 @@
             this.panelCreateErrorEmptyUsername.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.panelCreateErrorEmptyUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelCreateErrorEmptyUsername.Location = new System.Drawing.Point(114, 89);
-            this.panelCreateErrorEmptyUsername.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelCreateErrorEmptyUsername.Margin = new System.Windows.Forms.Padding(2);
             this.panelCreateErrorEmptyUsername.Name = "panelCreateErrorEmptyUsername";
             this.panelCreateErrorEmptyUsername.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -1740,7 +1741,7 @@
             this.button24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button24.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button24.Location = new System.Drawing.Point(257, 133);
-            this.button24.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button24.Margin = new System.Windows.Forms.Padding(2);
             this.button24.Name = "button24";
             this.button24.Size = new System.Drawing.Size(86, 31);
             this.button24.TabIndex = 1;
@@ -1764,7 +1765,7 @@
             this.panelCreateErrorUsernameExists.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.panelCreateErrorUsernameExists.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelCreateErrorUsernameExists.Location = new System.Drawing.Point(122, 97);
-            this.panelCreateErrorUsernameExists.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelCreateErrorUsernameExists.Margin = new System.Windows.Forms.Padding(2);
             this.panelCreateErrorUsernameExists.Name = "panelCreateErrorUsernameExists";
             this.panelCreateErrorUsernameExists.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -1795,7 +1796,7 @@
             this.button25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button25.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button25.Location = new System.Drawing.Point(257, 133);
-            this.button25.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button25.Margin = new System.Windows.Forms.Padding(2);
             this.button25.Name = "button25";
             this.button25.Size = new System.Drawing.Size(86, 31);
             this.button25.TabIndex = 1;
@@ -1819,7 +1820,7 @@
             this.panelAddEventErrorInvalidTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.panelAddEventErrorInvalidTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelAddEventErrorInvalidTime.Location = new System.Drawing.Point(130, 105);
-            this.panelAddEventErrorInvalidTime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelAddEventErrorInvalidTime.Margin = new System.Windows.Forms.Padding(2);
             this.panelAddEventErrorInvalidTime.Name = "panelAddEventErrorInvalidTime";
             this.panelAddEventErrorInvalidTime.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -1851,7 +1852,7 @@
             this.button26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button26.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button26.Location = new System.Drawing.Point(257, 133);
-            this.button26.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button26.Margin = new System.Windows.Forms.Padding(2);
             this.button26.Name = "button26";
             this.button26.Size = new System.Drawing.Size(86, 31);
             this.button26.TabIndex = 1;
@@ -1875,7 +1876,7 @@
             this.panelAddEventErrorInvalidLength.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.panelAddEventErrorInvalidLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelAddEventErrorInvalidLength.Location = new System.Drawing.Point(138, 113);
-            this.panelAddEventErrorInvalidLength.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelAddEventErrorInvalidLength.Margin = new System.Windows.Forms.Padding(2);
             this.panelAddEventErrorInvalidLength.Name = "panelAddEventErrorInvalidLength";
             this.panelAddEventErrorInvalidLength.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -1906,7 +1907,7 @@
             this.button27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button27.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button27.Location = new System.Drawing.Point(257, 133);
-            this.button27.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button27.Margin = new System.Windows.Forms.Padding(2);
             this.button27.Name = "button27";
             this.button27.Size = new System.Drawing.Size(86, 31);
             this.button27.TabIndex = 1;
@@ -1930,7 +1931,7 @@
             this.panelAddEventErrorConflicts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.panelAddEventErrorConflicts.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelAddEventErrorConflicts.Location = new System.Drawing.Point(127, 106);
-            this.panelAddEventErrorConflicts.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelAddEventErrorConflicts.Margin = new System.Windows.Forms.Padding(2);
             this.panelAddEventErrorConflicts.Name = "panelAddEventErrorConflicts";
             this.panelAddEventErrorConflicts.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -1961,7 +1962,7 @@
             this.button28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button28.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button28.Location = new System.Drawing.Point(271, 120);
-            this.button28.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button28.Margin = new System.Windows.Forms.Padding(2);
             this.button28.Name = "button28";
             this.button28.Size = new System.Drawing.Size(86, 31);
             this.button28.TabIndex = 1;
@@ -1984,7 +1985,7 @@
             // 
             this.splitContainer3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.splitContainer3.Location = new System.Drawing.Point(108, 12);
-            this.splitContainer3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer3.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer3.Name = "splitContainer3";
             this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -2004,7 +2005,7 @@
             this.button30.BackColor = System.Drawing.Color.Red;
             this.button30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button30.Location = new System.Drawing.Point(353, 112);
-            this.button30.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button30.Margin = new System.Windows.Forms.Padding(2);
             this.button30.Name = "button30";
             this.button30.Size = new System.Drawing.Size(75, 27);
             this.button30.TabIndex = 2;
@@ -2017,7 +2018,7 @@
             this.button29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button29.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button29.Location = new System.Drawing.Point(185, 110);
-            this.button29.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button29.Margin = new System.Windows.Forms.Padding(2);
             this.button29.Name = "button29";
             this.button29.Size = new System.Drawing.Size(68, 28);
             this.button29.TabIndex = 1;
@@ -2040,7 +2041,7 @@
             // 
             this.splitContainer4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.splitContainer4.Location = new System.Drawing.Point(125, 11);
-            this.splitContainer4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer4.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer4.Name = "splitContainer4";
             this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -2059,7 +2060,7 @@
             this.button31.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button31.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button31.Location = new System.Drawing.Point(182, 81);
-            this.button31.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button31.Margin = new System.Windows.Forms.Padding(2);
             this.button31.Name = "button31";
             this.button31.Size = new System.Drawing.Size(108, 28);
             this.button31.TabIndex = 1;
@@ -2082,7 +2083,7 @@
             // 
             this.splitContainer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.splitContainer1.Location = new System.Drawing.Point(25, 25);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -2103,7 +2104,7 @@
             this.button36.BackColor = System.Drawing.Color.Red;
             this.button36.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button36.Location = new System.Drawing.Point(323, 190);
-            this.button36.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button36.Margin = new System.Windows.Forms.Padding(2);
             this.button36.Name = "button36";
             this.button36.Size = new System.Drawing.Size(84, 32);
             this.button36.TabIndex = 3;
@@ -2116,7 +2117,7 @@
             this.button33.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button33.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button33.Location = new System.Drawing.Point(213, 188);
-            this.button33.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button33.Margin = new System.Windows.Forms.Padding(2);
             this.button33.Name = "button33";
             this.button33.Size = new System.Drawing.Size(74, 34);
             this.button33.TabIndex = 2;
@@ -2128,7 +2129,7 @@
             // 
             this.checkedListBox6.FormattingEnabled = true;
             this.checkedListBox6.Location = new System.Drawing.Point(211, 69);
-            this.checkedListBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkedListBox6.Margin = new System.Windows.Forms.Padding(2);
             this.checkedListBox6.Name = "checkedListBox6";
             this.checkedListBox6.Size = new System.Drawing.Size(223, 109);
             this.checkedListBox6.TabIndex = 1;
@@ -2149,7 +2150,7 @@
             // 
             this.splitContainer5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.splitContainer5.Location = new System.Drawing.Point(83, 10);
-            this.splitContainer5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer5.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer5.Name = "splitContainer5";
             this.splitContainer5.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -2168,7 +2169,7 @@
             this.button34.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.button34.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button34.Location = new System.Drawing.Point(288, 99);
-            this.button34.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button34.Margin = new System.Windows.Forms.Padding(2);
             this.button34.Name = "button34";
             this.button34.Size = new System.Drawing.Size(106, 34);
             this.button34.TabIndex = 1;
@@ -2217,7 +2218,7 @@
             this.Controls.Add(this.panelInvalidPassword);
             this.Controls.Add(this.panelInvalidUsername);
             this.Controls.Add(this.panelCreateErrorEmptyUsername);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Calendar";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

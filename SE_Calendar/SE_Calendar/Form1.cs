@@ -3,8 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
+using System.Diagnostics.Eventing;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Management.Instrumentation;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,15 +23,15 @@ namespace SE_Calendar
     public partial class Form1 : Form
     {
         List<Event> events = new List<Event>();
-        private EventItem selectedEvent;
+        private List<Attendee> attendeesList = new List<Attendee>();
         private int uID;
         private string accountType;
 
         public Form1()
         {
             InitializeComponent();
-            RetrieveListOfEvents();
-            LoadEventList();
+            //RetrieveListOfEvents();
+            //LoadEventList();
 
         }
 
@@ -73,6 +79,9 @@ namespace SE_Calendar
                     //  Clear "Login" textboxes
                     textBox1.Text = string.Empty;
                     textBox2.Text = string.Empty;
+
+                    RetrieveListOfEvents();
+                    LoadEventList();
 
                     //  GOTO: login screen
                     panelLogin.Visible = false;
@@ -393,7 +402,7 @@ namespace SE_Calendar
             }
             reader.Close();
 
-            string commandStrAddEventToDB = "INSERT INTO 834_group5_event VALUES (@eID, @eCreatorID, \'personal\', @eTime, @eLength, @eName, @eDesc, @eDate)";
+            string commandStrAddEventToDB = "INSERT INTO 834_group5_event VALUES (@eID, @eCreatorID, \'personal\', @eTime, @eLength, @eName, @eDesc, @eDate, null)";
             MySqlCommand commandAddEventToDB = new MySqlCommand(commandStrAddEventToDB, conn);
             commandAddEventToDB.Parameters.AddWithValue("@eID", mostRecentEventID + 1);
             commandAddEventToDB.Parameters.AddWithValue("@eCreatorID", uID);
@@ -710,19 +719,165 @@ namespace SE_Calendar
         {
             splitContainer2.Visible = false;
             splitContainer11 .Visible=true ;
+
+            checkedListBox2.Items.Clear();
+            retrieveListOfUsers(uID);
         }
 
         private void button18_Click(object sender, EventArgs e)
         {
+            checkedListBox3.Items.Clear();
             splitContainer11.Visible = false;
             splitContainer12.Visible=true ;
+
+            string idString = buildAttendeesList(checkedListBox2);
+            List<int> attendeeIds = idString.Split(',').Select(id => int.Parse(id)).ToList();
+
+            List<DateTime> availableSlotsForAll = verifyAvailability(attendeeIds);
+
+            // Only show slots available to ALL selected attendees
+            PopulateAvailableSlots(checkedListBox3, availableSlotsForAll);
         }
 
         private void button19_Click(object sender, EventArgs e)
         {
+            List<string> selectedSlots = new List<string>();
+
             splitContainer12.Visible = false;
             splitContainer13 .Visible=true ;
+
+            checkedListBox4.Items.Clear();
+            checkedListBox5.Items.Clear();
+
+            // Collect selected slots
+            foreach (var item in checkedListBox3.CheckedItems)
+            {
+                selectedSlots.Add(item.ToString());
+            }
+
+            // Populate attendees list
+            foreach (Attendee attendee in attendeesList)
+            {
+                int index = checkedListBox4.Items.Add(attendee);
+                checkedListBox4.SetItemChecked(index, true);
+            }
+            // set selected slots as checked for confirmation.
+            foreach (string selectedSlot in selectedSlots)
+            {
+                int index = checkedListBox5.Items.Add(selectedSlot);
+                checkedListBox5.SetItemChecked(index, true);
+            }
         }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            string idString = buildAttendeesList(checkedListBox4);
+            List<Event> eventsList = new List<Event>();
+
+            //Events for the manager block
+            foreach (var slot in checkedListBox5.CheckedItems)
+            {
+                Event myEvent = new Event();
+                myEvent.eventID = -1;
+                myEvent.eventCreatorID = uID;
+                myEvent.eventType = "Management";
+
+                if (DateTime.TryParseExact(slot.ToString(), "yyyy-MM-dd hh:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedSlot))
+                {
+                    myEvent.eventDate = parsedSlot.ToString("yyyy-MM-dd");
+                    myEvent.eventTime = parsedSlot.ToString("hh:mm tt");
+                }
+
+                myEvent.eventLength = 0.5;
+                myEvent.eventName = "Team Meeting";
+                myEvent.eventDescription = "Team meeting schedules by management.";
+                myEvent.attendees = idString;
+                eventsList.Add(myEvent);
+            }
+
+            // Events for the attendees so it is blocked and tracked.
+            foreach (Attendee attendee in checkedListBox4.CheckedItems)
+            {
+                foreach (var slot in checkedListBox5.CheckedItems)
+                {
+                    Event myEvent = new Event();
+                    myEvent.eventID = -1;
+                    myEvent.eventCreatorID = attendee.Id;
+                    myEvent.eventType = "Management";
+
+                    if (DateTime.TryParseExact(slot.ToString(), "yyyy-MM-dd hh:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedSlot))
+                    {
+                        myEvent.eventDate = parsedSlot.ToString("yyyy-MM-dd");
+                        myEvent.eventTime = parsedSlot.ToString("hh:mm tt");
+                    }
+
+                    myEvent.eventLength = 0.5;
+                    myEvent.eventName = "Team Meeting";
+                    myEvent.eventDescription = "Team meeting schedules by management.";
+                    myEvent.attendees = idString;
+                    eventsList.Add(myEvent);
+                }
+            }
+
+            saveEvents(eventsList);
+        }
+
+        private void saveEvents(List<Event> MyEvents)
+        {
+            string connStr = "server=csitmariadb.eku.edu;user=student;database=csc340_db;port=3306;password=Maroon@21?;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+
+            //  Get eventID
+            int mostRecentEventID;
+            string commandStrGetMostRecentEventID = "SELECT eventID FROM 834_group5_event ORDER BY eventID DESC";
+            MySqlCommand commandGetMostRecentEventID = new MySqlCommand(commandStrGetMostRecentEventID, conn);
+
+            conn.Open();
+            MySqlDataReader reader = commandGetMostRecentEventID.ExecuteReader();
+            if (!reader.Read())
+            {
+                mostRecentEventID = 100;
+            }
+            else
+            {
+                mostRecentEventID = reader.GetInt32(0);
+            }
+            reader.Close();
+
+
+            foreach (var MyEv in MyEvents)
+            {
+                string commandStrAddEventToDB = "INSERT INTO 834_group5_event VALUES (@eID, @eCreatorID, @evType, @eTime, @eLength, @eName, @eDesc, @eDate, @evAttend)";
+                MySqlCommand commandAddEventToDB = new MySqlCommand(commandStrAddEventToDB, conn);
+
+                commandAddEventToDB.Parameters.AddWithValue("@eID", ++mostRecentEventID);
+                commandAddEventToDB.Parameters.AddWithValue("@eCreatorID", MyEv.eventCreatorID);
+                commandAddEventToDB.Parameters.AddWithValue("@evType", MyEv.eventType);
+                commandAddEventToDB.Parameters.AddWithValue("@eTime", MyEv.eventTime);
+                commandAddEventToDB.Parameters.AddWithValue("@eLength", MyEv.eventLength);
+                commandAddEventToDB.Parameters.AddWithValue("@eName", MyEv.eventName);
+                commandAddEventToDB.Parameters.AddWithValue("@eDesc", MyEv.eventDescription);
+                commandAddEventToDB.Parameters.AddWithValue("@eDate", MyEv.eventDate);
+                commandAddEventToDB.Parameters.AddWithValue("@evAttend", MyEv.attendees);
+
+                commandAddEventToDB.ExecuteNonQuery();
+            }
+
+            conn.Close();
+            MessageBox.Show("Your event(s) have been created.");
+
+            this.attendeesList.Clear();
+
+            splitContainer13.Visible = false;
+            splitContainer2.Visible = true;
+
+            checkedListBox1.Items.Clear();
+            this.events.Clear();
+
+            RetrieveListOfEvents();
+            LoadEventList();
+        }
+    
 
         private void checkedListBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -737,28 +892,155 @@ namespace SE_Calendar
             ShowEventsForSelectedDate(selectedDate);
         }
 
-        //private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (listBox1.SelectedItem != null)
-        //    {
-        //        this.selectedEvent = (EventItem)listBox1.SelectedItem;
-
-        //    }
-        //}
-
-        //// This implements the selectEvent action for the user.
-        //private void listBox1_DoubleClick(object sender, EventArgs e)
-        //{
-        //    if (listBox1.SelectedItem != null)
-        //    {
-        //        this.selectedEvent = (EventItem)listBox1.SelectedItem;
-
-        //    }
-        //}
-
         /*
          * Retrieve all current events.
          */
+        private string buildAttendeesList(CheckedListBox selectedItems)
+        {
+            List<int> selectedAttendeeIds = new List<int>();
+
+            // Clear the existing attendees list before adding new ones to avoid duplication
+            this.attendeesList.Clear();
+
+            foreach (var item in selectedItems.CheckedItems)
+            {
+                if (item is Attendee attendee)
+                {
+                    selectedAttendeeIds.Add(attendee.Id);
+                    this.attendeesList.Add(attendee);
+                }
+            }
+
+            // Return a comma-separated string of selected attendee IDs for further use
+            string idString = string.Join(",", selectedAttendeeIds);
+            return idString;
+        }
+
+        private void PopulateAvailableSlots(CheckedListBox checkedListBox, List<DateTime> availableSlots)
+        {
+            checkedListBox.Items.Clear();
+
+            foreach (DateTime slot in availableSlots)
+            {
+                checkedListBox.Items.Add(slot.ToString("yyyy-MM-dd hh:mm tt"));
+            }
+        }
+
+        private List<DateTime> verifyAvailability(List<int> userIds, int daysAhead = 7, int startHour = 9, int endHour = 17)
+        {
+            Dictionary<int, HashSet<DateTime>> userBusySlots = new Dictionary<int, HashSet<DateTime>>();
+            List<DateTime> availableSlots = new List<DateTime>();
+            List<DateTime> excludedBusySlots = new List<DateTime>(); // store conflicts.
+            DateTime now = DateTime.Now;
+
+            string connStr = "server=csitmariadb.eku.edu;user=student;database=csc340_db;port=3306;password=Maroon@21?;";
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connStr))
+                {
+                    conn.Open();
+
+                    foreach (int uid in userIds)
+                    {
+                        string sql = @"
+                                            SELECT eventDate, eventTime
+                                            FROM 834_group5_event
+                                            WHERE STR_TO_DATE(CONCAT(eventDate, ' ', eventTime), '%Y-%m-%d %h:%i %p') >= NOW()
+                                              AND eventCreatorID = @uid;
+                                        ";
+
+                        HashSet<DateTime> busySlots = new HashSet<DateTime>();
+
+                        using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@uid", uid);
+
+                            using (MySqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    DateTime eventDate = reader.GetDateTime(reader.GetOrdinal("eventDate"));
+                                    string formattedDate = eventDate.ToString("yyyy-MM-dd");
+
+                                    string timeRaw = reader["eventTime"].ToString(); // should be like "02:30 PM"
+                                    string combined = $"{formattedDate} {timeRaw}"; // ex: "2025-05-26 02:30 PM"
+
+                                    if (DateTime.TryParseExact(combined, "yyyy-MM-dd hh:mm tt",
+                                                               CultureInfo.InvariantCulture, DateTimeStyles.None,
+                                                               out DateTime busySlot))
+                                    {
+                                        // Normalize to zero seconds
+                                        busySlot = new DateTime(busySlot.Year, busySlot.Month, busySlot.Day, busySlot.Hour, busySlot.Minute, 0);
+                                        busySlots.Add(busySlot);
+                                    }
+                                    else
+                                    {
+                                        Debug.WriteLine($"Failed to parse: {combined}");
+                                    }
+                                }
+
+
+                            }
+                        }
+
+                        userBusySlots[uid] = busySlots;
+                    }
+                }
+
+                // Generate all candidate 30-minute slots
+                List<DateTime> candidateSlots = new List<DateTime>();
+                for (int day = 0; day < daysAhead; day++)
+                {
+                    DateTime baseDate = now.Date.AddDays(day);
+
+                    for (int hour = startHour; hour < endHour; hour++)
+                    {
+                        for (int minute = 0; minute < 60; minute += 30)
+                        {
+                            DateTime slot = new DateTime(baseDate.Year, baseDate.Month, baseDate.Day, hour, minute, 0);
+                            if (slot > now)
+                                candidateSlots.Add(slot);
+                        }
+                    }
+                }
+
+                // Validate candidate slots against ALL users' busy times
+                foreach (DateTime slot in candidateSlots)
+                {
+                    bool allAvailable = true;
+
+                    foreach (var kvp in userBusySlots)
+                    {
+                        if (kvp.Value.Contains(slot))
+                        {
+                            allAvailable = false;
+                            excludedBusySlots.Add(slot);
+                            break;
+                        }
+                    }
+
+                    if (allAvailable)
+                    {
+                        availableSlots.Add(slot);
+                    }
+                }
+
+                // Show message if there were any busy slots
+                if (excludedBusySlots.Count > 0)
+                {
+                    string message = "The following time slots are not available due to scheduling conflicts:\n\n" +
+                                     string.Join("\n", excludedBusySlots.Select(dt => dt.ToString("yyyy-MM-dd hh:mm tt")));
+                    MessageBox.Show(message, "Conflicting Time Slots", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error generating group availability: " + ex.Message);
+            }
+
+            return availableSlots;
+        }
         private void RetrieveListOfEvents()
         {
             try
@@ -769,8 +1051,10 @@ namespace SE_Calendar
                 {
                     conn.Open();
 
-                    string sql = "SELECT * FROM 834_group5_event ORDER BY eventDate ASC;";
+                    string sql = "SELECT * FROM 834_group5_event WHERE eventCreatorID = @uid ORDER BY eventDate ASC;";
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@uid", uID);
+
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -784,6 +1068,7 @@ namespace SE_Calendar
                             myEvent.eventName = reader["eventName"].ToString();
                             myEvent.eventDescription = reader["eventDescription"].ToString();
                             myEvent.eventDate = reader["eventDate"].ToString();
+                            myEvent.attendees = reader["attendees"].ToString();
 
                             this.events.Add(myEvent);  
                         }
@@ -836,6 +1121,41 @@ namespace SE_Calendar
                 return null;
             }
             return found;
+        }
+
+        private void retrieveListOfUsers(int uid)
+        {
+
+            try
+            {
+
+                string connStr = "server=csitmariadb.eku.edu;user=student;database=csc340_db;port=3306;password=Maroon@21?;";
+                using (MySqlConnection conn = new MySqlConnection(connStr))
+                {
+                    conn.Open();
+
+                    string sql = $"SELECT * FROM 834_group5_user WHERE uID != {uid};";
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var attendee = new Attendee
+                            {
+                                Id = (int)reader["uid"],
+                                Name = (string)reader["username"],
+                            };
+
+                            checkedListBox2.Items.Add(attendee);
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading events: " + ex.Message);
+            }
         }
 
         //  Click the "return to login screen" button on a login error screen.
@@ -949,14 +1269,44 @@ namespace SE_Calendar
             try
             {
                 string connStr = "server=csitmariadb.eku.edu;user=student;database=csc340_db;port=3306;password=Maroon@21?;";
+                int affected = 0;
+
                 using (MySqlConnection conn = new MySqlConnection(connStr))
                 {
                     conn.Open();
-                    string deleteQuery = "DELETE FROM 834_group5_event WHERE eventID = @eID";
-                    MySqlCommand cmd = new MySqlCommand(deleteQuery, conn);
-                    cmd.Parameters.AddWithValue("@eID", eventToDelete.eventID);
-                    int affected = cmd.ExecuteNonQuery();
+                    string deleteQuery;
 
+                    string rawDate = eventToDelete.eventDate.ToString();
+                    string time = eventToDelete.eventTime.ToString();
+
+                    string formattedDate = "";
+                    if (DateTime.TryParse(rawDate, out DateTime parsedDate))
+                    {
+                        formattedDate = parsedDate.ToString("yyyy-MM-dd");
+                    }
+
+                    if (eventToDelete.attendees != null)
+                    {    
+                        deleteQuery = "DELETE FROM 834_group5_event WHERE eventDate = @date " +
+                               "AND eventTime = @time " +
+                               "AND eventType = 'Management'";
+                           
+                        MySqlCommand cmdAttendees = new MySqlCommand(deleteQuery, conn);
+                        cmdAttendees.Parameters.AddWithValue("@date", formattedDate);
+                        cmdAttendees.Parameters.AddWithValue("@time", eventToDelete.eventTime.ToString());
+                        
+                        affected = cmdAttendees.ExecuteNonQuery();
+                    }
+
+                    else
+                    {
+                        deleteQuery = "DELETE FROM 834_group5_event WHERE eventID = @eID";
+                        MySqlCommand cmd = new MySqlCommand(deleteQuery, conn);
+                        cmd.Parameters.AddWithValue("@eID", eventToDelete.eventID);
+                        affected = cmd.ExecuteNonQuery();
+                    }
+                        
+                    
                     if (affected > 0)
                     {
                         events.RemoveAll(x => x.eventID == eventToDelete.eventID);
@@ -1122,10 +1472,22 @@ namespace SE_Calendar
 class EventItem
 {
     public int EventID { get; set; }
+    public int eventCreatorID { get; set; }
     public string Display { get; set; }
 
     public override string ToString()
     {
         return Display;
+    }
+}
+
+public class Attendee
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+
+    public override string ToString()
+    {
+        return Name;
     }
 }
