@@ -780,7 +780,7 @@ namespace SE_Calendar
                 Event myEvent = new Event();
                 myEvent.eventID = -1;
                 myEvent.eventCreatorID = uID;
-                myEvent.eventType = "Management";
+                myEvent.eventType = "group";
 
                 if (DateTime.TryParseExact(slot.ToString(), "yyyy-MM-dd hh:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedSlot))
                 {
@@ -790,7 +790,7 @@ namespace SE_Calendar
 
                 myEvent.eventLength = 0.5;
                 myEvent.eventName = "Team Meeting";
-                myEvent.eventDescription = "Team meeting schedules by management.";
+                myEvent.eventDescription = "Team meeting scheduled by management.";
                 myEvent.attendees = idString;
                 eventsList.Add(myEvent);
             }
@@ -803,7 +803,7 @@ namespace SE_Calendar
                     Event myEvent = new Event();
                     myEvent.eventID = -1;
                     myEvent.eventCreatorID = attendee.Id;
-                    myEvent.eventType = "Management";
+                    myEvent.eventType = "group";
 
                     if (DateTime.TryParseExact(slot.ToString(), "yyyy-MM-dd hh:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedSlot))
                     {
@@ -813,7 +813,7 @@ namespace SE_Calendar
 
                     myEvent.eventLength = 0.5;
                     myEvent.eventName = "Team Meeting";
-                    myEvent.eventDescription = "Team meeting schedules by management.";
+                    myEvent.eventDescription = "Team meeting scheduled by management.";
                     myEvent.attendees = idString;
                     eventsList.Add(myEvent);
                 }
@@ -1285,11 +1285,11 @@ namespace SE_Calendar
                         formattedDate = parsedDate.ToString("yyyy-MM-dd");
                     }
 
-                    if (eventToDelete.attendees != null)
-                    {    
+                    if (eventToDelete.attendees != null && eventToDelete.attendees != string.Empty)
+                    {
                         deleteQuery = "DELETE FROM 834_group5_event WHERE eventDate = @date " +
                                "AND eventTime = @time " +
-                               "AND eventType = 'Management'";
+                               "AND eventType = 'group'";
                            
                         MySqlCommand cmdAttendees = new MySqlCommand(deleteQuery, conn);
                         cmdAttendees.Parameters.AddWithValue("@date", formattedDate);
