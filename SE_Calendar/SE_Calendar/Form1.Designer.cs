@@ -427,7 +427,6 @@
             this.button7.TabIndex = 6;
             this.button7.Text = "Monthly Events";
             this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button6
             // 
@@ -942,8 +941,6 @@
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(243, 124);
             this.checkedListBox1.TabIndex = 1;
-            this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
-            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
             // label18
             // 
@@ -1055,7 +1052,6 @@
             this.label24.Size = new System.Drawing.Size(104, 17);
             this.label24.TabIndex = 4;
             this.label24.Text = "Event Length";
-            this.label24.Click += new System.EventHandler(this.label24_Click);
             // 
             // label23
             // 
@@ -1067,7 +1063,6 @@
             this.label23.Size = new System.Drawing.Size(89, 17);
             this.label23.TabIndex = 3;
             this.label23.Text = "Event Time";
-            this.label23.Click += new System.EventHandler(this.label23_Click);
             // 
             // label22
             // 
@@ -1079,7 +1074,6 @@
             this.label22.Size = new System.Drawing.Size(88, 17);
             this.label22.TabIndex = 2;
             this.label22.Text = "Event Date";
-            this.label22.Click += new System.EventHandler(this.label22_Click);
             // 
             // label21
             // 
@@ -1091,7 +1085,6 @@
             this.label21.Size = new System.Drawing.Size(95, 17);
             this.label21.TabIndex = 1;
             this.label21.Text = "Event Name";
-            this.label21.Click += new System.EventHandler(this.label21_Click);
             // 
             // label20
             // 
@@ -1118,7 +1111,6 @@
             this.splitContainer8.Panel1.Controls.Add(this.label31);
             this.splitContainer8.Panel1.Controls.Add(this.button14);
             this.splitContainer8.Panel1.Controls.Add(this.label19);
-            this.splitContainer8.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer8_Panel1_Paint);
             this.splitContainer8.Size = new System.Drawing.Size(621, 334);
             this.splitContainer8.SplitterDistance = 248;
             this.splitContainer8.SplitterWidth = 3;
@@ -1158,7 +1150,6 @@
             this.label19.Size = new System.Drawing.Size(160, 25);
             this.label19.TabIndex = 0;
             this.label19.Text = "Error Message:";
-            this.label19.Click += new System.EventHandler(this.label19_Click);
             // 
             // splitContainer10
             // 
@@ -1183,7 +1174,6 @@
             this.splitContainer10.Panel1.Controls.Add(this.label26);
             this.splitContainer10.Panel1.Controls.Add(this.label25);
             this.splitContainer10.Panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.splitContainer10.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer10_Panel1_Paint);
             this.splitContainer10.Size = new System.Drawing.Size(554, 319);
             this.splitContainer10.SplitterDistance = 277;
             this.splitContainer10.SplitterWidth = 3;
@@ -1262,7 +1252,6 @@
             this.label30.Size = new System.Drawing.Size(48, 17);
             this.label30.TabIndex = 5;
             this.label30.Text = "Place";
-            this.label30.Click += new System.EventHandler(this.label30_Click);
             // 
             // label29
             // 
@@ -1274,7 +1263,6 @@
             this.label29.Size = new System.Drawing.Size(89, 17);
             this.label29.TabIndex = 4;
             this.label29.Text = "Event Time";
-            this.label29.Click += new System.EventHandler(this.label29_Click);
             // 
             // label28
             // 
@@ -1286,7 +1274,6 @@
             this.label28.Size = new System.Drawing.Size(88, 17);
             this.label28.TabIndex = 3;
             this.label28.Text = "Event Date";
-            this.label28.Click += new System.EventHandler(this.label28_Click);
             // 
             // label27
             // 
@@ -1298,7 +1285,6 @@
             this.label27.Size = new System.Drawing.Size(136, 17);
             this.label27.TabIndex = 2;
             this.label27.Text = "Event Description";
-            this.label27.Click += new System.EventHandler(this.label27_Click);
             // 
             // label26
             // 
@@ -1310,7 +1296,6 @@
             this.label26.Size = new System.Drawing.Size(95, 17);
             this.label26.TabIndex = 1;
             this.label26.Text = "Event Name";
-            this.label26.Click += new System.EventHandler(this.label26_Click);
             // 
             // label25
             // 
@@ -1435,7 +1420,6 @@
             this.checkedListBox3.Name = "checkedListBox3";
             this.checkedListBox3.Size = new System.Drawing.Size(215, 139);
             this.checkedListBox3.TabIndex = 1;
-            this.checkedListBox3.SelectedIndexChanged += new System.EventHandler(this.checkedListBox3_SelectedIndexChanged);
             // 
             // label33
             // 
@@ -1554,7 +1538,6 @@
             this.panelInvalidUsername.Panel1.Controls.Add(this.label36);
             this.panelInvalidUsername.Panel1.Controls.Add(this.button21);
             this.panelInvalidUsername.Panel1.Controls.Add(this.label37);
-            this.panelInvalidUsername.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer8_Panel1_Paint);
             this.panelInvalidUsername.Size = new System.Drawing.Size(621, 334);
             this.panelInvalidUsername.SplitterDistance = 248;
             this.panelInvalidUsername.SplitterWidth = 3;
@@ -1609,7 +1592,6 @@
             this.panelInvalidPassword.Panel1.Controls.Add(this.label38);
             this.panelInvalidPassword.Panel1.Controls.Add(this.button22);
             this.panelInvalidPassword.Panel1.Controls.Add(this.label39);
-            this.panelInvalidPassword.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer8_Panel1_Paint);
             this.panelInvalidPassword.Size = new System.Drawing.Size(621, 334);
             this.panelInvalidPassword.SplitterDistance = 248;
             this.panelInvalidPassword.SplitterWidth = 3;
@@ -1664,7 +1646,6 @@
             this.panelCreateErrorPasswords.Panel1.Controls.Add(this.label40);
             this.panelCreateErrorPasswords.Panel1.Controls.Add(this.button23);
             this.panelCreateErrorPasswords.Panel1.Controls.Add(this.label41);
-            this.panelCreateErrorPasswords.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer8_Panel1_Paint);
             this.panelCreateErrorPasswords.Size = new System.Drawing.Size(621, 334);
             this.panelCreateErrorPasswords.SplitterDistance = 248;
             this.panelCreateErrorPasswords.SplitterWidth = 3;
@@ -1719,7 +1700,6 @@
             this.panelCreateErrorEmptyUsername.Panel1.Controls.Add(this.label42);
             this.panelCreateErrorEmptyUsername.Panel1.Controls.Add(this.button24);
             this.panelCreateErrorEmptyUsername.Panel1.Controls.Add(this.label43);
-            this.panelCreateErrorEmptyUsername.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer8_Panel1_Paint);
             this.panelCreateErrorEmptyUsername.Size = new System.Drawing.Size(621, 334);
             this.panelCreateErrorEmptyUsername.SplitterDistance = 248;
             this.panelCreateErrorEmptyUsername.SplitterWidth = 3;
@@ -1774,7 +1754,6 @@
             this.panelCreateErrorUsernameExists.Panel1.Controls.Add(this.label44);
             this.panelCreateErrorUsernameExists.Panel1.Controls.Add(this.button25);
             this.panelCreateErrorUsernameExists.Panel1.Controls.Add(this.label45);
-            this.panelCreateErrorUsernameExists.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer8_Panel1_Paint);
             this.panelCreateErrorUsernameExists.Size = new System.Drawing.Size(621, 334);
             this.panelCreateErrorUsernameExists.SplitterDistance = 248;
             this.panelCreateErrorUsernameExists.SplitterWidth = 3;
@@ -1829,7 +1808,6 @@
             this.panelAddEventErrorInvalidTime.Panel1.Controls.Add(this.label46);
             this.panelAddEventErrorInvalidTime.Panel1.Controls.Add(this.button26);
             this.panelAddEventErrorInvalidTime.Panel1.Controls.Add(this.label47);
-            this.panelAddEventErrorInvalidTime.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer8_Panel1_Paint);
             this.panelAddEventErrorInvalidTime.Size = new System.Drawing.Size(621, 334);
             this.panelAddEventErrorInvalidTime.SplitterDistance = 248;
             this.panelAddEventErrorInvalidTime.SplitterWidth = 3;
@@ -1885,7 +1863,6 @@
             this.panelAddEventErrorInvalidLength.Panel1.Controls.Add(this.label48);
             this.panelAddEventErrorInvalidLength.Panel1.Controls.Add(this.button27);
             this.panelAddEventErrorInvalidLength.Panel1.Controls.Add(this.label49);
-            this.panelAddEventErrorInvalidLength.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer8_Panel1_Paint);
             this.panelAddEventErrorInvalidLength.Size = new System.Drawing.Size(621, 334);
             this.panelAddEventErrorInvalidLength.SplitterDistance = 248;
             this.panelAddEventErrorInvalidLength.SplitterWidth = 3;
@@ -1940,7 +1917,6 @@
             this.panelAddEventErrorConflicts.Panel1.Controls.Add(this.label50);
             this.panelAddEventErrorConflicts.Panel1.Controls.Add(this.button28);
             this.panelAddEventErrorConflicts.Panel1.Controls.Add(this.label51);
-            this.panelAddEventErrorConflicts.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer8_Panel1_Paint);
             this.panelAddEventErrorConflicts.Size = new System.Drawing.Size(621, 334);
             this.panelAddEventErrorConflicts.SplitterDistance = 248;
             this.panelAddEventErrorConflicts.SplitterWidth = 3;
@@ -2133,7 +2109,6 @@
             this.checkedListBox6.Name = "checkedListBox6";
             this.checkedListBox6.Size = new System.Drawing.Size(223, 109);
             this.checkedListBox6.TabIndex = 1;
-            this.checkedListBox6.SelectedIndexChanged += new System.EventHandler(this.checkedListBox6_SelectedIndexChanged);
             // 
             // label54
             // 
@@ -2193,18 +2168,18 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(817, 480);
-            this.Controls.Add(this.splitContainer3);
-            this.Controls.Add(this.splitContainer4);
-            this.Controls.Add(this.splitContainer5);
-            this.Controls.Add(this.splitContainer9);
-            this.Controls.Add(this.splitContainer8);
             this.Controls.Add(this.splitContainer7);
+            this.Controls.Add(this.splitContainer5);
+            this.Controls.Add(this.splitContainer4);
+            this.Controls.Add(this.splitContainer3);
             this.Controls.Add(this.splitContainer2);
+            this.Controls.Add(this.splitContainer9);
             this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.splitContainer13);
             this.Controls.Add(this.splitContainer12);
             this.Controls.Add(this.splitContainer11);
             this.Controls.Add(this.splitContainer10);
+            this.Controls.Add(this.splitContainer8);
+            this.Controls.Add(this.splitContainer13);
             this.Controls.Add(this.panelLogin);
             this.Controls.Add(this.panelAddEvent);
             this.Controls.Add(this.panelAddEventErrorConflicts);
@@ -2222,7 +2197,6 @@
             this.Name = "Form1";
             this.Text = "Calendar";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.panelLogin.Panel1.ResumeLayout(false);
             this.panelLogin.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelLogin)).EndInit();
