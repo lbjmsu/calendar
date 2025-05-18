@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SE_Calendar
 {
+    //  Event objects used for processing the addition, deletion, editing, and viewing of events in the database.
     internal class Event
     {
         public int eventID {  get; set; }

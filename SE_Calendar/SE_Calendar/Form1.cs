@@ -26,21 +26,15 @@ namespace SE_Calendar
         private List<Attendee> attendeesList = new List<Attendee>();
         private int uID;
         private string accountType;
+        private DateTime? selectedEventDate = null;
 
         public Form1()
         {
             InitializeComponent();
-            //RetrieveListOfEvents();
-            //LoadEventList();
-
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        //  "Log In"
+        //  LOGIN PANEL
+        //  Event Handler: Login Button Button (Login Panel)
         private void button1_Click(object sender, EventArgs e)
         {
             //  Check if contents of textbox1 (username) and textbox2 (password) exist in the database
@@ -80,6 +74,7 @@ namespace SE_Calendar
                     textBox1.Text = string.Empty;
                     textBox2.Text = string.Empty;
 
+                    //  Load events to monthly event list
                     RetrieveListOfEvents();
                     LoadEventList();
 
@@ -103,10 +98,37 @@ namespace SE_Calendar
                 panelInvalidUsername.Visible = true;
             }
 
+            //  Close connection to database
             conn.Close();
         }
 
-        //  "Create Account"
+        //  Event Handler: Create Account Button (Login Panel)
+        private void button2_Click(object sender, EventArgs e)
+        {
+            panelLogin.Visible = false;
+            panelCreateAccount.Visible = true;
+        }
+
+        //  Event Handler: Return to Login Screen (Independent of Panel).
+        private void ReturnToLoginEvent(object sender, EventArgs e)
+        {
+            //  Get parent panel for the calling button
+            Control s = sender as Control;
+            Control panel = s.Parent.Parent;
+
+            //  Reset login textboxes
+            textBox1.Text = string.Empty;
+            textBox2.Text = string.Empty;
+
+            //  Return to Login Screen
+            panel.Visible = false;
+            panelLogin.Visible = true;
+        }
+
+
+
+        //  CREATE ACCOUNT PANEL
+        //  Event Handler: Create Account Button (Create Account Panel)
         private void button8_Click(object sender, EventArgs e)
         {
             string username = textBox3.Text;
@@ -123,6 +145,7 @@ namespace SE_Calendar
             MySqlCommand commandCheckExistsUsername = new MySqlCommand(commandStrCheckExistsUsername, conn);
             commandCheckExistsUsername.Parameters.AddWithValue("@user", username);
 
+            //  Open connection to database and execute username check query
             conn.Open();
             MySqlDataReader reader = commandCheckExistsUsername.ExecuteReader();
 
@@ -153,6 +176,7 @@ namespace SE_Calendar
             //  Password and Password Confirmation match
             else
             {
+                //  Close username check reader
                 reader.Close();
 
                 //  Create query to return most recent uID
@@ -162,15 +186,20 @@ namespace SE_Calendar
                 //  Read and store the most recent uID
                 reader = cmdMostRecentUID.ExecuteReader();
                 int mostRecentUID;
+
+                //  If no records are returned...
                 if (!reader.Read())
                 {
+                    //  There are no users in the database -- set most recent user id to 0
                     mostRecentUID = 0;
                 }
                 else
                 {
+                    //  There are users in the database -- set most recent user id to user id of first record
                     mostRecentUID = reader.GetInt32(0);
                 }
 
+                //  Close the most recent user id reader
                 reader.Close();
 
                 //  Create query to create a user account with the supplied credentials
@@ -193,24 +222,120 @@ namespace SE_Calendar
                 panelCreateAccountSuccess.Visible = true;
             }
 
+            //  Close connection to database
             conn.Close();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        //  Event Handler: Return to Create Account Screen (Independent of Panel)
+        private void ReturnToCreateAccountEvent(object sender, EventArgs e)
         {
-            splitContainer2.Visible=false;
-            panelLogin.Visible=true;
+            //  Get parent panel for the calling button
+            Control s = sender as Control;
+            Control panel = s.Parent.Parent;
+
+            //  Reset password textboxes
+            textBox4.Text = string.Empty;
+            textBox5.Text = string.Empty;
+
+            //  Return to Create Account Screen
+            panel.Visible = false;
+            panelCreateAccount.Visible = true;
         }
 
+
+
+        //  MAIN MENU PANEL
+        //  Event Handler: Add Event Button (Main Menu Panel)
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            //  GOTO: Add Event Panel
+            splitContainer2.Visible = false;
+            panelAddEvent.Visible = true;
+        }
+        
+        //  Event Handler: Delete Event Button (Main Menu Panel)
+        private Event eventToDelete;
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //STEP 1: Check if a date was selected
+            if (selectedEventDate == null)
+            {
+                MessageBox.Show("⚠️ Please select a date from the calendar.");
+                return;
+            }
+
+            //STEP 2: Filter events for selected date
+            DateTime date = selectedEventDate.Value;
+            var matchedEvents = events
+                .Where(ev => DateTime.TryParse(ev.eventDate, out DateTime edate) && edate.Date == date.Date)
+                .ToList();
+
+            //STEP 3: No events found
+            if (matchedEvents.Count == 0)
+            {
+                MessageBox.Show("❌ No events found for the selected date.");
+                return;
+            }
+
+            //STEP 4: Show events in checkbox list
+            checkedListBox1.Items.Clear();
+            foreach (var ev in matchedEvents)
+            {
+                string display = $"{ev.eventTime} - {ev.eventName} ({ev.eventType})";
+                checkedListBox1.Items.Add(new EventItem { EventID = ev.eventID, Display = display });
+            }
+
+            // Moves from main menu to Events Associated screen
+            splitContainer2.Visible = false;
+            splitContainer7.Visible = true;
+        }
+
+        //  Event Handler: Edit Event Button (Main Menu Panel)
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (selectedEventDate == null)
+            {
+                MessageBox.Show("Please select a date first.");
+                return;
+            }
+
+            DateTime date = selectedEventDate.Value;
+            var matchedEvents = events
+                .Where(ev => DateTime.TryParse(ev.eventDate, out DateTime edate) && edate.Date == date.Date)
+                .ToList();
+
+            if (matchedEvents.Count == 0)
+            {
+                MessageBox.Show(" No events found for the selected date.");
+                return;
+            }
+
+            checkedListBox6.Items.Clear();
+            foreach (var ev in matchedEvents)
+            {
+                string display = $"{ev.eventTime} - {ev.eventName} ({ev.eventType})";
+                checkedListBox6.Items.Add(new EventItem { EventID = ev.eventID, Display = display });
+            }
+
+            splitContainer2.Visible = false;
+            splitContainer1.Visible = true; // go to Events Associated for Edit       
+
+        }
+
+        //  Event Handler: View Event Button (Main Menu Panel)
         private void button6_Click(object sender, EventArgs e)
         {
+            //  If an event has been selected in the monthly event list...
             if (listBox1.SelectedItem is EventItem selectedEvent)
             {
+                //  GOTO: Event View Panel
                 splitContainer2.Visible = false;
                 splitContainer10.Visible = true;
 
+                //  Get event from event list using selected event's ID
                 Event found = getEventById(selectedEvent.EventID);
 
+                //  Set event view textboxes to selected event's information
                 textBox15.Text = found.eventName.ToString();
                 textBox16.Text = found.eventDescription.ToString();
                 textBox17.Text = found.eventDate.ToString();
@@ -219,26 +344,87 @@ namespace SE_Calendar
             }
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        //  Event Handler: Schedule Event Button (Main Menu Panel)
+        private void button17_Click(object sender, EventArgs e)
         {
+            //  GOTO: Schedule Event Attendees Panel
+            splitContainer2.Visible = false;
+            splitContainer11.Visible = true;
 
+            //  Fill attendees panel with users from database
+            checkedListBox2.Items.Clear();
+            retrieveListOfUsers(uID);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        //  Event Handler: Date of calendar on Main Menu changed
+        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
-            panelLogin.Visible=false;
-            panelCreateAccount.Visible=true;
+            //  Updates the items in the edit/delete event checkedListBox
+            DateTime selectedDate = e.Start;
+
+            selectedEventDate = selectedDate;
+            checkedListBox1.Items.Clear();
+
+            var matchedEvents = events
+                .Where(ev => DateTime.TryParse(ev.eventDate, out DateTime edate) && edate.Date == selectedDate.Date)
+                .ToList();
+
+            if (matchedEvents.Count == 0)
+            {
+                selectedEventDate = null;  //No matching events = null
+                return;
+            }
+
+            selectedEventDate = selectedDate; //Store selected date
+
+            foreach (var ev in matchedEvents)
+            {
+                string display = $"{ev.eventTime} - {ev.eventName}";
+                checkedListBox1.Items.Add(new EventItem { EventID = ev.eventID, Display = display });
+
+            }
         }
 
-        
-
-        private void button11_Click(object sender, EventArgs e)
+        //  Add users to Schedule Event Attendees Panel
+        private void retrieveListOfUsers(int uid)
         {
-            panelAddEventSuccess.Visible=false;
-            panelAddEvent.Visible=true;
+
+            try
+            {
+
+                string connStr = "server=csitmariadb.eku.edu;user=student;database=csc340_db;port=3306;password=Maroon@21?;";
+                using (MySqlConnection conn = new MySqlConnection(connStr))
+                {
+                    conn.Open();
+
+                    string sql = $"SELECT * FROM 834_group5_user WHERE uID != {uid};";
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var attendee = new Attendee
+                            {
+                                Id = (int)reader["uid"],
+                                Name = (string)reader["username"],
+                            };
+
+                            checkedListBox2.Items.Add(attendee);
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading events: " + ex.Message);
+            }
         }
 
-        //  "Add Event"
+
+
+        //  ADD EVENT PANEL
+        //  Event Handler: Add Event Button (Add Event Panel)
         private void button10_Click(object sender, EventArgs e)
         {
 
@@ -271,6 +457,7 @@ namespace SE_Calendar
             DateTime eventDate = DateTime.Parse(textBox8.Text + " 12:00:00");
             float eventLength = float.Parse(textBox10.Text);
 
+            //  Create event time string from hour and minute textboxes, and AM/PM dropdown menu
             string eventHourStr = textBox9.Text.Length == 1 ? "0" + textBox9.Text : textBox9.Text;
             string eventMinuteStr = textBox20.Text.Length == 1 ? "0" + textBox20.Text : textBox20.Text;
             string eventTime = eventHourStr + ":" + eventMinuteStr + " " + comboBox3.Text;
@@ -311,10 +498,12 @@ namespace SE_Calendar
             //
             //      Since Event B starts during Event A, there is a conflict.
 
+            //  Prepare time string for use in deriving Simplified Event Time
             double eventHour = double.Parse(eventHourStr);
             double eventMinute = double.Parse(eventMinuteStr);
             string eventAMPM = eventTime.Substring(6, 2);
 
+            //  Represent event time in Simplified Event Time
             double eventTimeSimplifiedHour = eventHour;
             double eventTimeSimplifiedMinute = eventMinute / 60;
             double eventTimeSimplifiedAMPM = eventAMPM == "AM" ? 0 : 12;
@@ -323,9 +512,7 @@ namespace SE_Calendar
                 eventTimeSimplifiedAMPM += 12;
                 eventTimeSimplifiedAMPM %= 24;
             }
-
             double eventTimeSimplified = eventTimeSimplifiedHour + eventTimeSimplifiedMinute + eventTimeSimplifiedAMPM;
-            //
 
 
             //  Create connection to database
@@ -352,6 +539,7 @@ namespace SE_Calendar
                 double dbEventMinute = double.Parse(dbEventTime.Substring(3, 2));
                 string dbEventAMPM = dbEventTime.Substring(6, 2);
 
+                //  Determine Simplified Event Time for database event
                 double dbEventTimeSimplifiedHour = dbEventHour;
                 double dbEventTimeSimplifiedMinute = dbEventMinute / 60;
                 double dbEventTimeSimplifiedAMPM = dbEventAMPM == "AM" ? 0 : 12;
@@ -360,9 +548,7 @@ namespace SE_Calendar
                     dbEventTimeSimplifiedAMPM += 12;
                     dbEventTimeSimplifiedAMPM %= 24;
                 }
-
                 double dbEventTimeSimplified = dbEventTimeSimplifiedHour + dbEventTimeSimplifiedMinute + dbEventTimeSimplifiedAMPM;
-                //
 
 
                 //  Check if the events conflict
@@ -375,6 +561,7 @@ namespace SE_Calendar
                 //  There are conflicts
                 if (newStartsDuringOld || oldStartsDuringNew)
                 {
+                    //  Close possible conflicting event reader
                     reader.Close();
 
                     //  GOTO: conflicts error screen
@@ -383,25 +570,32 @@ namespace SE_Calendar
                     return;
                 }
             }
-            //  There are no conflicts
+            //  There are no conflicts; close conflicting event reader
             reader.Close();
 
-            //  Get eventID
+            //  Get most recent eventID by getting all eventIDs sorted descending
             int mostRecentEventID;
             string commandStrGetMostRecentEventID = "SELECT eventID FROM 834_group5_event ORDER BY eventID DESC";
             MySqlCommand commandGetMostRecentEventID = new MySqlCommand(commandStrGetMostRecentEventID, conn);
 
+            //  Execute query to determine most recent eventID
             reader = commandGetMostRecentEventID.ExecuteReader();
+
+            //  If there are no events, set most recent event ID to 100
             if(!reader.Read())
             {
                 mostRecentEventID = 100;
             }
+            //  Otherwise, set it to the first value of the retrieved events
             else
             {
                 mostRecentEventID = reader.GetInt32(0);
             }
+
+            //  Close most recent eventID reader
             reader.Close();
 
+            //  INSERT command to add the event to the database
             string commandStrAddEventToDB = "INSERT INTO 834_group5_event VALUES (@eID, @eCreatorID, \'personal\', @eTime, @eLength, @eName, @eDesc, @eDate, null)";
             MySqlCommand commandAddEventToDB = new MySqlCommand(commandStrAddEventToDB, conn);
             commandAddEventToDB.Parameters.AddWithValue("@eID", mostRecentEventID + 1);
@@ -412,8 +606,10 @@ namespace SE_Calendar
             commandAddEventToDB.Parameters.AddWithValue("@eDesc", eventDescription);
             commandAddEventToDB.Parameters.AddWithValue("@eDate", eventDate);
 
+            //  Execute INSERT command
             commandAddEventToDB.ExecuteNonQuery();
 
+            //  Close conenction to database
             conn.Close();
 
             //  Reset "Add Event" Panel
@@ -423,6 +619,7 @@ namespace SE_Calendar
             textBox10.Text = string.Empty;
             comboBox3.Text = string.Empty;
 
+            //  Reset hour and minute textboxes to placeholder values and formatting
             textBox9.ForeColor = Color.Gray;
             textBox9.Text = "1-12...";
             textBox20.ForeColor = Color.Gray;
@@ -433,13 +630,79 @@ namespace SE_Calendar
             panelAddEventSuccess.Visible = true;
         }
 
-        private void button3_Click_1(object sender, EventArgs e)
+        //  Event Handler: Return to Add Event Screen (Independent of Panel)
+        private void ReturnToAddEventEvent(object sender, EventArgs e)
         {
-            splitContainer2.Visible=false ;
-            panelAddEvent.Visible=true ;
+            //  Get parent panel for the calling button
+            Control s = sender as Control;
+            Control panel = s.Parent.Parent;
+
+            //  Return to Add Event Screen
+            panel.Visible = false;
+            panelAddEvent.Visible = true;
         }
 
-        //  Add Another Event Button Click
+        //  Event Handler: Validate input when user leaves eventHour textbox (Add Event Panel)
+        private void textBox9_Leave(object sender, EventArgs e)
+        {
+            bool invalidHour = !Int32.TryParse(textBox9.Text, out int hour) || hour < 1 || hour > 12;
+
+            //  If a valid input is detected, don't reset textbox
+            if (!invalidHour)
+            {
+                return;
+            }
+
+            textBox9.ForeColor = Color.Gray;
+            textBox9.Text = "1-12...";
+        }
+
+        //  Event Handler: Validate input when user leaves eventMinute textbox (Add Event Panel)
+        private void textBox20_Leave(object sender, EventArgs e)
+        {
+            bool invalidMinute = !Int32.TryParse(textBox20.Text, out int minute) || minute < 0 || minute > 59;
+
+            //  If a valid input is detected, don't reset textbox
+            if (!invalidMinute)
+            {
+                return;
+            }
+
+            textBox20.ForeColor = Color.Gray;
+            textBox20.Text = "0-59...";
+        }
+
+        //  Event Handler: Reset eventHour textBox when user clicks on it (Add Event Panel)
+        private void textBox9_Click(object sender, EventArgs e)
+        {
+            textBox9.ForeColor = Color.Black;
+            textBox9.Text = string.Empty;
+        }
+
+        //  Event Handler: Reset eventMinute textBox when user clicks on it (Add Event Panel)
+        private void textBox20_Click(object sender, EventArgs e)
+        {
+            textBox20.ForeColor = Color.Black;
+            textBox20.Text = string.Empty;
+        }
+
+        //  Event Handler: Set event date in add event screen based on selected date in monthCalendar2 (Add Event Panel)
+        private void monthCalendar2_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            textBox8.Text = monthCalendar2.SelectionStart.ToShortDateString();
+            monthCalendar2.Visible = false;
+        }
+
+        //  Event Handler: Show Event Date Select calendar when clicking on event date textbox (Add Event Panel)
+        private void textBox8_Click(object sender, EventArgs e)
+        {
+            monthCalendar2.Visible = true;
+            textBox8.Text = "Select Date from Calendar...";
+        }
+
+
+        //  ADD EVENT SUCCESS PANEL
+        //  Event Handler: Add Another Event Button (Add Event Success Panel)
         private void button11_Click_1(object sender, EventArgs e)
         {
             //  Reset "Add Event" Panel
@@ -449,6 +712,7 @@ namespace SE_Calendar
             textBox10.Text = string.Empty;
             comboBox3.Text = string.Empty;
 
+            //  Reset hour and minute textboxes to placeholder values and formatting
             textBox9.ForeColor = Color.Gray;
             textBox9.Text = "1-12...";
             textBox20.ForeColor = Color.Gray;
@@ -459,16 +723,23 @@ namespace SE_Calendar
             panelAddEvent.Visible = true;
         }
 
+        //  Event Handler: Return to Main Menu Button (Add Event Success Panel)
         private void button12_Click(object sender, EventArgs e)
         {
+            //  Reload monthly event list
             this.events = new List<Event>();
             RetrieveListOfEvents();
             LoadEventList();
 
+            //  GOTO: Main Menu Panel
             panelAddEventSuccess.Visible=false ;
             splitContainer2.Visible=true ;
         }
 
+
+
+        //  DELETE EVENT PANEL
+        //  Event Handler: Delete Event Button (Delete Event Panel)
         private void button13_Click(object sender, EventArgs e)
         {
             if (checkedListBox1.CheckedItems.Count == 0)
@@ -503,109 +774,173 @@ namespace SE_Calendar
 
         }
 
-        private void button15_Click(object sender, EventArgs e)
+        //  Event Handler: Return to Main Menu (Delete Event Panel)
+        private void button32_Click(object sender, EventArgs e)
         {
-            splitContainer8.Visible = false ;
-            splitContainer7.Visible=true ;
+            splitContainer7.Visible = false;
+            splitContainer2.Visible = true;
         }
 
 
-        //displaying events on selected date
-
-        private DateTime? selectedEventDate = null;
-        private void ShowEventsForSelectedDate(DateTime selectedDate)
+        //  DELETE EVENT CONFIRMATION PANEL
+        //  Event Handler: Delete Button Click (Delete Event Confirmation Panel)
+        private void button29_Click(object sender, EventArgs e)
         {
-            selectedEventDate = selectedDate;
-            checkedListBox1.Items.Clear();
-
-            var matchedEvents = events
-                .Where(e => DateTime.TryParse(e.eventDate, out DateTime edate) && edate.Date == selectedDate.Date)
-                .ToList();
-
-            if (matchedEvents.Count == 0)
+            if (eventToDelete == null)
             {
-                selectedEventDate = null;  //No matching events = null
+                MessageBox.Show("No event selected to delete. Please go back and select an event.");
+                splitContainer3.Visible = false;
+                splitContainer2.Visible = true;
                 return;
             }
 
-            selectedEventDate = selectedDate; //Store selected date
-
-            foreach (var ev in matchedEvents)
+            try
             {
-                string display = $"{ev.eventTime} - {ev.eventName}";
-                 checkedListBox1.Items.Add(new EventItem { EventID = ev.eventID, Display = display });
+                string connStr = "server=csitmariadb.eku.edu;user=student;database=csc340_db;port=3306;password=Maroon@21?;";
+                int affected = 0;
 
+                using (MySqlConnection conn = new MySqlConnection(connStr))
+                {
+                    conn.Open();
+                    string deleteQuery;
+
+                    string rawDate = eventToDelete.eventDate.ToString();
+                    string time = eventToDelete.eventTime.ToString();
+
+                    string formattedDate = "";
+                    if (DateTime.TryParse(rawDate, out DateTime parsedDate))
+                    {
+                        formattedDate = parsedDate.ToString("yyyy-MM-dd");
+                    }
+
+                    if (eventToDelete.attendees != null && eventToDelete.attendees != string.Empty)
+                    {
+                        deleteQuery = "DELETE FROM 834_group5_event WHERE eventDate = @date " +
+                               "AND eventTime = @time " +
+                               "AND eventType = 'group'";
+
+                        MySqlCommand cmdAttendees = new MySqlCommand(deleteQuery, conn);
+                        cmdAttendees.Parameters.AddWithValue("@date", formattedDate);
+                        cmdAttendees.Parameters.AddWithValue("@time", eventToDelete.eventTime.ToString());
+
+                        affected = cmdAttendees.ExecuteNonQuery();
+                    }
+
+                    else
+                    {
+                        deleteQuery = "DELETE FROM 834_group5_event WHERE eventID = @eID";
+                        MySqlCommand cmd = new MySqlCommand(deleteQuery, conn);
+                        cmd.Parameters.AddWithValue("@eID", eventToDelete.eventID);
+                        affected = cmd.ExecuteNonQuery();
+                    }
+
+
+                    if (affected > 0)
+                    {
+                        events.RemoveAll(x => x.eventID == eventToDelete.eventID);
+                        LoadEventList(); // refresh list
+                    }
+                }
+
+                eventToDelete = null;
+                splitContainer3.Visible = false;
+                splitContainer4.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
-        // Delete Event
-        private Event eventToDelete;
-        private void button4_Click(object sender, EventArgs e)
+        //  Event Handler: Return to Delete Event Panel (Delete Event Confirmation Panel)
+        private void button30_Click(object sender, EventArgs e)
         {
-            //STEP 1: Check if a date was selected
-            if (selectedEventDate == null)
-            {
-                MessageBox.Show("⚠️ Please select a date from the calendar.");
-                return;
-            }
-
-            //STEP 2: Filter events for selected date
-            DateTime date = selectedEventDate.Value;
-            var matchedEvents = events
-                .Where(ev => DateTime.TryParse(ev.eventDate, out DateTime edate) && edate.Date == date.Date)
-                .ToList();
-
-            //STEP 3: No events found
-            if (matchedEvents.Count == 0)
-            {
-                MessageBox.Show("❌ No events found for the selected date.");
-                return;
-            }
-
-            //STEP 4: Show events in checkbox list
-            checkedListBox1.Items.Clear();
-            foreach (var ev in matchedEvents)
-            {
-                string display = $"{ev.eventTime} - {ev.eventName} ({ev.eventType})";
-                checkedListBox1.Items.Add(new EventItem { EventID = ev.eventID, Display = display });
-            }
-
-            // Moves from main menu to Events Associated screen
-            splitContainer2.Visible = false;
+            splitContainer3.Visible = false;
             splitContainer7.Visible = true;
         }
 
-        private void splitContainer8_Panel1_Paint(object sender, PaintEventArgs e)
-        {
 
+        //  DELETE EVENT SUCCESS PANEL
+        //  Event Handler: Return to Main Menu (Delete Event Success Panel)
+        private void button31_Click(object sender, EventArgs e)
+        {
+            splitContainer4.Visible = false;
+            splitContainer2.Visible = true;
         }
 
+
+        //  DELETE EVENT ERROR PANEL
+        //  Event Handler: Return to Main Menu Button (Delete Event Error Panel)
         private void button14_Click(object sender, EventArgs e)
         {
             splitContainer2.Visible = true;
-            splitContainer8.Visible=false ;
+            splitContainer8.Visible = false;
         }
 
-        private void label21_Click(object sender, EventArgs e)
+
+        //  EDIT EVENT SELECT PANEL
+        //  Event Handler: Edit Event Button (Edit Event Select Panel)
+        private Event eventToEdit;
+        private void button33_Click(object sender, EventArgs e)
         {
+            if (checkedListBox6.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("⚠️ Please select an event to edit.");
+                return;
+            }
 
+            EventItem selected = checkedListBox6.CheckedItems[0] as EventItem;
+            Event ev = getEventById(selected.EventID);
+            eventToEdit = ev;
+
+            //Populate Edit Form fields
+            textBox11.Text = eventToEdit.eventName;
+            textBox12.Text = DateTime.Parse(eventToEdit.eventDate).ToString("yyyy-MM-dd");
+            textBox13.Text = eventToEdit.eventTime;
+            textBox14.Text = eventToEdit.eventLength.ToString() + " hours";
+
+            // Permission check
+            if (eventToEdit.eventType == "group")
+            {
+                if (accountType == "manager")
+                {
+
+                    //Navigate to edit form 
+                    splitContainer1.Visible = false;
+                    splitContainer9.Visible = true;
+                }
+                else
+                {
+
+                    splitContainer1.Visible = false;
+                    splitContainer8.Visible = true; // Unauthorized error
+                }
+            }
+            else
+            {
+                //Personal event: go to edit screen
+                splitContainer1.Visible = false;
+                splitContainer9.Visible = true;
+            }
         }
 
-        private void label22_Click(object sender, EventArgs e)
+        //  Event Handler: Return to Main Menu (Edit Event Select Panel)
+        private void button36_Click(object sender, EventArgs e)
         {
-
+            splitContainer1.Visible = false;
+            splitContainer2.Visible = true;
         }
 
-        private void label23_Click(object sender, EventArgs e)
+
+        //  EDIT EVENT PANEL
+        //  Event Handler: Return to Edit Event Select Panel (Edit Event Panel)
+        private void button35_Click(object sender, EventArgs e)
         {
-
+            splitContainer9.Visible = false;
+            splitContainer1.Visible = true;
         }
-
-        private void label24_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
+        //  Event Handler: Edit Event Button (Edit Event Panel)
         private void button15_Click_1(object sender, EventArgs e)
         {
             if (eventToEdit == null)
@@ -669,61 +1004,32 @@ namespace SE_Calendar
             {
                 MessageBox.Show("Error while saving: " + ex.Message);
             }
-
-            //splitContainer9.Visible = false;
-            //splitContainer5 .Visible=true ;
         }
 
-        private void splitContainer10_Panel1_Paint(object sender, PaintEventArgs e)
+
+        //  EDIT EVENT SUCCESS PANEL
+        //  Event Handler: Return to Main Menu Button (Edit Event Success Panel)
+        private void button34_Click(object sender, EventArgs e)
         {
-
+            splitContainer5.Visible = false;
+            splitContainer2.Visible = true;
         }
 
-        private void label28_Click(object sender, EventArgs e)
-        {
 
-        }
 
-        private void label27_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label26_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label29_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label30_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        //  VIEW EVENT PANEL
+        //  Event Handler: Return to Main Menu Button (View Event Panel)
         private void button16_Click(object sender, EventArgs e)
         {
+            //  GOTO: Main Menu Panel
             splitContainer10.Visible = false;
-            splitContainer2 .Visible=true ;
+            splitContainer2.Visible = true;
         }
 
-        private void label19_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void button17_Click(object sender, EventArgs e)
-        {
-            splitContainer2.Visible = false;
-            splitContainer11 .Visible=true ;
-
-            checkedListBox2.Items.Clear();
-            retrieveListOfUsers(uID);
-        }
-
+        
+        //  SCHEDULE EVENT ATTENDEES PANEL
+        //  Event Handler: Check Attendee Availability Button (Schedule Event Attendees Panel)
         private void button18_Click(object sender, EventArgs e)
         {
             checkedListBox3.Items.Clear();
@@ -739,6 +1045,10 @@ namespace SE_Calendar
             PopulateAvailableSlots(checkedListBox3, availableSlotsForAll);
         }
 
+
+
+        //  SCHEDULE EVENT AVAILABILITY PANEL
+        //  Event Handler: Confirm Meeting Time Button (Schedule Event Availability Panel)
         private void button19_Click(object sender, EventArgs e)
         {
             List<string> selectedSlots = new List<string>();
@@ -769,132 +1079,7 @@ namespace SE_Calendar
             }
         }
 
-        private void button20_Click(object sender, EventArgs e)
-        {
-            string idString = buildAttendeesList(checkedListBox4);
-            List<Event> eventsList = new List<Event>();
-
-            //Events for the manager block
-            foreach (var slot in checkedListBox5.CheckedItems)
-            {
-                Event myEvent = new Event();
-                myEvent.eventID = -1;
-                myEvent.eventCreatorID = uID;
-                myEvent.eventType = "group";
-
-                if (DateTime.TryParseExact(slot.ToString(), "yyyy-MM-dd hh:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedSlot))
-                {
-                    myEvent.eventDate = parsedSlot.ToString("yyyy-MM-dd");
-                    myEvent.eventTime = parsedSlot.ToString("hh:mm tt");
-                }
-
-                myEvent.eventLength = 0.5;
-                myEvent.eventName = "Team Meeting";
-                myEvent.eventDescription = "Team meeting scheduled by management.";
-                myEvent.attendees = idString;
-                eventsList.Add(myEvent);
-            }
-
-            // Events for the attendees so it is blocked and tracked.
-            foreach (Attendee attendee in checkedListBox4.CheckedItems)
-            {
-                foreach (var slot in checkedListBox5.CheckedItems)
-                {
-                    Event myEvent = new Event();
-                    myEvent.eventID = -1;
-                    myEvent.eventCreatorID = attendee.Id;
-                    myEvent.eventType = "group";
-
-                    if (DateTime.TryParseExact(slot.ToString(), "yyyy-MM-dd hh:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedSlot))
-                    {
-                        myEvent.eventDate = parsedSlot.ToString("yyyy-MM-dd");
-                        myEvent.eventTime = parsedSlot.ToString("hh:mm tt");
-                    }
-
-                    myEvent.eventLength = 0.5;
-                    myEvent.eventName = "Team Meeting";
-                    myEvent.eventDescription = "Team meeting scheduled by management.";
-                    myEvent.attendees = idString;
-                    eventsList.Add(myEvent);
-                }
-            }
-
-            saveEvents(eventsList);
-        }
-
-        private void saveEvents(List<Event> MyEvents)
-        {
-            string connStr = "server=csitmariadb.eku.edu;user=student;database=csc340_db;port=3306;password=Maroon@21?;";
-            MySqlConnection conn = new MySqlConnection(connStr);
-
-            //  Get eventID
-            int mostRecentEventID;
-            string commandStrGetMostRecentEventID = "SELECT eventID FROM 834_group5_event ORDER BY eventID DESC";
-            MySqlCommand commandGetMostRecentEventID = new MySqlCommand(commandStrGetMostRecentEventID, conn);
-
-            conn.Open();
-            MySqlDataReader reader = commandGetMostRecentEventID.ExecuteReader();
-            if (!reader.Read())
-            {
-                mostRecentEventID = 100;
-            }
-            else
-            {
-                mostRecentEventID = reader.GetInt32(0);
-            }
-            reader.Close();
-
-
-            foreach (var MyEv in MyEvents)
-            {
-                string commandStrAddEventToDB = "INSERT INTO 834_group5_event VALUES (@eID, @eCreatorID, @evType, @eTime, @eLength, @eName, @eDesc, @eDate, @evAttend)";
-                MySqlCommand commandAddEventToDB = new MySqlCommand(commandStrAddEventToDB, conn);
-
-                commandAddEventToDB.Parameters.AddWithValue("@eID", ++mostRecentEventID);
-                commandAddEventToDB.Parameters.AddWithValue("@eCreatorID", MyEv.eventCreatorID);
-                commandAddEventToDB.Parameters.AddWithValue("@evType", MyEv.eventType);
-                commandAddEventToDB.Parameters.AddWithValue("@eTime", MyEv.eventTime);
-                commandAddEventToDB.Parameters.AddWithValue("@eLength", MyEv.eventLength);
-                commandAddEventToDB.Parameters.AddWithValue("@eName", MyEv.eventName);
-                commandAddEventToDB.Parameters.AddWithValue("@eDesc", MyEv.eventDescription);
-                commandAddEventToDB.Parameters.AddWithValue("@eDate", MyEv.eventDate);
-                commandAddEventToDB.Parameters.AddWithValue("@evAttend", MyEv.attendees);
-
-                commandAddEventToDB.ExecuteNonQuery();
-            }
-
-            conn.Close();
-            MessageBox.Show("Your event(s) have been created.");
-
-            this.attendeesList.Clear();
-
-            splitContainer13.Visible = false;
-            splitContainer2.Visible = true;
-
-            checkedListBox1.Items.Clear();
-            this.events.Clear();
-
-            RetrieveListOfEvents();
-            LoadEventList();
-        }
-    
-
-        private void checkedListBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
-        {
-            DateTime selectedDate = e.Start;
-
-            // ✅ This calls your logic
-            ShowEventsForSelectedDate(selectedDate);
-        }
-
-        /*
-         * Retrieve all current events.
-         */
+        //  Build list of attendees for scheduled event
         private string buildAttendeesList(CheckedListBox selectedItems)
         {
             List<int> selectedAttendeeIds = new List<int>();
@@ -916,6 +1101,7 @@ namespace SE_Calendar
             return idString;
         }
 
+        //  Add availability slots to availability text box for scheduling meetings
         private void PopulateAvailableSlots(CheckedListBox checkedListBox, List<DateTime> availableSlots)
         {
             checkedListBox.Items.Clear();
@@ -926,6 +1112,7 @@ namespace SE_Calendar
             }
         }
 
+        //  Determine Availability of all selected users for scheduling event
         private List<DateTime> verifyAvailability(List<int> userIds, int daysAhead = 7, int startHour = 9, int endHour = 17)
         {
             Dictionary<int, HashSet<DateTime>> userBusySlots = new Dictionary<int, HashSet<DateTime>>();
@@ -1041,6 +1228,124 @@ namespace SE_Calendar
 
             return availableSlots;
         }
+
+
+
+        //  SCHEDULE EVENT CONFIRMATION PANEL
+        //  Event Handler: Confirm Scheduled Meeting Button (Schedule Event Confirmation Panel)
+        private void button20_Click(object sender, EventArgs e)
+        {
+            string idString = buildAttendeesList(checkedListBox4);
+            List<Event> eventsList = new List<Event>();
+
+            //Events for the manager block
+            foreach (var slot in checkedListBox5.CheckedItems)
+            {
+                Event myEvent = new Event();
+                myEvent.eventID = -1;
+                myEvent.eventCreatorID = uID;
+                myEvent.eventType = "group";
+
+                if (DateTime.TryParseExact(slot.ToString(), "yyyy-MM-dd hh:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedSlot))
+                {
+                    myEvent.eventDate = parsedSlot.ToString("yyyy-MM-dd");
+                    myEvent.eventTime = parsedSlot.ToString("hh:mm tt");
+                }
+
+                myEvent.eventLength = 0.5;
+                myEvent.eventName = "Team Meeting";
+                myEvent.eventDescription = "Team meeting scheduled by management.";
+                myEvent.attendees = idString;
+                eventsList.Add(myEvent);
+            }
+
+            // Events for the attendees so it is blocked and tracked.
+            foreach (Attendee attendee in checkedListBox4.CheckedItems)
+            {
+                foreach (var slot in checkedListBox5.CheckedItems)
+                {
+                    Event myEvent = new Event();
+                    myEvent.eventID = -1;
+                    myEvent.eventCreatorID = attendee.Id;
+                    myEvent.eventType = "group";
+
+                    if (DateTime.TryParseExact(slot.ToString(), "yyyy-MM-dd hh:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedSlot))
+                    {
+                        myEvent.eventDate = parsedSlot.ToString("yyyy-MM-dd");
+                        myEvent.eventTime = parsedSlot.ToString("hh:mm tt");
+                    }
+
+                    myEvent.eventLength = 0.5;
+                    myEvent.eventName = "Team Meeting";
+                    myEvent.eventDescription = "Team meeting scheduled by management.";
+                    myEvent.attendees = idString;
+                    eventsList.Add(myEvent);
+                }
+            }
+
+            saveEvents(eventsList);
+        }
+
+        //  Save list of events to database
+        private void saveEvents(List<Event> MyEvents)
+        {
+            string connStr = "server=csitmariadb.eku.edu;user=student;database=csc340_db;port=3306;password=Maroon@21?;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+
+            //  Get eventID
+            int mostRecentEventID;
+            string commandStrGetMostRecentEventID = "SELECT eventID FROM 834_group5_event ORDER BY eventID DESC";
+            MySqlCommand commandGetMostRecentEventID = new MySqlCommand(commandStrGetMostRecentEventID, conn);
+
+            conn.Open();
+            MySqlDataReader reader = commandGetMostRecentEventID.ExecuteReader();
+            if (!reader.Read())
+            {
+                mostRecentEventID = 100;
+            }
+            else
+            {
+                mostRecentEventID = reader.GetInt32(0);
+            }
+            reader.Close();
+
+
+            foreach (var MyEv in MyEvents)
+            {
+                string commandStrAddEventToDB = "INSERT INTO 834_group5_event VALUES (@eID, @eCreatorID, @evType, @eTime, @eLength, @eName, @eDesc, @eDate, @evAttend)";
+                MySqlCommand commandAddEventToDB = new MySqlCommand(commandStrAddEventToDB, conn);
+
+                commandAddEventToDB.Parameters.AddWithValue("@eID", ++mostRecentEventID);
+                commandAddEventToDB.Parameters.AddWithValue("@eCreatorID", MyEv.eventCreatorID);
+                commandAddEventToDB.Parameters.AddWithValue("@evType", MyEv.eventType);
+                commandAddEventToDB.Parameters.AddWithValue("@eTime", MyEv.eventTime);
+                commandAddEventToDB.Parameters.AddWithValue("@eLength", MyEv.eventLength);
+                commandAddEventToDB.Parameters.AddWithValue("@eName", MyEv.eventName);
+                commandAddEventToDB.Parameters.AddWithValue("@eDesc", MyEv.eventDescription);
+                commandAddEventToDB.Parameters.AddWithValue("@eDate", MyEv.eventDate);
+                commandAddEventToDB.Parameters.AddWithValue("@evAttend", MyEv.attendees);
+
+                commandAddEventToDB.ExecuteNonQuery();
+            }
+
+            conn.Close();
+            MessageBox.Show("Your event(s) have been created.");
+
+            this.attendeesList.Clear();
+
+            splitContainer13.Visible = false;
+            splitContainer2.Visible = true;
+
+            checkedListBox1.Items.Clear();
+            this.events.Clear();
+
+            RetrieveListOfEvents();
+            LoadEventList();
+        }
+
+
+        //  GENERAL FUNCTIONS
+        //  Select all events that the user is a part of from the database
         private void RetrieveListOfEvents()
         {
             try
@@ -1081,6 +1386,7 @@ namespace SE_Calendar
             }
         }
 
+        //  Add all events the user is a part of to the monthly event list
         private void LoadEventList()
         {
             listBox1.Items.Clear();
@@ -1111,6 +1417,7 @@ namespace SE_Calendar
 
         }
 
+        //  Select event from locally-stored list of events by event ID
         private Event getEventById(int id)
         {
             var found = this.events.FirstOrDefault(e => e.eventID == id);
@@ -1122,353 +1429,10 @@ namespace SE_Calendar
             }
             return found;
         }
-
-        private void retrieveListOfUsers(int uid)
-        {
-
-            try
-            {
-
-                string connStr = "server=csitmariadb.eku.edu;user=student;database=csc340_db;port=3306;password=Maroon@21?;";
-                using (MySqlConnection conn = new MySqlConnection(connStr))
-                {
-                    conn.Open();
-
-                    string sql = $"SELECT * FROM 834_group5_user WHERE uID != {uid};";
-                    MySqlCommand cmd = new MySqlCommand(sql, conn);
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            var attendee = new Attendee
-                            {
-                                Id = (int)reader["uid"],
-                                Name = (string)reader["username"],
-                            };
-
-                            checkedListBox2.Items.Add(attendee);
-
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading events: " + ex.Message);
-            }
-        }
-
-        //  Click the "return to login screen" button on a login error screen.
-        private void ReturnToLoginEvent(object sender, EventArgs e)
-        {
-            //  Get parent panel for the calling button
-            Control s = sender as Control;
-            Control panel = s.Parent.Parent;
-
-            //  Reset login textboxes
-            textBox1.Text = string.Empty;
-            textBox2.Text = string.Empty;
-
-            //  Return to Login Screen
-            panel.Visible = false;
-            panelLogin.Visible = true;
-        }
-
-        //  Click the "back" button on the create account error screen
-        private void ReturnToCreateAccountEvent(object sender, EventArgs e)
-        {
-            //  Get parent panel for the calling button
-            Control s = sender as Control;
-            Control panel = s.Parent.Parent;
-
-            //  Reset password textboxes
-            textBox4.Text = string.Empty;
-            textBox5.Text = string.Empty;
-
-            //  Return to Create Account Screen
-            panel.Visible = false;
-            panelCreateAccount.Visible = true;
-        }
-
-        //  Click the "back" button on the create account error screen
-        private void ReturnToAddEventEvent(object sender, EventArgs e)
-        {
-            //  Get parent panel for the calling button
-            Control s = sender as Control;
-            Control panel = s.Parent.Parent;
-
-            //  Return to Add Event Screen
-            panel.Visible = false;
-            panelAddEvent.Visible = true;
-        }
-
-        private void monthCalendar2_DateSelected(object sender, DateRangeEventArgs e)
-        {
-            textBox8.Text = monthCalendar2.SelectionStart.ToShortDateString();
-            monthCalendar2.Visible = false;
-        }
-
-        private void textBox8_Click(object sender, EventArgs e)
-        {
-            monthCalendar2.Visible = true;
-            textBox8.Text = "Select Date from Calendar...";
-        }
-
-        private void textBox9_Leave(object sender, EventArgs e)
-        {
-            bool invalidHour = !Int32.TryParse(textBox9.Text, out int hour) || hour < 1 || hour > 12;
-            
-            //  If a valid input is detected, don't reset textbox
-            if (!invalidHour)
-            {
-                return;
-            }
-
-            textBox9.ForeColor = Color.Gray;
-            textBox9.Text = "1-12...";
-        }
-
-        private void textBox20_Leave(object sender, EventArgs e)
-        {
-            bool invalidMinute = !Int32.TryParse(textBox20.Text, out int minute) || minute < 0 || minute > 59;
-
-            //  If a valid input is detected, don't reset textbox
-            if (!invalidMinute)
-            {
-                return;
-            }
-
-            textBox20.ForeColor = Color.Gray;
-            textBox20.Text = "0-59...";
-        }
-
-        private void textBox9_Click(object sender, EventArgs e)
-        {
-            textBox9.ForeColor = Color.Black;
-            textBox9.Text = string.Empty;
-        }
-
-        private void textBox20_Click(object sender, EventArgs e)
-        {
-            textBox20.ForeColor = Color.Black;
-            textBox20.Text = string.Empty;
-        }
-
-
-        //Confirming delete option
-        private void button29_Click(object sender, EventArgs e)
-        {
-            if (eventToDelete == null)
-            {
-                MessageBox.Show("No event selected to delete. Please go back and select an event.");
-                splitContainer3.Visible = false;
-                splitContainer2.Visible = true;
-                return;
-            }
-
-            try
-            {
-                string connStr = "server=csitmariadb.eku.edu;user=student;database=csc340_db;port=3306;password=Maroon@21?;";
-                int affected = 0;
-
-                using (MySqlConnection conn = new MySqlConnection(connStr))
-                {
-                    conn.Open();
-                    string deleteQuery;
-
-                    string rawDate = eventToDelete.eventDate.ToString();
-                    string time = eventToDelete.eventTime.ToString();
-
-                    string formattedDate = "";
-                    if (DateTime.TryParse(rawDate, out DateTime parsedDate))
-                    {
-                        formattedDate = parsedDate.ToString("yyyy-MM-dd");
-                    }
-
-                    if (eventToDelete.attendees != null && eventToDelete.attendees != string.Empty)
-                    {
-                        deleteQuery = "DELETE FROM 834_group5_event WHERE eventDate = @date " +
-                               "AND eventTime = @time " +
-                               "AND eventType = 'group'";
-                           
-                        MySqlCommand cmdAttendees = new MySqlCommand(deleteQuery, conn);
-                        cmdAttendees.Parameters.AddWithValue("@date", formattedDate);
-                        cmdAttendees.Parameters.AddWithValue("@time", eventToDelete.eventTime.ToString());
-                        
-                        affected = cmdAttendees.ExecuteNonQuery();
-                    }
-
-                    else
-                    {
-                        deleteQuery = "DELETE FROM 834_group5_event WHERE eventID = @eID";
-                        MySqlCommand cmd = new MySqlCommand(deleteQuery, conn);
-                        cmd.Parameters.AddWithValue("@eID", eventToDelete.eventID);
-                        affected = cmd.ExecuteNonQuery();
-                    }
-                        
-                    
-                    if (affected > 0)
-                    {
-                        events.RemoveAll(x => x.eventID == eventToDelete.eventID);
-                        LoadEventList(); // refresh list
-                    }
-                }
-
-                eventToDelete = null;
-                splitContainer3.Visible = false;
-                splitContainer4.Visible = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-        }
-
-        private void button30_Click(object sender, EventArgs e)
-        {
-            splitContainer3.Visible=false;
-            splitContainer7.Visible=true;
-        }
-
-        private void button32_Click(object sender, EventArgs e)
-        {
-            splitContainer7.Visible = false;
-            splitContainer2.Visible = true;
-        }
-
-        private void button31_Click(object sender, EventArgs e)
-        {
-            splitContainer4.Visible=false;
-            splitContainer2.Visible=true;
-        }
-
-        private void checkedListBox1_SelectedIndexChanged(object sender, ItemCheckEventArgs e)
-        {
-            this.BeginInvoke(new Action(() =>
-            {
-                for (int i = 0; i < checkedListBox1.Items.Count; i++)
-                {
-                    if (i != e.Index)
-                    {
-                        checkedListBox1.SetItemChecked(i, false);
-                    }
-                }
-            }));
-        }
-
-        private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
-
-        }
-
-        private Event eventToEdit;
-
-        private void button33_Click(object sender, EventArgs e)
-        {
-            if (checkedListBox6.CheckedItems.Count == 0)
-            {
-                MessageBox.Show("⚠️ Please select an event to edit.");
-                return;
-            }
-
-            EventItem selected = checkedListBox6.CheckedItems[0] as EventItem;
-            Event ev = getEventById(selected.EventID);
-            eventToEdit = ev;
-
-            //Populate Edit Form fields
-            textBox11.Text = eventToEdit.eventName;
-            textBox12.Text = DateTime.Parse(eventToEdit.eventDate).ToString("yyyy-MM-dd");
-            textBox13.Text = eventToEdit.eventTime;
-            textBox14.Text = eventToEdit.eventLength.ToString() + " hours";
-
-            // Permission check
-            if (eventToEdit.eventType == "group")
-            {
-                if (accountType == "manager")
-                {
-                   
-                    //Navigate to edit form 
-                    splitContainer1.Visible = false;
-                    splitContainer9.Visible = true;
-                }
-                else
-                {
-                    
-                    splitContainer1.Visible = false;
-                    splitContainer8.Visible = true; // Unauthorized error
-                }
-            }
-            else
-            {
-                //Personal event: go to edit screen
-                splitContainer1.Visible = false;
-                splitContainer9.Visible = true;
-            }
-        }
-
-        //Edit Event
-        private void button5_Click(object sender, EventArgs e)
-        {
-            if (selectedEventDate == null)
-            {
-                MessageBox.Show("Please select a date first.");
-                return;
-            }
-
-            DateTime date = selectedEventDate.Value;
-            var matchedEvents = events
-                .Where(ev => DateTime.TryParse(ev.eventDate, out DateTime edate) && edate.Date == date.Date)
-                .ToList();
-
-            if (matchedEvents.Count == 0)
-            {
-                MessageBox.Show(" No events found for the selected date.");
-                return;
-            }
-
-            checkedListBox6.Items.Clear();
-            foreach (var ev in matchedEvents)
-            {
-                string display = $"{ev.eventTime} - {ev.eventName} ({ev.eventType})";
-                checkedListBox6.Items.Add(new EventItem { EventID = ev.eventID, Display = display });
-            }
-
-            splitContainer2.Visible = false;
-            splitContainer1.Visible = true; // go to Events Associated for Edit       
-
-        }
-
-        private void button34_Click(object sender, EventArgs e)
-        {
-            splitContainer5.Visible=false;
-            splitContainer2.Visible = true;
-        }
-
-        private void checkedListBox6_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button35_Click(object sender, EventArgs e)
-        {
-            splitContainer9.Visible=false;
-            splitContainer1.Visible=true;
-        }
-
-        private void button36_Click(object sender, EventArgs e)
-        {
-            splitContainer1.Visible=false;
-            splitContainer2.Visible=true;
-        }
     }
 }
 
+//  Locally stored (truncated) event objects.
 class EventItem
 {
     public int EventID { get; set; }
@@ -1481,6 +1445,7 @@ class EventItem
     }
 }
 
+//  Objects for keeping track of users being added to group meetings
 public class Attendee
 {
     public int Id { get; set; }
